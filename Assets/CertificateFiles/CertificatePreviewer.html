@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+ <style>
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            #section-to-print * {
+                visibility: visible;
+                width: auto;
+                margin: 0;
+            }
+
+         #name {
+			position: absolute;
+			top: 134px;
+			left: 60px;
+        }
+
+        #MotherName {
+			position: absolute;
+			top: 154px;
+			left: 155px;
+        }
+        #PlaceDOB {
+			position: absolute;
+			top: 185px;
+			left: 260px;
+        }
+        #HiSchool{
+			position: absolute;
+			top: 219px;
+			left: 295px;
+        }
+        #CompletedYr{
+			position: absolute;
+			top: 255px;
+			left: 140px;
+        }
+
+        #RollNo{
+          	position: absolute;
+			top: 258px;
+			left: 330px;
+        }
+
+        #Avg{
+            position: absolute;
+			top: 274px;
+			left: 331px;
+        }
+		  /*Result Latin */
+		  #S1{position: absolute;top: 329px;left: 198px;}    #S2{position: absolute;top: 349px;left: 198px;}   #S3{position: absolute;top: 366px;left: 198px;} 
+		  #S4{position: absolute;top: 383px;left: 198px;}    #S5{position: absolute;top: 400px;left: 198px;}   #S6{position: absolute;top: 417px;left: 198px;} 
+		  
+		  #S7{position: absolute;top: 329px;left: 397px;}    #S8{position: absolute;top: 349px;left: 397px;}   #S9{position: absolute;top: 366px;left: 397px;}
+		  #S10{position: absolute;top: 383px;left: 397px;}   #S11{position: absolute;top: 400px;left: 397px;}  #S12{position: absolute;top: 417px;left: 397px;}	
+		 /*End Result Latin */
+		 
+		 
+		  /*Result Latin */
+		  #AS1{position: absolute;top: 329px;right: 198px;}    #AS2{position: absolute;top: 349px;right: 198px;}   #AS3{position: absolute;top: 366px;right: 198px;} 
+		  #AS4{position: absolute;top: 383px;right: 198px;}    #AS5{position: absolute;top: 400px;right: 198px;}   #AS6{position: absolute;top: 417px;right: 198px;} 
+		  
+		  #AS7{position: absolute;top: 329px;right: 397px;}    #AS8{position: absolute;top: 349px;right: 397px;}   #AS9{position: absolute;top: 364px;right: 397px;}
+		  #AS10{position: absolute;top: 383px;right: 397px;}   #AS11{position: absolute;top: 400px;right: 397px;}   #AS12{position: absolute;top: 417px;right: 397px;}	
+		 /*End Result Latin */
+
+             /* Arabic */
+        #Ar_name {
+			position: absolute;
+			top: 137px;
+			right: 230px;
+        }
+
+        #Ar_MotherName {
+          position: absolute;
+			top: 162px;
+			right: 200px;
+        }
+        #Ar_PlaceDOB {
+			position: absolute;
+			top: 190px;
+			right: 200px;
+        }
+        #Ar_HiSchool{
+			position: absolute;
+			top: 220px;
+			right: 305px;
+        }
+        #Ar_CompletedYr{
+          position: absolute;
+			top: 250px;
+			right: 270px;
+        }
+
+         #Ar_RollNo{
+          	position: absolute;
+			top: 252px;
+			right: 175px;
+        }
+
+        #Ar_Avg{
+            position: absolute;
+			top: 278px;
+			right: 200px;
+        }
+
+        }
+
+        div.image:before {
+            content: url(Sample.JPG);
+        }
+
+        .name {
+			position: absolute;
+			top: 133px;
+			left: 55px;
+        }
+
+        .MotherName {
+			position: absolute;
+			top: 147px;
+			left: 145px;
+        }
+        .PlaceDOB {
+			position: absolute;
+			top: 177px;
+			left: 215px;
+        }
+        .HiSchool{
+			position: absolute;
+			top: 206px;
+			left: 255px;
+        }
+        .CompletedYr{
+			position: absolute;
+			top: 234px;
+			left: 140px;
+        }
+
+        .RoomNo{
+           
+           position: absolute;
+			top: 234px;
+			left: 300px;
+        }
+
+        .Avg{
+            position: absolute;
+			top: 252px;
+			left: 300px;
+        }
+
+
+
+
+        /* Arabic */
+         .Ar_name {
+		position: absolute;
+			top: 137px;
+			right: 230px;
+        }
+
+        .MotherName {
+			position: absolute;
+			top: 147px;
+			left: 145px;
+        }
+        .PlaceDOB {
+			position: absolute;
+			top: 177px;
+			left: 215px;
+        }
+        .HiSchool{
+			position: absolute;
+			top: 206px;
+			left: 255px;
+        }
+        .CompletedYr{
+			position: absolute;
+			top: 234px;
+			left: 140px;
+        }
+
+        .RoomNo{
+           
+           position: absolute;
+			top: 234px;
+			left: 300px;
+        }
+
+        .Avg{
+            position: absolute;
+			top: 252px;
+			left: 300px;
+        }
+        /*End Arabic */
+		
+		
+		
+</style>
+
+    <script>
+        function printthis() {
+            window.print();
+        }
+    </script>
+</head>
+<body style="width:842px ; height:595px;">
+      <input type="button" onclick="printthis() " value="Preview" class="btn btn-sm btn-primary pull-right m-t-n-xs" />
+    <div  id="section-to-print" style="width:842px ; height:595px;" >
+    <div  style="width:100% ; height:100%;  background-image:url(Sample.JPG);background-size: 842px 595px;" >
+        <div style="width:421px ; height:595px;float:left" >
+        <span id="name" class="name">Abdifitah Mohamed Yusuf</span>
+        <span id="MotherName" class="MotherName">Ardo Ali Mohamed</span>
+        <span id="PlaceDOB" class="PlaceDOB">Dhuusamareeb, 18/04/1991</span>
+        <span id="HiSchool" class="HiSchool">Ablal Primary School</span>
+        <span id="CompletedYr" class="CompletedYr">2016 </span>
+		<span id="RollNo" class="RoomNo"> 10001</span>
+         <span id="Avg" class="Avg">90% </span>
+		 
+		  <span id="S1" class="S1">90 </span>
+		    <span id="S2" class="S2">90 </span>
+			  <span id="S3" class="S3">90 </span>
+			    <span id="S4" class="S4">90 </span>
+				  <span id="S5" class="S5">90 </span>
+				    <span id="S6" class="S6">90 </span>
+					  <span id="S7" class="S7">90 </span>
+					    <span id="S8" class="S8">90 </span>
+						  <span id="S9" class="S9">90 </span>
+						    <span id="S10" class="S10">90 </span>
+							  <span id="S11" class="S11">90 </span>
+							    <span id="S12" class="S12">90 </span>
+		 
+        </div>
+
+       <div style="width:421px ; height:595px;float:right" >
+        <span id="Ar_name" class="Ar_name">عبد الفتاح محمد يوسف</span>
+         <span id="Ar_MotherName" class="Ar_MotherName">عبد الفتاح محمد يوسف</span>
+		  <span id="Ar_PlaceDOB" class="Ar_PlaceDOB">طوسمريب، ١٨/٠٢/١٩٩١</span>
+        <span id="Ar_HiSchool" class="Ar_HiSchool">٢٠٠٦</span>
+		 <span id="Ar_CompletedYr" class="Ar_CompletedYr">!بلال </span>
+		<span id="Ar_RollNo" class="Ar_RoomNo"> ١٠٠٠١</span>
+        <span id="Ar_Avg" class="Ar_Avg">١٠٠ </span>
+		
+		
+		 <span id="AS1" class="AS1">90 </span>
+		    <span id="AS2" class="AS2">90 </span>
+			  <span id="AS3" class="AS3">90 </span>
+			    <span id="AS4" class="AS4">90 </span>
+				  <span id="AS5" class="AS5">90 </span>
+				    <span id="AS6" class="AS6">90 </span>
+					  <span id="AS7" class="AS7">90 </span>
+					    <span id="AS8" class="AS8">90 </span>
+						  <span id="AS9" class="AS9">90 </span>
+						    <span id="AS10" class="AS10">90 </span>
+							  <span id="AS11" class="AS11">90 </span>
+							    <span id="AS12" class="AS12">90 </span>
+		
+		
+        </div>
+        </div>     
+    </div>
+   
+
+    
+   
+</body>
+</html>

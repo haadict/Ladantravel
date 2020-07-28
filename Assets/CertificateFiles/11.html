@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+ <style>
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            #section-to-print * {
+                visibility: visible;
+                width: auto;
+                margin: 0;
+            }
+
+         #Name {
+			position: absolute;
+			top: 133px;
+			left: 55px;
+        }
+
+        #MotherName {
+			position: absolute;
+			top: 147px;
+			left: 145px;
+        }
+        #PlaceDOB {
+			position: absolute;
+			top: 177px;
+			left: 215px;
+        }
+        #HiSchool{
+			position: absolute;
+			top: 206px;
+			left: 255px;
+        }
+        #CompletedYr{
+			position: absolute;
+			top: 237px;
+			left: 140px;
+        }
+
+        #RoomNo{
+           
+           position: absolute;
+			top: 237px;
+			left: 300px;
+        }
+
+        #Avg{
+            position: absolute;
+			top: 252px;
+			left: 300px;
+        }
+
+             /* Arabic */
+        #Ar_name {
+            padding-top: 130px;
+            margin-left: 120px;
+            color: blue;
+            display: block; /* Add this */
+        }
+
+        #Ar_MotherName {
+            padding-top: 5px;
+            margin-left: 190px;
+            color: blue;
+            display: block; /* Add this */
+        }
+        #Ar_PlaceDOB {
+            padding-top: 8px;
+            margin-left: 130px;
+            color: blue;
+            display: block; /* Add this */
+        }
+        #Ar_HiSchool{
+            padding-top: 6px;
+            margin-left: 28px;
+            color: blue;
+            display: block; /* Add this */
+        }
+        #Ar_CompletedYr{
+            padding-top: 5px;
+            margin-left: 120px;
+            color: blue;
+            display: block; /* Add this */
+        }
+
+        #Ar_RoomNo{
+           
+            margin-left: 100px;
+        }
+
+        #Ar_Avg{
+            padding-top: 5px;
+            margin-left: 220px;
+            color: blue;
+            display: block; /* Add this */
+		
+        }
+
+        }
+
+        div.image:before {
+            content: url(Sample.JPG);
+        }
+
+        .Name {
+			position: absolute;
+			top: 133px;
+			left: 55px;
+        }
+
+        .MotherName {
+			position: absolute;
+			top: 147px;
+			left: 145px;
+        }
+        .PlaceDOB {
+			position: absolute;
+			top: 177px;
+			left: 215px;
+        }
+        .HiSchool{
+			position: absolute;
+			top: 206px;
+			left: 255px;
+        }
+        .CompletedYr{
+			position: absolute;
+			top: 234px;
+			left: 140px;
+        }
+
+        #RoomNo{
+           
+           position: absolute;
+			top: 234px;
+			left: 300px;
+        }
+
+        .Avg{
+            position: absolute;
+			top: 252px;
+			left: 300px;
+        }
+
+
+
+
+        /* Arabic */
+        .Ar_name {
+            padding-top: 130px;
+            margin-left: 120px;
+            color: blue;
+            display: block; /* Add this */
+        }
+
+        .Ar_MotherName {
+            padding-top: 5px;
+            margin-left: 190px;
+            color: blue;
+            display: block; /* Add this */
+        }
+        .Ar_PlaceDOB {
+            padding-top: 8px;
+            margin-left: 130px;
+            color: blue;
+            display: block; /* Add this */
+        }
+        .Ar_HiSchool{
+            padding-top: 6px;
+            margin-left: 28px;
+            color: blue;
+            display: block; /* Add this */
+        }
+        .Ar_CompletedYr{
+            padding-top: 5px;
+            margin-left: 120px;
+            color: blue;
+            display: block; /* Add this */
+        }
+
+        #Ar_RoomNo{
+           
+            margin-left: 100px;
+        }
+
+        .Ar_Avg{
+            padding-top: 5px;
+            margin-left: 220px;
+            color: blue;
+            display: block; /* Add this */
+        }
+
+        /*End Arabic */
+</style>
+
+    <script>
+        function printthis() {
+            window.print();
+        }
+    </script>
+</head>
+<body style="width:842px ; height:595px;">
+
+    <div  id="section-to-print" style="width:842px ; height:595px;" >
+    <div  style="width:100% ; height:100%;  background-image:url(Sample.JPG);background-size: 842px 595px;" >
+        <div style="width:421px ; height:595px;float:left" >
+        <span id="name" class="Name">Abdifitah Mohamed Yusuf</span>
+        <span id="MotherName" class="MotherName">Ardo Ali Mohamed</span>
+        <span id="PlaceDOB" class="PlaceDOB">Dhuusamareeb, 18/04/1991</span>
+        <span id="HiSchool" class="HiSchool">Ablal Primary School</span>
+        <span id="CompletedYr" class="CompletedYr">2016 </span>
+		<span id="RoomNo" class="RoomNo"> 2545</span>
+         <span id="Avg" class="Avg">2016 </span>
+        </div>
+
+        <div style="width:421px ; height:595px;float:right" >
+        <span id="Ar_name" class="Ar_name">عبد الفتاح محمد يوسف</span>
+        <span id="Ar_MotherName" class="Ar_MotherName">عبد الفتاح محمد يوسف</span>
+        <span id="Ar_PlaceDOB" class="Ar_PlaceDOB">طوسمريب، ١٨/٠٢/١٩٩١</span>
+        <span id="Ar_HiSchool" class="Ar_HiSchool">عبد الفتاح محمد يوسف</span>
+       <span id="Ar_CompletedYr" class="Ar_CompletedYr">2016 </span>
+		<span id="Ar_RollNo" class="Ar_RoomNo"> 10001</span>
+        <span id="Ar_Avg" class="Ar_Avg">2016 </span>
+        </div>
+    </div>
+    </div>
+
+    
+    <input type="button" onclick="printthis() " value="" />
+</body>
+</html>
