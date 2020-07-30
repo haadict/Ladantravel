@@ -92,7 +92,7 @@
                     <li>
                         <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Accounts</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="search_results.html">Invoice</a></li>
+                            <li><a href="../Accounts/invoice">Invoice</a></li>
                             <li><a href="lockscreen.html">Expenses</a></li>
                         </ul>
                     </li>
