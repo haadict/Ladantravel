@@ -86,14 +86,15 @@
                     <li>
                         <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">Suppliers</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="contacts.html">Supplier list</a></li>
+                            <li><a href="../Suplier/suplierList">Supplier list</a></li>
                         </ul>
                     </li><hr>
                     <li>
                         <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Accounts</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="search_results.html">Invoice</a></li>
-                            <li><a href="lockscreen.html">Expenses</a></li>
+                            <li><a href="../Expense/expenseList">Expenses</a></li>
+                            <li><a href="../Receipt/receiptList">Receipt</a></li>
                         </ul>
                     </li>
                     <li>
@@ -105,12 +106,12 @@
                     <li>
                         <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">Setups</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="typography.html">AirLines</a></li>
-                            <li><a href="icons.html">Company</a></li>
-                            <li><a href="draggable_panels.html">Branch</a></li>
-                            <li><a href="buttons.html">Invoice No</a></li>
-                            <li><a href="video.html">Expense Type</a></li>
-                            <li><a href="tabs_panels.html">Package Type</a></li>
+                            <li><a href="../airline/airLineList">AirLines</a></li>
+                            <li><a href="../ExpenseType/expenseTypeList">Expense Type</a></li>
+                            <li><a href="../Branch/branchList">Branch</a></li>
+                            <li><a href="../InvoiceNo/invoiceNoList">Invoice No</a></li>
+                            <li><a href="../Company/companyList">Company</a></li>
+                            <li><a href="../PackageType/packageTypeList">Package Type</a></li>
                         </ul>
                     </li><hr>
 

@@ -1,4 +1,5 @@
 <script>
+
 // $(document).ready(function () {
 //     // READ recods on page load
 //     readRecords(); // calling function
@@ -11,22 +12,15 @@
 // }
 
 // Add Record
-function addCustomer(){
+function addAirLine(){
 	
     // get values
-    var fullname = $("#fullname").val();
-    var tell = $("#tell").val();
-    var address = $("#address").val();
-	var email = $("#email").val();
-	var user_id = $("#user_id").val();
-
+    var aname = $("#aname").val();
+    
     // Add record
-    $.post("addCustomer.php", {
-        fullname: fullname,
-        tell: tell,
-        address: address,
-		email: email,
-		user_id: user_id
+    $.post("addAirline.php", {
+        aname: aname,
+        
     }, function (data, status) {
         // close the popup
 		alert(data);
@@ -35,29 +29,26 @@ function addCustomer(){
         
 
         // clear fields from the popup
-        $("#fullname").val("");
-        $("#tell").val("");
-        $("#address").val("");
-		$("#email").val("");
+        $("#aname").val("");
         location.reload();
+       
+        
     });
 }
 // When updating
-function GetCustomerDetails(id) {
+function GetAirLineDetails(aid) {
 
     // Add User ID to the hidden field for furture usage
-    $("#hidden_custId").val(id);
-    $.post("readCustomerDetails.php", {
-            id: id
+    $("#aid").val(aid);
+    $.post("readAirLineDetails.php", {
+            aid: aid
         },
         function (data, status) {
             // PARSE json data
-            var Customer = JSON.parse(data);
+            var air = JSON.parse(data);
             // Assing existing values to the modal popup fields
-            $("#update_fullname").val(Customer.CustomerName);
-            $("#update_tell").val(Customer.Customerphone);
-            $("#update_address").val(Customer.CustomerAddress);
-			$("#update_email").val(Customer.CustomerEmail);
+            $("#u_aname").val(air.airLineName);
+            
 
 
         }
@@ -67,49 +58,44 @@ function GetCustomerDetails(id) {
 
 }
 // When button update is clicked
-function updateCustomer() {
+function updateAirLine() {
     // get values
-    var fullname = $("#update_fullname").val();
-    var tell = $("#update_tell").val();
-    var address = $("#update_address").val();
-	var email = $("#update_email").val();
+    var u_aname = $("#u_aname").val();
+    
 
     // get hidden field value
-    var id = $("#hidden_custId").val();
+    var aid = $("#aid").val();
  //    alert(fullname);
 	// alert(tell);
 	// alert(address);
 	// alert(email);
 	// alert(id);
     // Update the details by requesting to the server using ajax
-    $.post("updateCustomer.php", {
-            id: id,
-            fullname: fullname,
-            tell: tell,
-			address: address,
-            email: email
+    $.post("updateAirLine.php", {
+            aid: aid,
+            u_aname: u_aname,
+            
         },
         function (data, status) {
+            alert(data);
             // hide modal popup
 			
             $("#updateModal").modal("hide");
             // reload Users by using readRecords();
-           location.reload();
+            location.reload();
         }
     );
 }
-// end of update fuction
 
-// delete function
-function GetDelete(del_id) {
+function GetAirLineDelete(aid) {
 
-    $("#del_id").val(del_id);
+    $("#aid").val(aid);
   if(confirm("Are you sure you want to delete this?"))
   {
    $.ajax({
-    url:"deleteExpenseType.php",
+    url:"deleteAirLine.php",
     method:"POST",
-    data:{del_id:del_id},
+    data:{aid:aid},
     success:function(data)
     {
      alert(data);
@@ -127,5 +113,4 @@ function GetDelete(del_id) {
   }
 
 }
-// end of delete fuction
 </script>
