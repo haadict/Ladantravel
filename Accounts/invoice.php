@@ -69,7 +69,7 @@ include 'invoiceClass.php';
                     <div class="ibox-content">
 
                         <div class="table-responsive">
-						<button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addModal" style="margin-top:20px;;" type="button"><i class="fa fa-plus"></i>&nbsp;Add</button>
+						<a href="addInvoice"><button class="btn btn-primary pull-right" style="margin-top:20px;;" type="button"><i class="fa fa-plus"></i>&nbsp;Add</button></a>
                     <table class="table table-striped table-bordered table-hover dataTables-example" >
                     <thead>
                     <tr>

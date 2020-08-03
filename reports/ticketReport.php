@@ -4,8 +4,6 @@
   include '../includes/side.php';
   include '../includes/script.js';
   include '../includes/nav.php';
-  include 'customerScript.js';
-  include 'customer_Class.php';
   ?>
     <style>
 .nav-header {
@@ -15,7 +13,7 @@
 </style>
    <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>Customers Tables</h2>
+                    <h2>Ticket Report Tables</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index.html">Home</a>
@@ -24,7 +22,7 @@
                             <a>Tables</a>
                         </li>
                         <li class="active">
-                            <strong>Customers Tables</strong>
+                            <strong>Ticket Report Tables</strong>
                         </li>
                     </ol>
                 </div>
@@ -37,7 +35,7 @@
                 <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>All Customers List</h5>
+                        <h5>All Ticket Reports</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>

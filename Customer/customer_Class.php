@@ -1,7 +1,7 @@
 <?php
 include '../connection/dbcon.php';
 function getCustomers(){
-  return getCnx()->query("SELECT * FROM tbl_customers");
+  return getCnx()->query("SELECT * FROM tbl_customers where FinishDate is null");
  }
  
 function addCustomer($fullname,$tell,$address,$email,$user_id){
@@ -22,13 +22,20 @@ function getCustomerById($cust_id){
   
   function updateCustomer($id,$fullname,$tell,$address,$email)
       {
-        $stmt =getCnx()->prepare("UPDATE tbl_customers SET  CustomerName=:fullname, Customerphone=:tell ,CustomerAddress=:address,CustomerEmail:email WHERE CustomerId = :id");
+        $stmt =getCnx()->prepare("UPDATE tbl_customers SET  CustomerName=:fullname, Customerphone=:tell ,CustomerAddress=:address,CustomerEmail=:email WHERE CustomerId = :id");
 
           $stmt->bindParam(':id', $id);
           $stmt->bindParam(':fullname', $fullname);
           $stmt->bindParam(':tell', $tell);
           $stmt->bindParam(':address', $address);
 		  $stmt->bindParam(':email', $email);
+          $stmt->execute();
+      }
+      function deleteCustomer($del_id)
+      {
+        $stmt =getCnx()->prepare("UPDATE tbl_customers SET  FinishDate=now() WHERE CustomerId = :id");
+
+          $stmt->bindParam(':id', $del_id);
           $stmt->execute();
       }
 ?>
