@@ -5,7 +5,6 @@
   include '../includes/script.js';
   include '../includes/nav.php';
  // include 'customerScript.js';
-// include 'customer_Class.php';
   ?>
     <style>
 .nav-header {
