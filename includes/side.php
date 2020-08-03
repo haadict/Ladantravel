@@ -99,7 +99,7 @@
                     <li>
                         <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Users</span><span class="label label-info pull-right">NEW</span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="toastr_notifications.html">user List</a></li>
+                            <li><a href="../User/userList">user List</a></li>
                         </ul>
                     </li><hr>
                     <li>
