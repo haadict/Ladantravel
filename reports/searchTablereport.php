@@ -6,8 +6,7 @@
     // include Database connection files
     include("reportClass.php");
      $data ="";
-     $tickets = $visas = $cargos =$allActivity= 0;
-		 $result = getTicketsByDate($startDate,$endDate);
+		 $result = getTicketsListByDate($startDate,$endDate);
 		 while($row=$result->fetch()){
 			 $tickets = $row["Tickets"];
 			 $data .= '
@@ -16,7 +15,7 @@
                             <div class="ibox-title">
                                <!-- <span class="label label-success pull-right">Monthly</span>-->
 							   <i class="fa fa-ticket pull-right" aria-hidden="true"></i>
-                                <h5><a onclick="readallTickets(\''.$startDate.'\',\''.$endDate.'\')">Tickets</a></h5>
+                                <h5>Tickets</h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins">'.$row["Tickets"].'</h1>
@@ -35,7 +34,7 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <i class="fa fa-cc-visa pull-right" aria-hidden="true"></i>
-                                <h5><a onclick="readallVisas(\''.$startDate.'\',\''.$endDate.'\')">Visas</a></h5>
+                                <h5>Visas</h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins">'.$row1["Visas"].'</h1>
@@ -54,7 +53,7 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <i class="fa fa-truck pull-right" aria-hidden="true"></i>
-                                <h5><a onclick="readallCargos(\''.$startDate.'\',\''.$endDate.'\')">Cargos</a></h5>
+                                <h5>Cargos</h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins">'.$row2["Cargos"].'</h1>
@@ -83,6 +82,7 @@
             </div>
 			 ';
    
+    $data .= '</table>';
 	
     echo $data;
 	}

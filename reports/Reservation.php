@@ -52,18 +52,21 @@ include 'reportClass.php';
                     </div>
         <div class="row">
 		<div class="reportBox">
+		<form id="prospects_form">
 		<?php 
-		$tickets = $visas = $cargos =$allActivity= 0;
+		$startDate = $endDate ="1";
+		
 		 $result = getTickets();
 		 while($row=$result->fetch()){
 			 $tickets = $row["Tickets"];
+			 $type="1";
 			 echo '
-			 <div class="col-lg-3">
+			 <div class="col-lg-3" id="prospects">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                <!-- <span class="label label-success pull-right">Monthly</span>-->
 							   <i class="fa fa-ticket pull-right" aria-hidden="true"></i>
-                                <h5>Tickets</h5>
+                                <h5><a onclick="readallTickets(\''.$startDate.'\',\''.$endDate.'\')">Tickets</a></h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins">'.$row["Tickets"].'</h1>
@@ -82,7 +85,7 @@ include 'reportClass.php';
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <i class="fa fa-cc-visa pull-right" aria-hidden="true"></i>
-                                <h5>Visas</h5>
+                                <h5><a onclick="readallVisas(\''.$startDate.'\',\''.$endDate.'\')">Visas</a></h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins">'.$row1["Visas"].'</h1>
@@ -101,7 +104,7 @@ include 'reportClass.php';
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <i class="fa fa-truck pull-right" aria-hidden="true"></i>
-                                <h5>Cargos</h5>
+                                <h5><a onclick="readallCargos(\''.$startDate.'\',\''.$endDate.'\')">Cargos</a></h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins">'.$row2["Cargos"].'</h1>
@@ -132,14 +135,14 @@ include 'reportClass.php';
 		?>
                     
                    
-                    
+            </form>        
         </div>
 		</div>
         <div class="row">
                             <div class="col-lg-12">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
-                                        <h5>Transactions worldwide</h5>
+                                        <h5>Reports</h5>
                                         <div class="ibox-tools">
                                             <a class="collapse-link">
                                                 <i class="fa fa-chevron-up"></i>
@@ -153,60 +156,7 @@ include 'reportClass.php';
 
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <table class="table table-hover margin bottom">
-                                                    <thead>
-                                                    <tr>
-                                                        <th style="width: 1%" class="text-center">No.</th>
-                                                        <th>Transaction</th>
-                                                        <th class="text-center">Date</th>
-                                                        <th class="text-center">Amount</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td class="text-center">1</td>
-                                                        <td> Security doors
-                                                            </td>
-                                                        <td class="text-center small">16 Jun 2014</td>
-                                                        <td class="text-center"><span class="label label-primary">$483.00</span></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">2</td>
-                                                        <td> Wardrobes
-                                                        </td>
-                                                        <td class="text-center small">10 Jun 2014</td>
-                                                        <td class="text-center"><span class="label label-primary">$327.00</span></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">3</td>
-                                                        <td> Set of tools
-                                                        </td>
-                                                        <td class="text-center small">12 Jun 2014</td>
-                                                        <td class="text-center"><span class="label label-warning">$125.00</span></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">4</td>
-                                                        <td> Panoramic pictures</td>
-                                                        <td class="text-center small">22 Jun 2013</td>
-                                                        <td class="text-center"><span class="label label-primary">$344.00</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">5</td>
-                                                        <td>Phones</td>
-                                                        <td class="text-center small">24 Jun 2013</td>
-                                                        <td class="text-center"><span class="label label-primary">$235.00</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">6</td>
-                                                        <td>Monitors</td>
-                                                        <td class="text-center small">26 Jun 2013</td>
-                                                        <td class="text-center"><span class="label label-primary">$100.00</span></td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+                                               <div class="reports"></div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div id="world-map" style="height: 300px;"></div>
@@ -610,20 +560,71 @@ include 'reportClass.php';
 function searchReport(){
 	var startDate = $("#startDate").val();
 	var endDate = $("#endDate").val();
-	alert(startDate);
-	alert(endDate);
 	 // Search records
     $.post("searchreport.php", {
         startDate: startDate,
         endDate: endDate
     }, function (data, status) {
         // close the popup
-		alert(data);
          $(".reportBox").html(data);
 
     });
+	
+}
+function readallTickets(startDate,endDate){
+
+	if(startDate==1 && endDate==1){
+	$.get("readAllTickets.php", {}, function (data, status) {
+      $(".reports").html(data);
+    });
+	}
+	else{
+		$.post("readAllTickets.php", {
+        startDate: startDate,
+        endDate: endDate
+    }, function (data, status) {
+        // close the popup
+         $(".reports").html(data);
+
+    });
+	}
+}
+function readallVisas(startDate,endDate){
+	if(startDate==1 && endDate==1){
+	$.get("readallVisas.php", {}, function (data, status) {
+      $(".reports").html(data);
+    });
+	}
+	else{
+		$.post("readallVisas.php", {
+        startDate: startDate,
+        endDate: endDate
+    }, function (data, status) {
+        // close the popup
+         $(".reports").html(data);
+
+    });
+	}
+}
+function readallCargos(startDate,endDate){
+	if(startDate==1 && endDate==1){
+	$.get("readallCargos.php", {}, function (data, status) {
+      $(".reports").html(data);
+    });
+	}
+	else{
+		$.post("readallCargos.php", {
+        startDate: startDate,
+        endDate: endDate
+    }, function (data, status) {
+        // close the popup
+         $(".reports").html(data);
+
+    });
+	}
 }
 $("#prospects_form").submit(function(e) {
     e.preventDefault();
 });
+
 </script>
