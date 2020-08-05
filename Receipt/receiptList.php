@@ -124,13 +124,13 @@
    <div class="modal-content">
     <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal">&times;</button>
-     <h4 class="modal-title">Add Expense</h4>
+     <h4 class="modal-title">Add Reciept</h4>
     </div>
     <div class="modal-body">
      <label>Invoice</label>
         <select name="inv" id="inv"  class="form-control" required='true'><option value=" ">Invoice No</option>
                     <?php
-                    $dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+                    include("./connection/dbcon.php");
                     $query = "select * from tbl_invoice";
                     $stm = $dbcon->prepare($query);
                     $stm->execute();
@@ -185,7 +185,7 @@
     <label>Invoice</label>
         <select name="up_inv" id="up_inv"  class="form-control" required='true'><option value=" ">Invoice No</option>
                     <?php
-                    $dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+                    include("./connection/dbcon.php");
                     $query = "select * from tbl_invoice";
                     $stm = $dbcon->prepare($query);
                     $stm->execute();

@@ -22,7 +22,8 @@ function addRecord(){
     var web = $("#web").val();
     var user_id = $("#user_id").val();
     var logo = $("#logo").val();
-var ext=$('#logo').val().split('.').pop().toLowerCase();
+
+    var ext=$('#logo').val().split('.').pop().toLowerCase();
 
     if(ext != '')
     {
@@ -33,7 +34,7 @@ var ext=$('#logo').val().split('.').pop().toLowerCase();
         return false;
       }
     }
-    
+   // alert(logo);
     // Add record
     $.post("addCompany.php", {
         cname: cname,
@@ -42,7 +43,7 @@ var ext=$('#logo').val().split('.').pop().toLowerCase();
         email: email,
         web: web,
         user_id: user_id,
-        logo: logo,
+        logo: logo
         
     }, function (data, status) {
         // close the popup
@@ -64,31 +65,24 @@ var ext=$('#logo').val().split('.').pop().toLowerCase();
 // When updating
 function GetUpdateDetails(up_id) {
 
-    // Add User ID to the hidden field for furture usage
-    // $("#up_sname").val(up_sname);
-    // $("#up_tell").val(up_tell);
-    // $("#up_addr").val(up_addr);
-    // $("#up_email").val(up_email);
-    // $("#up_user_id").val(up_user_id);
+    
     $("#up_id").val(up_id);
 
-    $.post("readSuplierDetails.php", {
-            // up_sname: up_sname,
-            // up_tell: up_tell,
-            // up_addr: up_addr,
-            // up_email: up_email,
-            // up_user_id: up_user_id,
+    $.post("readCompanyDetails.php", {
+           
             up_id: up_id
         },
         function (data, status) {
             // PARSE json data
             var result = JSON.parse(data);
             // Assing existing values to the modal popup fields
-            $("#up_sname").val(result.supplierName);
-            $("#up_tell").val(result.supplierphone);
-            $("#up_addr").val(result.supplierAddress);
-            $("#up_email").val(result.supplierEmail);
-            $("#up_id").val(result.supplierId);
+            $("#up_cname").val(result.CompanyName);
+            $("#up_tell").val(result.CompanyPhone);
+            $("#up_addr").val(result.CompanyAddress);
+            $("#up_email").val(result.CompanyEmail);
+            $("#up_web").val(result.CompanyWebsite);
+
+            $("#up_id").val(result.CompanyId);
 
 
         }
@@ -100,10 +94,11 @@ function GetUpdateDetails(up_id) {
 // When button update is clicked
 function updateRecord() {
     // get values
-    var up_sname = $("#up_sname").val();
+    var up_cname = $("#up_cname").val();
     var up_tell = $("#up_tell").val();
     var up_addr = $("#up_addr").val();
     var up_email = $("#up_email").val();
+    var up_web = $("#up_web").val();
     var up_user_id = $("#up_user_id").val();
     
 
@@ -111,20 +106,21 @@ function updateRecord() {
     var up_id = $("#up_id").val();
  
     // Update the details by requesting to the server using ajax
-    $.post("updateSuplier.php", {
-             up_sname: up_sname,
+    $.post("updateCompany.php", {
+             up_cname: up_cname,
             up_tell: up_tell,
             up_addr: up_addr,
             up_email: up_email,
+            up_web:up_web,
             up_user_id: up_user_id,
             up_id : up_id
-            
+            //alert(up_cname,);
         },
         function (data, status) {
             // hide modal popup
 			alert(data);
            $("#updateModal").modal("hide");
-            $("#up_inv_no").val("");
+            //$("#up_inv_no").val("");
        
         }
     );

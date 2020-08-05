@@ -4,8 +4,8 @@
   include '../includes/side.php';
   include '../includes/script.js';
   include '../includes/nav.php';
-  include 'branchScript.js';
-  include 'branch_Class.php';
+  include 'employeeScript.js';
+  include 'employee_Class.php';
   ?>
     <style>
 .nav-header {
@@ -15,7 +15,7 @@
 </style>
    <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>Branch Tables</h2>
+                    <h2>Employees Tables</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index">Home</a>
@@ -24,7 +24,7 @@
                             <a>Tables</a>
                         </li>
                         <li class="active">
-                            <strong>Branch Tables</strong>
+                            <strong>Employees Tables</strong>
                         </li>
                     </ol>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>All Branch List</h5>
+                        <h5>All Employees List</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -65,14 +65,20 @@
                     <table class="table table-striped table-bordered table-hover dataTables-example" id="tbl" >
                     <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Company Name</th>
-                       <th>Branch Name</th>
-                       <th>Branch Phone</th>
-                       <th>Branch Address</th>
-                       <th>Branch CreateDate</th>
-                        
-						<th>Action</th>
+                        <th>NO</th>
+                        <th>Employee Name</th>
+                        <th>Employee Gender</th>
+                       <th>Employee Phone</th>
+                       <th>Employee Address</th>
+                       <th>Employee Email</th>
+                       <th>Employee Title</th>
+                       <th>Employee Salary</th>
+                        <th>Employee Company</th>
+                       <th>Employee Branch</th>
+                       <th>Employee CreateDate</th>
+                       
+
+                    <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -84,16 +90,21 @@
 						 echo '
 						  <tr>
 						    <td>'.$i.'</td>
-							<td>'.$row["CompanyName"].'</td>
-							<td>'.$row["BranchName"].'</td>
-                            <td>'.$row["BranchPhone"].'</td>
-                            <td>'.$row["BranchAddress"].'</td>
-                            <td>'.$row["BranchCreateDate"].'</td>
+							<td>'.$row["EmployeeName"].'</td>
+							<td>'.$row["EmployeeGender"].'</td>
+                            <td>'.$row["EmployeePhone"].'</td>
+                            <td>'.$row["EmployeeAddress"].'</td>
+                            <td>'.$row["EmployeeEmail"].'</td>
+                            <td>'.$row["EmployeeTitle"].'</td>
+                            <td>'.$row["EmployeeSalary"].'</td>
+                            <td>'.$row["CompanyName"].'</td>
+                            <td>'.$row["BranchName"].'</td>
+                            <td>'.$row["EmployeeCreateDate"].'</td>
                             
 							<td>
-							<button class="btn btn-info btn-circle" type="button" onclick="GetUpdateDetails('.$row["BranchId"].')"><i class="fa fa-check"></i>
+							<button class="btn btn-info btn-circle" type="button" onclick="GetUpdateDetails('.$row["EmployeeId"].')"><i class="fa fa-check"></i>
                             </button>
-							<button class="btn btn-warning btn-circle delete" type="button" onclick="GetDelete('.$row["BranchId"].')"><i class="fa fa-times"></i>
+							<button class="btn btn-warning btn-circle delete" type="button" onclick="GetDelete('.$row["EmployeeId"].')"><i class="fa fa-times"></i>
                             </button>
 							</td>
 						  </tr>
@@ -122,8 +133,34 @@
      <h4 class="modal-title">Add Supplier</h4>
     </div>
     <div class="modal-body">
-     <label>Company Name</label>
-      <select name="comid" id="comid"  class="form-control" required='true'><option value=" ">Company Name</option>
+     <label>EmployeeName</label>
+     <input type="text" name="empname" id="empname" class="form-control" required="true" />
+     <br />
+     <label>EmployeeGender</label>
+     <select name="empgender" id="empgender"  class="form-control" required='true'><option value=" ">Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>  
+      <option value="Others">Others</option>
+      
+     </select>
+     <br />
+     <label>EmployeePhone</label>
+     <input type="text" name="emptell" id="emptell" class="form-control" required="true"/>
+     <br />
+     <label>EmployeeAddress</label>
+     <input type="text" name="empadrr" id="empadrr" class="form-control" required="true"/>
+     <br />
+     <label>EmployeeEmail</label>
+     <input type="email" name="empemail" id="empemail" class="form-control" required="true"/>
+     <br />
+     <label>EmployeeTitle</label>
+     <input type="text" name="emptitle" id="emptitle" class="form-control" required="true" />
+     <br />
+     <label>EmployeeSalary</label>
+     <input type="text" name="empsalary" id="empsalary" class="form-control" required="true"/>
+     <br />
+     <label>EmployeeCompanyID</label>
+     <select name="comid" id="comid"  class="form-control" required='true'><option value=" ">Company Name</option>
             <?php
             include("./connection/dbcon.php");
             //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
@@ -141,15 +178,30 @@
       <?php } ?> 
      </select>
      <br />
-     <label>Branch Name</label>
-     <input type="text" name="bname" id="bname" class="form-control" required="true"/>
+     <label>EmployeeBranchID</label>
+     <select name="branchid" id="branchid"  class="form-control" required='true'><option value=" ">Branch</option>
+            <?php
+            include("./connection/dbcon.php");
+            //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+            $query = "select * from tbl_branch";
+            $stm = $dbcon->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll();
+            $data = array();
+            $filtered_rows = $stm->rowCount();
+            // $res=mysqli_query($con,"select * from shifts" );
+            foreach($result as $row)
+            {
+            ?> 
+      <option value="<?php echo $row["BranchId"];?>"><?php echo $row["BranchName"];?></option>  
+      <?php } ?> 
+     </select>
      <br />
-     <label>Branch Phone</label>
-     <input type="text" name="btell" id="btell" class="form-control" required="true"/>
-     <br />
-     <label>Branch Address</label>
-     <input type="text" name="baddr" id="baddr" class="form-control" required="true"/>
-     <br />
+     <!-- <label>Company Logo</label>
+     <input type="file" name="logo" id="logo" class="form-control" required="true"/>
+     <span id="h_clogo"></span>
+     <br /> -->
+     
      
 
      
@@ -171,13 +223,41 @@
    <div class="modal-content">
     <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal">&times;</button>
-     <h4 class="modal-title">Update Invoic No</h4>
+     <h4 class="modal-title">Update Employee</h4>
     </div>
     <div class="modal-body">
-     <label>Company Name</label>
-      <select name="up_comid" id="up_comid"  class="form-control" required='true'><option value=" ">Company Name</option>
+     <label>EmployeeName</label>
+     <input type="text" name="up_empname" id="up_empname" class="form-control" required="true" />
+     <br />
+     <label>EmployeeGender</label>
+     <select name="up_empgender" id="up_empgender"  class="form-control" required='true'>
+        <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>  
+      <option value="Others">Others</option>
+      
+     </select>
+     <br />
+     <label>EmployeePhone</label>
+     <input type="text" name="up_emptell" id="up_emptell" class="form-control" required="true"/>
+     <br />
+     <label>EmployeeAddress</label>
+     <input type="text" name="up_empadrr" id="up_empadrr" class="form-control" required="true"/>
+     <br />
+     <label>EmployeeEmail</label>
+     <input type="email" name="up_empemail" id="up_empemail" class="form-control" required="true"/>
+     <br />
+     <label>EmployeeTitle</label>
+     <input type="text" name="up_emptitle" id="up_emptitle" class="form-control" required="true" />
+     <br />
+     <label>EmployeeSalary</label>
+     <input type="text" name="up_empsalary" id="up_empsalary" class="form-control" required="true"/>
+     <br />
+     <label>EmployeeCompanyID</label>
+     <select name="up_comid" id="up_comid"  class="form-control" required='true'><option value=" ">Company Name</option>
             <?php
-              include("./connection/dbcon.php");
+            include("./connection/dbcon.php");
+            //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
             $query = "select * from tbl_company";
             $stm = $dbcon->prepare($query);
             $stm->execute();
@@ -192,15 +272,29 @@
       <?php } ?> 
      </select>
      <br />
-     <label>Branch Name</label>
-     <input type="text" name="up_bname" id="up_bname" class="form-control" required="true"/>
+     <label>EmployeeBranchID</label>
+     <select name="up_branchid" id="up_branchid"  class="form-control" required='true'><option value=" ">Branch</option>
+            <?php
+            include("./connection/dbcon.php");
+            //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+            $query = "select * from tbl_branch";
+            $stm = $dbcon->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll();
+            $data = array();
+            $filtered_rows = $stm->rowCount();
+            // $res=mysqli_query($con,"select * from shifts" );
+            foreach($result as $row)
+            {
+            ?> 
+      <option value="<?php echo $row["BranchId"];?>"><?php echo $row["BranchName"];?></option>  
+      <?php } ?> 
+     </select>
      <br />
-     <label>Branch Phone</label>
-     <input type="text" name="up_btell" id="up_btell" class="form-control" required="true"/>
-     <br />
-     <label>Branch Address</label>
-     <input type="text" name="up_baddr" id="up_baddr" class="form-control" required="true"/>
-     <br />
+    <!--  <label>Company Logo</label>
+     <input type="file" name="logo" id="logo" class="form-control" required="true"/>
+     <span id="h_clogo"></span>
+     <br /> -->
      
     
     </div>

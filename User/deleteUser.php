@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
+ include 'branch_Class.php';
+=======
  include 'user_Class.php';
+>>>>>>> 334e8ac9642ed2d13b3a2007ddffbf77b5782684
 
 if(isset($_POST["del_id"])) //  Delete Operation Starts Here
 	
@@ -10,3 +14,10 @@ if(isset($_POST["del_id"])) //  Delete Operation Starts Here
 		  echo 'Data Deleted';
 		 
 	}
+<<<<<<< HEAD
+
+
+
+?>
+=======
+>>>>>>> 334e8ac9642ed2d13b3a2007ddffbf77b5782684
