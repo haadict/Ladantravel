@@ -86,7 +86,7 @@
                     <li>
                         <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">Suppliers</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="../Suplier/suplierList">Supplier list</a></li>
+                            <li><a href="contacts.html">Supplier list</a></li>
                         </ul>
                     </li><hr>
                     <li>
@@ -104,9 +104,8 @@
                     <li>
                         <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Accounts</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="search_results.html">Invoice</a></li>
-                            <li><a href="../Expense/expenseList">Expenses</a></li>
-                            <li><a href="../Receipt/receiptList">Receipt</a></li>
+                            <li><a href="../Accounts/invoice">Invoice</a></li>
+                            <li><a href="lockscreen.html">Expenses</a></li>
                         </ul>
                     </li>
                     <li>
@@ -118,21 +117,30 @@
                     <li>
                         <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">Setups</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="../airline/airLineList">AirLines</a></li>
-                            <li><a href="../ExpenseType/expenseTypeList">Expense Type</a></li>
-                            <li><a href="../Branch/branchList">Branch</a></li>
-                            <li><a href="../InvoiceNo/invoiceNoList">Invoice No</a></li>
-                            <li><a href="../Company/companyList">Company</a></li>
-                            <li><a href="../PackageType/packageTypeList">Package Type</a></li>
+                            <li><a href="typography.html">AirLines</a></li>
+                            <li><a href="icons.html">Company</a></li>
+                            <li><a href="draggable_panels.html">Branch</a></li>
+                            <li><a href="buttons.html">Invoice No</a></li>
+                            <li><a href="video.html">Expense Type</a></li>
+                            <li><a href="tabs_panels.html">Package Type</a></li>
                         </ul>
                     </li><hr>
 
                     <li>
                         <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Reports</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
+<<<<<<< HEAD
                             <li><a href="../Reports/reports.php">Tickets</a></li>
                             <li><a href="table_data_tables.html">Visas</a></li>
                             <li><a href="table_foo_table.html">Cargos</a></li>
+=======
+                            <li><a href="../reports/Financial">Financial Report</a></li>
+                            <li><a href="../reports/IncomeExpense">Income & expenses</a></li>
+                            <li><a href="../reports/Reservation">Reservation Report</a></li>
+							<li><a href="../reports/Customers">Customer Report</a></li>
+                            <li><a href="../reports/Employers">Employee Report</a></li>
+							<li><a href="../reports/Suppliers">Supplier(Airlines) Report</a></li>
+>>>>>>> 334e8ac9642ed2d13b3a2007ddffbf77b5782684
                         </ul>
                     </li>
                 </ul>
