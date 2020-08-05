@@ -15,6 +15,14 @@
 
     <link href="Assets/css/animate.css" rel="stylesheet">
     <link href="Assets/css/style.css" rel="stylesheet">
+	<link href="logo/ladan.png" type="image/png">
+	<style>
+body {
+  background-image: url('logo/img.jpg');
+  background-repeat: no-repeat;
+ background-size: 100% 99%;
+}
+</style>
     </head>
        <body class="gray-bg">
      <?php include 'common/class.php';
@@ -50,10 +58,9 @@
         <div>
             <div>
 
-                <h1 class="logo-name">IN+</h1>
+               <img src="logo/logo.jpeg" alt="logo image" width="250">
 
             </div>
-            <h3>LADAN TRAVEL AGENCY</h3>
            	<?php  
                 if(isset($message))  
                 {  
@@ -72,9 +79,7 @@
                 </div>
                 <input type="submit" name="login" class="btn btn-primary btn-block " value="Login" /> 
 
-                <a href="#"><small>Forgot password?</small></a>
             </form>
-            <p class="m-t"> <small>LADAN TRAVEL AGENCY &copy; 2020</small> </p>
         </div>
     </div>
 
