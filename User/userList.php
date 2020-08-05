@@ -4,8 +4,8 @@
   include '../includes/side.php';
   include '../includes/script.js';
   include '../includes/nav.php';
-  include 'expenseScript.js';
-  include 'expense_Class.php';
+  include 'userScript.js';
+  include 'user_Class.php';
   ?>
     <style>
 .nav-header {
@@ -15,7 +15,7 @@
 </style>
    <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>Expense Tables</h2>
+                    <h2>User Tables</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index">Home</a>
@@ -24,7 +24,7 @@
                             <a>Tables</a>
                         </li>
                         <li class="active">
-                            <strong>Expense Tables</strong>
+                            <strong>User Tables</strong>
                         </li>
                     </ol>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>All Expense List</h5>
+                        <h5>All User List</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -61,16 +61,16 @@
 
                         <div class="table-responsive">
 
-						<button class="btn btn-primary btn-md pull-right" data-toggle="modal" data-target="#addModal" style="margin-top:20px;;" type="button"><i class="fa fa-plus fa-lg"></i>&nbsp;Add</button>
+						<button class="btn btn-primary btn-md pull-right" data-toggle="modal" data-target="#addModal" style="margin-top:20px;;" type="button"><i class="fa fa-plus fa-lg"></i>&nbsp;Add User</button>
                     <table class="table table-striped table-bordered table-hover dataTables-example" id="tbl" >
                     <thead>
                     <tr>
                         <th>No</th>
-                        <th>Expense Type Name</th>
-                       <th>Expense Description</th>
-                       <th>Expense Amount</th>
-                       <th>Expense Date</th>
-                       <th>Expense CreateDate</th>
+                        <th>User Name</th>
+                       <th>User Password</th>
+                       <th>User Type</th>
+                       <th>Last Login</th>
+                       <th>Last Logout</th>
                         
 						<th>Action</th>
                     </tr>
@@ -84,16 +84,16 @@
 						 echo '
 						  <tr>
 						    <td>'.$i.'</td>
-							<td>'.$row["ExpenseTypeName"].'</td>
-							<td>'.$row["ExpenseDescription"].'</td>
-                            <td>'.$row["ExpenseAmount"].'</td>
-                            <td>'.$row["ExpenseDate"].'</td>
-                            <td>'.$row["ExpenseCreateDate"].'</td>
+							<td>'.$row["UsersName"].'</td>
+							<td>'.$row["UsersPassword"].'</td>
+                            <td>'.$row["userType"].'</td>
+                            <td>'.$row["UserLastLogin"].'</td>
+                            <td>'.$row["UserLastLogout"].'</td>
                             
 							<td>
-							<button class="btn btn-info btn-circle" type="button" onclick="GetUpdateDetails('.$row["ExpenseId"].')"><i class="fa fa-check"></i>
+							<button class="btn btn-info btn-circle" type="button" onclick="GetUpdateDetails('.$row["UsersId"].')"><i class="fa fa-check"></i>
                             </button>
-							<button class="btn btn-warning btn-circle delete" type="button" onclick="GetDelete('.$row["ExpenseId"].')"><i class="fa fa-times"></i>
+							<button class="btn btn-warning btn-circle delete" type="button" onclick="GetDelete('.$row["UsersId"].')"><i class="fa fa-times"></i>
                             </button>
 							</td>
 						  </tr>
@@ -119,34 +119,35 @@
    <div class="modal-content">
     <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal">&times;</button>
-     <h4 class="modal-title">Add Expense</h4>
+     <h4 class="modal-title">Add User</h4>
     </div>
     <div class="modal-body">
-     <label>Expense Type Name</label>
-        <select name="expid" id="expid"  class="form-control" required='true'><option value=" ">Expense Name</option>
-                    <?php
-                    include("./connection/dbcon.php");
-                    $query = "select * from tbl_expensetype";
-                    $stm = $dbcon->prepare($query);
-                    $stm->execute();
-                    $result = $stm->fetchAll();
-                    $data = array();
-                    $filtered_rows = $stm->rowCount();
-                    // $res=mysqli_query($con,"select * from shifts" );
-                    foreach($result as $row)
-                    {
-                    ?> 
-              <option value="<?php echo $row["ExpenseTypeId"];?>"><?php echo $row["ExpenseTypeName"];?></option>  
-              <?php } ?> 
-             </select>     <br />
-     <label>Expense Description</label>
-     <input type="text" name="expdes" id="expdes" class="form-control" required="true"/>
+     <label>User Name</label>
+      <select name="comid" id="comid"  class="form-control" required='true'><option value=" ">User Name</option>
+            <?php
+            include("./connection/dbcon.php");
+            $query = "select * from tbl_employee";
+            $stm = $dbcon->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll();
+            $data = array();
+            $filtered_rows = $stm->rowCount();
+            // $res=mysqli_query($con,"select * from shifts" );
+            foreach($result as $row)
+            {
+            ?> 
+      <option value="<?php echo $row["EmployeeId"];?>"><?php echo $row["EmployeeName"];?></option>  
+      <?php } ?> 
+     </select>
      <br />
-     <label>Expense Amount</label>
-     <input type="text" name="expamount" id="expamount" class="form-control" required="true"/>
+     <label>User Name</label>
+     <input type="text" name="userName" id="userName" class="form-control" required="true"/>
      <br />
-     <label>Expense Date</label>
-     <input type="date" name="expdate" id="expdate" class="form-control" required="true"/>
+     <label>Password</label>
+     <input type="text" name="userPassword" id="userPassword" class="form-control" required="true"/>
+     <br />
+     <label>User Type </label>
+     <input type="text" name="userType" id="userType" class="form-control" required="true"/>
      <br />
      
 
@@ -154,7 +155,7 @@
     
     </div>
     <div class="modal-footer">
-     <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION["EmployeeId"];?>"/>
+     <input type="hidden" name="userEmployeeId" id="userEmployeeId" value="<?php echo $_SESSION["EmployeeId"];?>"/>
      <input type="submit"   onclick="addRecord();" class="btn btn-success" value="Add" />
      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
@@ -169,35 +170,37 @@
    <div class="modal-content">
     <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal">&times;</button>
-     <h4 class="modal-title">Update Expense</h4>
+     <h4 class="modal-title">Update Invoic No</h4>
     </div>
     <div class="modal-body">
-     <label>Expense Type Name</label>
-        <select name="up_expid" id="up_expid"  class="form-control" required='true'><option value=" ">Expense Name</option>
-                    <?php
-                    include("./connection/dbcon.php");
-                    $query = "select * from tbl_expensetype";
-                    $stm = $dbcon->prepare($query);
-                    $stm->execute();
-                    $result = $stm->fetchAll();
-                    $data = array();
-                    $filtered_rows = $stm->rowCount();
-                    // $res=mysqli_query($con,"select * from shifts" );
-                    foreach($result as $row)
-                    {
-                    ?> 
-              <option value="<?php echo $row["ExpenseTypeId"];?>"><?php echo $row["ExpenseTypeName"];?></option>  
-              <?php } ?> 
-             </select>     <br />
-     <label>Expense Description</label>
-     <input type="text" name="up_expdes" id="up_expdes" class="form-control" required="true"/>
+     <label>Company Name</label>
+      <select name="up_comid" id="up_comid"  class="form-control" required='true'><option value=" ">Company Name</option>
+            <?php
+            include("./connection/dbcon.php");
+            $query = "select * from tbl_company";
+            $stm = $dbcon->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll();
+            $data = array();
+            $filtered_rows = $stm->rowCount();
+            // $res=mysqli_query($con,"select * from shifts" );
+            foreach($result as $row)
+            {
+            ?> 
+      <option value="<?php echo $row["CompanyId"];?>"><?php echo $row["CompanyName"];?></option>  
+      <?php } ?> 
+     </select>
      <br />
-     <label>Expense Amount</label>
-     <input type="text" name="up_expamount" id="up_expamount" class="form-control" required="true"/>
+     <label>Branch Name</label>
+     <input type="text" name="up_bname" id="up_bname" class="form-control" required="true"/>
      <br />
-     <label>Expense Date</label>
-     <input type="date" name="up_expdate" id="up_expdate" class="form-control" required="true"/>
+     <label>Branch Phone</label>
+     <input type="text" name="up_btell" id="up_btell" class="form-control" required="true"/>
      <br />
+     <label>Branch Address</label>
+     <input type="text" name="up_baddr" id="up_baddr" class="form-control" required="true"/>
+     <br />
+     
     
     </div>
     <div class="modal-footer">

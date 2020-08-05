@@ -4,8 +4,8 @@
   include '../includes/side.php';
   include '../includes/script.js';
   include '../includes/nav.php';
-  include 'companyScript.js';
-  include 'company_Class.php';
+  include 'employeeScript.js';
+  include 'employee_Class.php';
   ?>
     <style>
 .nav-header {
@@ -15,7 +15,7 @@
 </style>
    <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>Companies Tables</h2>
+                    <h2>Employees Tables</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index">Home</a>
@@ -24,7 +24,7 @@
                             <a>Tables</a>
                         </li>
                         <li class="active">
-                            <strong>Companies Tables</strong>
+                            <strong>Employees Tables</strong>
                         </li>
                     </ol>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>All Companies List</h5>
+                        <h5>All Employees List</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -66,13 +66,17 @@
                     <thead>
                     <tr>
                         <th>NO</th>
-                        <th>Company Name</th>
-                        <th>Company Phone</th>
-                       <th>Company Address</th>
-                       <th>Company Email</th>
-                       <th>Company Website</th>
-                       <th>Company Logo</th>
-                       <th>Company Registered Date</th>
+                        <th>Employee Name</th>
+                        <th>Employee Gender</th>
+                       <th>Employee Phone</th>
+                       <th>Employee Address</th>
+                       <th>Employee Email</th>
+                       <th>Employee Title</th>
+                       <th>Employee Salary</th>
+                        <th>Employee Company</th>
+                       <th>Employee Branch</th>
+                       <th>Employee CreateDate</th>
+                       
 
                     <th>Action</th>
                     </tr>
@@ -86,18 +90,21 @@
 						 echo '
 						  <tr>
 						    <td>'.$i.'</td>
-							<td>'.$row["CompanyName"].'</td>
-							<td>'.$row["CompanyPhone"].'</td>
-                            <td>'.$row["CompanyAddress"].'</td>
-                            <td>'.$row["CompanyEmail"].'</td>
-                            <td>'.$row["CompanyWebsite"].'</td>
-                            <td><img src="../images/'.$row["CompanyLogo"].'" class="img-thumbnail" width="50" height="35" /></td>
-                            <td>'.$row["CompanyCreateDate"].'</td>
+							<td>'.$row["EmployeeName"].'</td>
+							<td>'.$row["EmployeeGender"].'</td>
+                            <td>'.$row["EmployeePhone"].'</td>
+                            <td>'.$row["EmployeeAddress"].'</td>
+                            <td>'.$row["EmployeeEmail"].'</td>
+                            <td>'.$row["EmployeeTitle"].'</td>
+                            <td>'.$row["EmployeeSalary"].'</td>
+                            <td>'.$row["CompanyName"].'</td>
+                            <td>'.$row["BranchName"].'</td>
+                            <td>'.$row["EmployeeCreateDate"].'</td>
                             
 							<td>
-							<button class="btn btn-info btn-circle" type="button" onclick="GetUpdateDetails('.$row["CompanyId"].')"><i class="fa fa-check"></i>
+							<button class="btn btn-info btn-circle" type="button" onclick="GetUpdateDetails('.$row["EmployeeId"].')"><i class="fa fa-check"></i>
                             </button>
-							<button class="btn btn-warning btn-circle delete" type="button" onclick="GetDelete('.$row["CompanyId"].')"><i class="fa fa-times"></i>
+							<button class="btn btn-warning btn-circle delete" type="button" onclick="GetDelete('.$row["EmployeeId"].')"><i class="fa fa-times"></i>
                             </button>
 							</td>
 						  </tr>
@@ -123,23 +130,72 @@
    <div class="modal-content">
     <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal">&times;</button>
-     <h4 class="modal-title">Add Company</h4>
+     <h4 class="modal-title">Add Supplier</h4>
     </div>
     <div class="modal-body">
-     <label>Company Name</label>
-     <input type="text" name="cname" id="cname" class="form-control" required="true" />
+     <label>EmployeeName</label>
+     <input type="text" name="empname" id="empname" class="form-control" required="true" />
      <br />
-     <label>Company Phone</label>
-     <input type="text" name="tell" id="tell" class="form-control" required="true"/>
+     <label>EmployeeGender</label>
+     <select name="empgender" id="empgender"  class="form-control" required='true'><option value=" ">Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>  
+      <option value="Others">Others</option>
+      
+     </select>
      <br />
-     <label>Company Address</label>
-     <input type="text" name="addr" id="addr" class="form-control" required="true"/>
+     <label>EmployeePhone</label>
+     <input type="text" name="emptell" id="emptell" class="form-control" required="true"/>
      <br />
-     <label>Company Email</label>
-     <input type="email" name="email" id="email" class="form-control" required="true"/>
+     <label>EmployeeAddress</label>
+     <input type="text" name="empadrr" id="empadrr" class="form-control" required="true"/>
      <br />
-     <label>Company Website</label>
-     <input type="text" name="web" id="web" class="form-control" required="true"/>
+     <label>EmployeeEmail</label>
+     <input type="email" name="empemail" id="empemail" class="form-control" required="true"/>
+     <br />
+     <label>EmployeeTitle</label>
+     <input type="text" name="emptitle" id="emptitle" class="form-control" required="true" />
+     <br />
+     <label>EmployeeSalary</label>
+     <input type="text" name="empsalary" id="empsalary" class="form-control" required="true"/>
+     <br />
+     <label>EmployeeCompanyID</label>
+     <select name="comid" id="comid"  class="form-control" required='true'><option value=" ">Company Name</option>
+            <?php
+            include("./connection/dbcon.php");
+            //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+            $query = "select * from tbl_company";
+            $stm = $dbcon->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll();
+            $data = array();
+            $filtered_rows = $stm->rowCount();
+            // $res=mysqli_query($con,"select * from shifts" );
+            foreach($result as $row)
+            {
+            ?> 
+      <option value="<?php echo $row["CompanyId"];?>"><?php echo $row["CompanyName"];?></option>  
+      <?php } ?> 
+     </select>
+     <br />
+     <label>EmployeeBranchID</label>
+     <select name="branchid" id="branchid"  class="form-control" required='true'><option value=" ">Branch</option>
+            <?php
+            include("./connection/dbcon.php");
+            //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+            $query = "select * from tbl_branch";
+            $stm = $dbcon->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll();
+            $data = array();
+            $filtered_rows = $stm->rowCount();
+            // $res=mysqli_query($con,"select * from shifts" );
+            foreach($result as $row)
+            {
+            ?> 
+      <option value="<?php echo $row["BranchId"];?>"><?php echo $row["BranchName"];?></option>  
+      <?php } ?> 
+     </select>
      <br />
      <!-- <label>Company Logo</label>
      <input type="file" name="logo" id="logo" class="form-control" required="true"/>
@@ -167,23 +223,73 @@
    <div class="modal-content">
     <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal">&times;</button>
-     <h4 class="modal-title">Update Company</h4>
+     <h4 class="modal-title">Update Employee</h4>
     </div>
     <div class="modal-body">
-     <label>Company Name</label>
-     <input type="text" name="up_cname" id="up_cname" class="form-control" required="true" />
+     <label>EmployeeName</label>
+     <input type="text" name="up_empname" id="up_empname" class="form-control" required="true" />
      <br />
-     <label>Company Phone</label>
-     <input type="text" name="up_tell" id="up_tell" class="form-control" required="true"/>
+     <label>EmployeeGender</label>
+     <select name="up_empgender" id="up_empgender"  class="form-control" required='true'>
+        <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>  
+      <option value="Others">Others</option>
+      
+     </select>
      <br />
-     <label>Company Address</label>
-     <input type="text" name="up_addr" id="up_addr" class="form-control" required="true"/>
+     <label>EmployeePhone</label>
+     <input type="text" name="up_emptell" id="up_emptell" class="form-control" required="true"/>
      <br />
-     <label>Company Email</label>
-     <input type="email" name="up_email" id="up_email" class="form-control" required="true"/>
+     <label>EmployeeAddress</label>
+     <input type="text" name="up_empadrr" id="up_empadrr" class="form-control" required="true"/>
      <br />
-     <label>Company Website</label>
-     <input type="text" name="up_web" id="up_web" class="form-control" required="true"/>
+     <label>EmployeeEmail</label>
+     <input type="email" name="up_empemail" id="up_empemail" class="form-control" required="true"/>
+     <br />
+     <label>EmployeeTitle</label>
+     <input type="text" name="up_emptitle" id="up_emptitle" class="form-control" required="true" />
+     <br />
+     <label>EmployeeSalary</label>
+     <input type="text" name="up_empsalary" id="up_empsalary" class="form-control" required="true"/>
+     <br />
+     <label>EmployeeCompanyID</label>
+     <select name="up_comid" id="up_comid"  class="form-control" required='true'><option value=" ">Company Name</option>
+            <?php
+            include("./connection/dbcon.php");
+            //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+            $query = "select * from tbl_company";
+            $stm = $dbcon->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll();
+            $data = array();
+            $filtered_rows = $stm->rowCount();
+            // $res=mysqli_query($con,"select * from shifts" );
+            foreach($result as $row)
+            {
+            ?> 
+      <option value="<?php echo $row["CompanyId"];?>"><?php echo $row["CompanyName"];?></option>  
+      <?php } ?> 
+     </select>
+     <br />
+     <label>EmployeeBranchID</label>
+     <select name="up_branchid" id="up_branchid"  class="form-control" required='true'><option value=" ">Branch</option>
+            <?php
+            include("./connection/dbcon.php");
+            //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+            $query = "select * from tbl_branch";
+            $stm = $dbcon->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll();
+            $data = array();
+            $filtered_rows = $stm->rowCount();
+            // $res=mysqli_query($con,"select * from shifts" );
+            foreach($result as $row)
+            {
+            ?> 
+      <option value="<?php echo $row["BranchId"];?>"><?php echo $row["BranchName"];?></option>  
+      <?php } ?> 
+     </select>
      <br />
     <!--  <label>Company Logo</label>
      <input type="file" name="logo" id="logo" class="form-control" required="true"/>

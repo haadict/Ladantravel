@@ -125,7 +125,8 @@
      <label>Company Name</label>
       <select name="comid" id="comid"  class="form-control" required='true'><option value=" ">Company Name</option>
             <?php
-            $dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+            include("./connection/dbcon.php");
+            //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
             $query = "select * from tbl_company";
             $stm = $dbcon->prepare($query);
             $stm->execute();
@@ -176,7 +177,7 @@
      <label>Company Name</label>
       <select name="up_comid" id="up_comid"  class="form-control" required='true'><option value=" ">Company Name</option>
             <?php
-            $dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+              include("./connection/dbcon.php");
             $query = "select * from tbl_company";
             $stm = $dbcon->prepare($query);
             $stm->execute();

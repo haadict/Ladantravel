@@ -80,13 +80,25 @@
                     <li>
                         <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Employers</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="form_basic.html">Employer list</a></li>
+                            <li><a href="../Employee/employeeList">Employer list</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">Suppliers</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="../Suplier/suplierList">Supplier list</a></li>
+                        </ul>
+                    </li><hr>
+                    <li>
+                        <a href="#"><i class="fa fa-cc-visa"></i> <span class="nav-label">Visa Reservation</span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="../Visa/visaList">Visa Reservation list</a></li>
+                        </ul>
+                    </li><hr>
+                    <li>
+                        <a href="#"><i class="fa fa-paper-plane"></i> <span class="nav-label">Ticket Reservation</span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="../Ticket/ticketList">Ticket Reservation list</a></li>
                         </ul>
                     </li><hr>
                     <li>
@@ -100,7 +112,7 @@
                     <li>
                         <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Users</span><span class="label label-info pull-right">NEW</span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="toastr_notifications.html">user List</a></li>
+                            <li><a href="../User/userList">user List</a></li>
                         </ul>
                     </li><hr>
                     <li>
@@ -118,7 +130,7 @@
                     <li>
                         <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Reports</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="table_basic.html">Tickets</a></li>
+                            <li><a href="../Reports/reports.php">Tickets</a></li>
                             <li><a href="table_data_tables.html">Visas</a></li>
                             <li><a href="table_foo_table.html">Cargos</a></li>
                         </ul>

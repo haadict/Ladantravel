@@ -1,6 +1,6 @@
 <?php
 // include Database connection file
-  include 'company_Class.php';
+  include 'branch_Class.php';
 
 // check request
 if(isset($_POST) != "")
