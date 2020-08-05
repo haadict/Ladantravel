@@ -4,6 +4,7 @@
   include '../includes/side.php';
   include '../includes/script.js';
   include '../includes/nav.php';
+ // include 'customerScript.js';
   ?>
     <style>
 .nav-header {

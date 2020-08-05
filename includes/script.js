@@ -207,5 +207,4 @@
             var Polarchart = new Chart(ctx).PolarArea(polarData, polarOptions);
 
         });
-		
-    </script>
+</script>

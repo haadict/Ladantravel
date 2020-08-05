@@ -4,118 +4,27 @@
   include '../includes/side.php';
   include '../includes/script.js';
   include '../includes/nav.php';
-  include 'customerScript.js';
-  include 'customer_Class.php';
   include 'visaScript.js';
-
+  include 'visa_Class.php';
   ?>
     <style>
 .nav-header {
     padding: 33px 25px;
     background: url(patterns/header-profilegg2gbn.png) no-repeat;
-    
 }
-.dropdown-item {
-display: block;
-width: 100%;
-padding: 0.25rem 1.5rem;
-clear: both;
-font-weight: 400;
-color: #212529;
-text-align: inherit;
-white-space: nowrap;
-background-color: transparent;
-border: 0; }
-
-.dropdown-item:hover, .dropdown-item:focus {
-color: #16181b;
-text-decoration: none;
-background-color: #f8f9fa; }
-
-.dropdown-item.active, .dropdown-item:active {
-color: #fff;
-text-decoration: none;
-background-color: #007bff; }
-
-.dropdown-item.disabled, .dropdown-item:disabled {
-color: #6c757d;
-background-color: transparent; }
-.dropdown-item {
-font-size: 15px;
-font-weight: 400;
-padding: 0.55rem 1rem;
-color: #667f87;
-font-family: 'Work Sans', sans-serif;
--webkit-transition: all 0.3s ease-in-out;
-transition: all 0.3s ease-in-out; }
-
-.dropdown-item:hover, .dropdown-item:focus {
-background: #eff5f7;
-color: #667f87; }
-.dropdown-menu.show {
-display: block; }
-.dropdown {
-position: relative; }
-.dropdown-toggle::after {
-display: inline-block;
-width: 0;
-height: 0;
-margin-left: 0.255em;
-vertical-align: 0.255em;
-content: "";
-border-top: 0.3em solid;
-border-right: 0.3em solid transparent;
-border-bottom: 0;
-border-left: 0.3em solid transparent; }
-
-.dropdown-toggle:empty::after {
-margin-left: 0; }
-
-.dropdown-menu {
-position: absolute;
-top: 100%;
-left: 0;
-z-index: 1000;
-display: none;
-float: left;
-min-width: 10rem;
-padding: 0.5rem 0;
-margin: 0.125rem 0 0;
-font-size: 1rem;
-color: #212529;
-text-align: left;
-list-style: none;
-background-color: #fff;
-background-clip: padding-box;
-border: 1px solid rgba(0, 0, 0, 0.15);
-border-radius: 0.25rem; }
-.btn-outline-primary {
-color: #007bff;
-background-color: transparent;
-background-image: none;
-border-color: #007bff; }
-
-.btn-outline-primary:hover {
-color: #fff;
-background-color: #007bff;
-border-color: #007bff; }
-
-.btn-outline-primary:focus, .btn-outline-primary.focus {
--webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
 </style>
    <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>Customers Tables</h2>
+                    <h2>Visa Reservation Tables</h2>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="index">Home</a>
                         </li>
                         <li>
                             <a>Tables</a>
                         </li>
                         <li class="active">
-                            <strong>Customers Tables</strong>
+                            <strong>Visa Reservation Tables</strong>
                         </li>
                     </ol>
                 </div>
@@ -128,7 +37,7 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
                 <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>All Customers List</h5>
+                        <h5>All Visa Reservation List</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -147,55 +56,68 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
                             </a>
                         </div>
                     </div>
+
                     <div class="ibox-content">
 
                         <div class="table-responsive">
-						<button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addModal" style="margin-top:20px;;" type="button"><i class="fa fa-plus"></i>&nbsp;Add</button>
+
+						<button class="btn btn-primary btn-md pull-right" data-toggle="modal" data-target="#addModal" style="margin-top:20px;;" type="button"><i class="fa fa-plus fa-lg"></i>&nbsp;Add</button>
                     <table class="table table-striped table-bordered table-hover dataTables-example" id="tbl" >
                     <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Full Name</th>
-                        <th>Phone Number</th>
-                        <th>Address</th>
-                        <th>Email</th>
-						<th>Action</th>
-            <th>Action</th>
+                        <th>NO</th>
+
+                        <th>Customer Name</th>
+                        <th>Visa Date</th>
+                        <th>Duration</th>
+                        <th>Country</th>
+                        <th>PassportNo</th>
+                        <th>Issued By</th>
+                        <th>Issu Date</th>
+                        <th>Passport Expire Date</th>
+                        <th>Cost price</th>
+                        <th>Sell Price</th>
+                        <th>Profit</th>
+                        <th>Visa Description</th>
+                        <th>Visa CreateBy</th>
+                        <th>Visa Create Date</th>
+
+                       
+
+                    <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
 					<?php 
-					 $result = getCustomers();
+					 $result = getRecords();
 					 $i=0;
 					 while($row=$result->fetch()){
 						 $i++;
 						 echo '
 						  <tr>
 						    <td>'.$i.'</td>
-							<td>'.$row["CustomerName"].'</td>
-							<td>'.$row["Customerphone"].'</td>
-							<td>'.$row["CustomerAddress"].'</td>
-							<td>'.$row["CustomerEmail"].'</td>
 
+							<td>'.$row["CustomerName"].'</td>
+							<td>'.$row["visaDate"].'</td>
+                            <td>'.$row["duration"].'</td>
+                            <td>'.$row["country"].'</td>
+                            <td>'.$row["passportNo"].'</td>
+                            <td>'.$row["issuedBy"].'</td>
+                            <td>'.$row["issuDate"].'</td>
+                            <td>'.$row["passportExpireDate"].'</td>
+                            <td>'.$row["costprice"].'</td>
+                            <td>'.$row["sellPrice"].'</td>
+                             <td>'.$row["profit"].'</td>
+                            <td>'.$row["visaDescription"].'</td>
+                            <td>'.$row["EmployeeName"].'</td>
+                            <td>'.$row["visaCreateDate"].'</td>
+                            
 							<td>
-							<button class="btn btn-info btn-circle" type="button" onclick="GetCustomerDetails('.$row["CustomerId"].')"><i class="fa fa-check"></i>
+							<button class="btn btn-info btn-circle" type="button" onclick="GetUpdateDetails('.$row["visaId"].')"><i class="fa fa-check"></i>
                             </button>
-							<button class="btn btn-warning btn-circle delete" type="button" id='.$row["CustomerId"].'><i class="fa fa-times"></i>
+							<button class="btn btn-warning btn-circle delete" type="button" onclick="GetDelete('.$row["visaId"].')"><i class="fa fa-times"></i>
                             </button>
 							</td>
-
-              <td>
-              <div class="dropdown ">
-<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-<i class="icon-copy fa fa-bars" aria-hidden="true"></i>
-</a>
-<div class="dropdown-menu dropdown-menu-right">
-<a class="dropdown-item" href="#" data-toggle="modal" onclick="visaModal('.$row["CustomerId"].')" name="visa" data-target="#addVisa"><i class="fa fa-eye"></i> Visa</a>
-<a class="dropdown-item" href="#" ><i class="fa fa-eye"></i> Ticket</a>
-<a class="dropdown-item" href="#" ><i class="fa fa-eye"></i> Hotel</a>
-</div>
-</div>
-              </td >
 						  </tr>
 						 ';
 					 }
@@ -213,77 +135,7 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
             </div>
       
         </div>
-        <!-- Customer Registration -->
 		<div id="addModal" class="modal fade">
- <div class="modal-dialog">
-  <form method="post" id="user_form" enctype="multipart/form-data">
-   <div class="modal-content">
-    <div class="modal-header">
-     <button type="button" class="close" data-dismiss="modal">&times;</button>
-     <h4 class="modal-title">Add Customer</h4>
-    </div>
-    <div class="modal-body">
-     <label>Full Name</label>
-     <input type="text" name="fullname" id="fullname" class="form-control" />
-     <br />
-     <label>Telephone</label>
-     <input type="text" name="tell" id="tell" class="form-control" />
-	 <br />
-     <label>Address</label>
-     <input type="text" name="address" id="address" class="form-control" />
-	 <br />
-     <label>Email</label>
-     <input type="text" name="email" id="email" class="form-control" />
-    
-    </div>
-    <div class="modal-footer">
-     <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION["EmployeeId"];?>"/>
-     <input type="hidden" name="operation" id="operation" />
-     <input type="submit" name="action" id="action" onclick="addCustomer();" class="btn btn-success" value="Add" />
-     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    </div>
-   </div>
-  </form>
- </div>
-</div>
-<!-- end of Customer Registration -->
-<!-- Update Customer Modal -->
-<div id="updateModal" class="modal fade">
- <div class="modal-dialog">
-  <form method="post" id="user_form" enctype="multipart/form-data">
-   <div class="modal-content">
-    <div class="modal-header">
-     <button type="button" class="close" data-dismiss="modal">&times;</button>
-     <h4 class="modal-title">Update Customer</h4>
-    </div>
-    <div class="modal-body">
-     <label>Full Name</label>
-     <input type="text" id="update_fullname" class="form-control" />
-     <br />
-     <label>Telephone</label>
-     <input type="text" id="update_tell" class="form-control" />
-	 <br />
-     <label>Address</label>
-     <input type="text" id="update_address" class="form-control" />
-	 <br />
-     <label>Email</label>
-     <input type="text" id="update_email" class="form-control" />
-    
-    </div>
-    <div class="modal-footer">
-     
-     <input type="text" name="hidden_custId" id="hidden_custId" />
-     <input type="submit" name="action" id="action" onclick="updateCustomer();" class="btn btn-success" value="Add" />
-     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    </div>
-   </div>
-  </form>
- </div>
-</div>
-<!-- end of Update Customer Modal -->
-
-<!-- Add Visa Reservation Modal -->
-<div id="addVisa" class="modal fade">
  <div class="modal-dialog modal-lg">
    <form method="post" id="aform" enctype="multipart/form-data">
    <div class="modal-content">
@@ -297,75 +149,84 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
       <div class="row">
         <div class="form-group col-xs-6">
         <label for="sel1">Customer:</label>
-       <input type="hidden" class="form-control" name="cusid" id="cusid">
+        <select name="cusid" id="cusid"  class="form-control" required='true'><option value=" ">Customer Name</option>
+            <?php
+            include("./connection/dbcon.php");
+            //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+            $query = "select * from tbl_customers";
+            $stm = $dbcon->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll();
+            $data = array();
+            $filtered_rows = $stm->rowCount();
+            // $res=mysqli_query($con,"select * from shifts" );
+            foreach($result as $row)
+            {
+            ?> 
+      <option value="<?php echo $row["CustomerId"];?>"><?php echo $row["CustomerName"];?></option>  
+      <?php } ?> 
+     </select>
       </div>
-      
-      
-    </div>
-    <div class="row">
       <div class="form-group col-xs-6">
         <label for="fname">Visa Date:</label>
         <input type="date" class="form-control" placeholder="Enter Visa Date" name="vdate" id="vdate" required="true">
       </div>
+      
+    </div>
+    <div class="row">
       <div class="form-group col-xs-6">
         <label for="phone">Duration:</label>
         <input type="text" class="form-control" placeholder="Enter Duration" name="duration" id="duration" required="true">
       </div>
-      
-    </div>
-      <div class="row">
-        <div class="form-group col-xs-6">
+      <div class="form-group col-xs-6">
         <label for="email">Country:</label>
         <input type="text" class="form-control" placeholder="Enter Country" name="country" id="country" required="true">
       </div>
+    </div>
+      <div class="row">
       <div class="form-group col-xs-6">
         <label for="email">PassportNo:</label>
         <input type="text" class="form-control" placeholder="Enter PassportNo" name="passno" id="passno" required="true">
       </div>
-      
-    </div>
-      <div class="row">
-        <div class="form-group col-xs-6">
+      <div class="form-group col-xs-6">
         <label for="email">Issued By:</label>
         <input type="text" class="form-control"placeholder="Issued By" name="issby" id="issby" required="true">
       </div>
+    </div>
+      <div class="row">
       <div class="form-group col-xs-6">
         <label for="email">Issu Date:</label>
         <input type="date" class="form-control" placeholder="Enter Title" name="issdate" id="issdate" required="true">
-      </div>
-    </div>
-     <div class="row">
-      <div class="form-group col-xs-6">
+      </div><div class="form-group col-xs-6">
         <label for="email">Passport Expire Date:</label>
         <input type="date" class="form-control" name="passexdate" id="passexdate" required="true">
       </div>
+    </div>
+     <div class="row">
       <div class="form-group col-xs-6">
         <label for="email">Cost Price:</label>
         <input type="text" class="form-control" placeholder="Enter Cost Price" name="cprice" id="cprice" required="true">
       </div>
-      
-    </div>
-     <div class="row">
       <div class="form-group col-xs-6">
         <label for="email">Sell Price:</label>
         <input type="text" class="form-control"placeholder="Enter Sell Price" name="sellprice" id="sellprice" required="true">
       </div>
+    </div>
+     <div class="row">
       <div class="form-group col-xs-6">
         <label for="email">Profit:</label>
         <input type="text" class="form-control" placeholder="Enter Profit" name="profit" id="profit" required="true">
       </div>
-    
-    </div>
-       <div class="row">
-      <div class="form-group col-xs-12">
+      <div class="form-group col-xs-6">
         <label for="email">Description:</label>
         <input type="text" class="form-control"placeholder="Enter Visa Description" name="desc" id="desc" required="true">
       </div>
     </div>
+      
     
     <div class="modal-footer">
      <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION["EmployeeId"];?>"/>
-     <input type="submit" onclick="addVisa();" class="btn btn-success btn-lg btn-block" value="Add" />
+     <input type="submit" onclick="addRecord();" class="btn btn-success btn-lg btn-block" value="Add" />
     </div>
   
   </div> 
@@ -374,7 +235,110 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
     
 </div>
 </div>
-<!-- end of Add Visa Reservation Modal -->
+<!-- Update Modal -->
+<div id="updateModal" class="modal fade">
+ <div class="modal-dialog modal-lg">
+  <form method="post" id="editform" enctype="multipart/form-data">
+   <div class="modal-content">
+    <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal">&times;</button>
+     <h4 class="modal-title">Update Visa Reservation</h4>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-xs-6">
+        <label for="sel1">Customer:</label>
+        <select name="up_cusid" id="up_cusid"  class="form-control" required='true'><option value=" ">Customer Name</option>
+            <?php
+            include("./connection/dbcon.php");
+            //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+            $query = "select * from tbl_customers";
+            $stm = $dbcon->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll();
+            $data = array();
+            $filtered_rows = $stm->rowCount();
+            // $res=mysqli_query($con,"select * from shifts" );
+            foreach($result as $row)
+            {
+            ?> 
+      <option value="<?php echo $row["CustomerId"];?>"><?php echo $row["CustomerName"];?></option>  
+      <?php } ?> 
+     </select>
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="fname">Visa Date:</label>
+        <input type="date" class="form-control" placeholder="Enter Visa Date" name="up_vdate" id="up_vdate" required="true">
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="phone">Duration:</label>
+        <input type="text" class="form-control" placeholder="Enter Duration" name="up_duration" id="up_duration" required="true">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="email">Country:</label>
+        <input type="text" class="form-control" placeholder="Enter Country" name="up_country" id="up_country" required="true">
+      </div>
+    </div>
+      <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="email">PassportNo:</label>
+        <input type="text" class="form-control" placeholder="Enter PassportNo" name="up_passno" id="up_passno" required="true">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="email">Issued By:</label>
+        <input type="text" class="form-control"placeholder="Issued By" name="up_issby" id="up_issby" required="true">
+      </div>
+    </div>
+      <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="email">Issu Date:</label>
+        <input type="date" class="form-control" placeholder="Enter Title" name="up_issdate" id="up_issdate" required="true">
+      </div><div class="form-group col-xs-6">
+        <label for="email">Passport Expire Date:</label>
+        <input type="date" class="form-control" name="up_passexdate" id="up_passexdate" required="true">
+      </div>
+    </div>
+     <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="email">Cost Price:</label>
+        <input type="text" class="form-control" placeholder="Enter Cost Price" name="up_cprice" id="up_cprice" required="true">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="email">Sell Price:</label>
+        <input type="text" class="form-control"placeholder="Enter Sell Price" name="up_sellprice" id="up_sellprice" required="true">
+      </div>
+    </div>
+     <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="email">Profit:</label>
+        <input type="text" class="form-control" placeholder="Enter Profit" name="up_profit" id="up_profit" required="true">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="email">Description:</label>
+        <input type="text" class="form-control"placeholder="Enter Visa Description" name="up_desc" id="up_desc" required="true">
+      </div>
+    </div>
+      
+    <!--  <label>Company Logo</label>
+     <input type="file" name="logo" id="logo" class="form-control" required="true"/>
+     <span id="h_clogo"></span>
+     <br /> -->
+     
+    
+    </div>
+    <div class="modal-footer">
+     <input type="hidden" name="up_user_id" id="up_user_id" value="<?php echo $_SESSION["EmployeeId"];?>"/>
+     <input type="hidden" name="up_id" id="up_id" />
+     <input type="submit" name="action" id="action" onclick="updateRecord();" class="btn btn-warning btn-lg btn-block" value="Update" />
+    
+    </div>
+   </div>
+  </form>
+ </div>
+</div>
 
         <div class="footer">
             <div class="pull-right">
@@ -395,36 +359,14 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
     <script src="../Assets/js/plugins/jeditable/jquery.jeditable.js"></script>
 
     <script src="../Assets/js/plugins/dataTables/datatables.min.js"></script>
-<script src="script.js"></script>
+
     <!-- Custom and plugin javascript -->
     <script src="../Assets/js/inspinia.js"></script>
     <script src="../Assets/js/plugins/pace/pace.min.js"></script>
    
 
 	 <script>
-    $(document).on('click', '.delete', function(){
-  var del = $(this).attr("id");
-  if(confirm("Are you sure you want to delete this?"))
-  {
-   $.ajax({
-    url:"deleteCustom.php",
-    method:"POST",
-    data:{del:del},
-    success:function(data)
-    {
-     alert(data);
-     // swal.fire({
-     //          title:'Msg! '+data,
-     //          type:'success'
-     //        })
-    }
-   });
-  }
-  else
-  {
-   return false; 
-  }
- });
+    
         $(document).ready(function(){
             $('.dataTables-example').DataTable({
                 dom: '<"html5buttons"B>lTfgitp',
@@ -469,14 +411,14 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
             } );
 
 	// READ recods on page load
-    readRecords(); // calling function
+   // readRecords(); // calling function
 
         });
-function readRecords() {
-    $.get("readRecord.php", {}, function (data, status) {
-        $(".records_content").html(data);
-    });
-}
+// function readRecords() {
+//     $.get("readRecord.php", {}, function (data, status) {
+//         $(".records_content").html(data);
+//     });
+//}
         function fnClickAddRow() {
             $('#editable').dataTable().fnAddData( [
                 "Custom row",
@@ -484,12 +426,6 @@ function readRecords() {
                 "New row",
                 "New row",
                 "New row" ] );
-
-        }
-          function visaModal(id){
-          $("#cusid").val(id);
-
-
 
         }
     </script>

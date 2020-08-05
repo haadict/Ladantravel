@@ -95,7 +95,7 @@
                             <td>'.$row["CompanyCreateDate"].'</td>
                             
 							<td>
-							<button class="btn btn-info btn-circle" type="button" onclick="GetUpdateDetails('.$row["CompanyId"].')"><i class="fa fa-check"></i>
+							<button class="btn btn-info btn-circle update" type="button" onclick="GetUpdateDetails('.$row["CompanyId"].')"><i class="fa fa-check"></i>
                             </button>
 							<button class="btn btn-warning btn-circle delete" type="button" onclick="GetDelete('.$row["CompanyId"].')"><i class="fa fa-times"></i>
                             </button>
@@ -141,17 +141,11 @@
      <label>Company Website</label>
      <input type="text" name="web" id="web" class="form-control" required="true"/>
      <br />
-<<<<<<< HEAD
-     <!-- <label>Company Logo</label>
-     <input type="file" name="logo" id="logo" class="form-control" required="true"/>
-     <span id="h_clogo"></span>
-     <br /> -->
-=======
+
      <label>Select User Image</label>
      <input type="file" name="user_image" id="user_image" />
      <span id="user_uploaded_image"></span>
      <br />
->>>>>>> 334e8ac9642ed2d13b3a2007ddffbf77b5782684
      
      
 
@@ -160,7 +154,7 @@
     </div>
     <div class="modal-footer">
      <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION["EmployeeId"];?>"/>
-     <input type="submit"   onclick="addRecord();" class="btn btn-success" value="Add" />
+     <input type="submit"   class="btn btn-success" value="Add" />
      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
    </div>
@@ -170,7 +164,7 @@
 <!-- Update Modal -->
 <div id="updateModal" class="modal fade">
  <div class="modal-dialog">
-  <form method="post" id="editform" enctype="multipart/form-data">
+  <form method="post" id="eform" enctype="multipart/form-data">
    <div class="modal-content">
     <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -192,17 +186,17 @@
      <label>Company Website</label>
      <input type="text" name="up_web" id="up_web" class="form-control" required="true"/>
      <br />
-    <!--  <label>Company Logo</label>
-     <input type="file" name="logo" id="logo" class="form-control" required="true"/>
-     <span id="h_clogo"></span>
-     <br /> -->
+     <label>Company Logo</label>
+     <input type="file" name="up_logo" id="up_logo" class="form-control"/>
+     <span id="himg"></span>
+     <br />
      
     
     </div>
     <div class="modal-footer">
      <input type="hidden" name="up_user_id" id="up_user_id" value="<?php echo $_SESSION["EmployeeId"];?>"/>
      <input type="hidden" name="up_id" id="up_id" />
-     <input type="submit" name="action" id="action" onclick="updateRecord();" class="btn btn-success" value="Update" />
+     <input type="submit" name="action" id="action" class="btn btn-success" value="Update" />
      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
    </div>
@@ -341,4 +335,49 @@ $(document).on('submit', '#addform', function(event){
    alert("Both Fields are Required");
   }
  });
+
+ $(document).on('submit','#eform',function(event){
+    event.preventDefault();
+    var up_cname = $('#up_cname').val();
+    var up_tell = $('#up_tell').val();
+    var up_addr = $('#up_addr').val();
+    var up_email = $('#up_email').val();
+    var up_web = $('#up_web').val();
+    
+
+    var ext=$('#up_logo').val().split('.').pop().toLowerCase();
+
+    if(ext != '')
+    {
+      if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1)
+      {
+        alert("Invalid Image File");
+        $('#up_logo').val('');
+        return false;
+      }
+    }
+    if(up_cname && up_tell && up_addr && up_email && up_web != '')
+    {
+        //alert(e_name+e_tell+e_add+e_email+e_dob+e_gen+e_title+e_ecdate);
+        $.ajax({
+      url:"updateCompany.php",
+      method:'POST',
+      data:new FormData(this),
+      contentType:false,
+      processData:false,
+      success:function(data)
+      {
+       // alert(data);
+     alert(data);
+       $('#eform')[0].reset();
+        $("#updateModal").modal("hide");
+       location.reload();
+      }
+     });
+    }
+    else
+    {
+      alert("Both Fields Are Required")
+    }
+  });
 </script>
