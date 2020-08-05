@@ -91,7 +91,7 @@
                             <td>'.$row["CompanyAddress"].'</td>
                             <td>'.$row["CompanyEmail"].'</td>
                             <td>'.$row["CompanyWebsite"].'</td>
-                            <td><img src="../images/'.$row["CompanyLogo"].'" class="img-thumbnail" width="50" height="35" /></td>
+                            <td><img src="../upload/'.$row["CompanyLogo"].'" class="img-thumbnail" width="50" height="35" /></td>
                             <td>'.$row["CompanyCreateDate"].'</td>
                             
 							<td>
@@ -141,9 +141,9 @@
      <label>Company Website</label>
      <input type="text" name="web" id="web" class="form-control" required="true"/>
      <br />
-     <label>Company Logo</label>
-     <input type="file" name="logo" id="logo" class="form-control" required="true"/>
-     <span id="h_clogo"></span>
+     <label>Select User Image</label>
+     <input type="file" name="user_image" id="user_image" />
+     <span id="user_uploaded_image"></span>
      <br />
      
      
@@ -285,3 +285,46 @@
 
         }
     </script>
+<script>
+$(document).on('submit', '#addform', function(event){
+  event.preventDefault();
+   var cname = $("#cname").val();
+    var tell = $("#tell").val();
+    var addr = $("#addr").val();
+    var email = $("#email").val();
+    var web = $("#web").val();
+    var user_id = $("#user_id").val();
+  var extension = $('#user_image').val().split('.').pop().toLowerCase();
+  if(extension != '')
+  {
+   if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)
+   {
+    alert("Invalid Image File");
+    $('#user_image').val('');
+    return false;
+   }
+  } 
+  if(cname != '' && tell != '' && addr != '' && email != '' && web != '' && user_id != '')
+  {
+   $.ajax({
+    url:"addCompany.php",
+    method:'POST',
+    data:new FormData(this),
+    contentType:false,
+    processData:false,
+    success:function(data)
+    {
+     alert(data);
+     $('#addform')[0].reset();
+     $('#addModal').modal('hide');
+     //dataTable.ajax.reload();
+	 location.reload();
+    }
+   });
+  }
+  else
+  {
+   alert("Both Fields are Required");
+  }
+ });
+</script>

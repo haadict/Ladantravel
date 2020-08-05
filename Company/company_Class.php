@@ -4,17 +4,17 @@ function getRecords(){
   return getCnx()->query("SELECT * FROM tbl_company where FinishDate is null");
  }
  
-function addRecord($cname,$tell,$addr,$email,$web,$img,$user_id)
+function addRecord($cname,$tell,$addr,$email,$web,$image,$user_id)
 {
  $stmt= getCnx()->prepare("INSERT INTO tbl_company(CompanyName, CompanyPhone, CompanyAddress, CompanyEmail, CompanyWebsite, CompanyLogo,CompanyCreateBy,CompanyCreateDate)
-       VALUES (:cname,:tell,:addr,:email,:web,:img,:user_id,now())");
+       VALUES (:cname,:tell,:addr,:email,:web,:image,:user_id,now())");
 
        $stmt->bindParam(':cname', $cname);
        $stmt->bindParam(':tell', $tell);
        $stmt->bindParam(':addr', $addr);
        $stmt->bindParam(':email', $email);
        $stmt->bindParam(':web', $web);
-       $stmt->bindParam(':img', $img);
+       $stmt->bindParam(':image', $image);
        $stmt->bindParam(':user_id', $user_id);
        
 	   
