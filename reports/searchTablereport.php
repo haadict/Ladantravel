@@ -8,7 +8,7 @@
      $data ="";
 		 $result = getTicketsListByDate($startDate,$endDate);
 		 while($row=$result->fetch()){
-			 $tickets = $row["Tickets"];
+			
 			 $data .= '
 			 <div class="col-lg-3">
                         <div class="ibox float-e-margins">
