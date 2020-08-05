@@ -80,6 +80,12 @@ if (isset($_POST['status'])) {
 		}
 		echo "Updated";
 	}
+	if ($_POST['status'] == 'delete Invoice') {
+		$id = $_POST['id'];
+		deleteInv($id);
+
+		echo "Updated";
+	}
 
 }
 ?>

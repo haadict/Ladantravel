@@ -51,9 +51,9 @@ function addInvoiceDetails($InvoiceId,$serVId,$Qty,$unitPrice,$discount,$VAT,$To
   $stmt->bindParam(':Total', $Total);
   $stmt->execute();
 }
-function deleteInD($qutationId)
+function deleteInv($id)
 {
-	getCnx()->query("DELETE FROM tbl_invoicedetails WHERE InvoiceId=$qutationId");
+	getCnx()->query("UPDATE tbl_invoice SET FinishDate=NOW() WHERE InvoiceId=$id");
 }
 function updateInvoice($client,$grandTotal,$createdDate,$createdBy,$qutationId)
 {
@@ -83,7 +83,7 @@ function updateInvoiceDetails($InvoiceId,$serVId,$Qty,$unitPrice,$discount,$VAT,
   function getReceipts()
   {
 
-      $stmt=getCnx()->prepare("SELECT c.CustomerName,ivd.InvoiceId,inv.SubTotal,inv.InvoiceDate,s.ServName FROM tbl_invoice inv
+      $stmt=getCnx()->prepare("SELECT c.CustomerName,c.CustomerId,ivd.InvoiceId,inv.SubTotal,inv.InvoiceDate,s.ServName FROM tbl_invoice inv
         INNER JOIN tbl_customers c ON c.CustomerId = inv.CustomerId
         INNER JOIN tbl_invoicedetails ivd on ivd.InvoiceId=inv.invoiceId
         INNER JOIN services s on s.ServId=ivd.ServiceId
@@ -91,4 +91,34 @@ function updateInvoiceDetails($InvoiceId,$serVId,$Qty,$unitPrice,$discount,$VAT,
      	$stmt->execute();
  	  	return $stmt;
  }
+   function getReceiptsAll($cusId)
+  {
+
+      $stmt=getCnx()->prepare("SELECT c.CustomerName,ivd.InvoiceId,inv.SubTotal,inv.InvoiceDate,s.ServName FROM tbl_invoice inv
+        INNER JOIN tbl_customers c ON c.CustomerId = inv.CustomerId
+        INNER JOIN tbl_invoicedetails ivd on ivd.InvoiceId=inv.invoiceId
+        INNER JOIN services s on s.ServId=ivd.ServiceId
+        WHERE c.FinishDate IS NULL and inv.FinishDate is null and c.CustomerId=:cusId group by ivd.InvoiceId");
+       $stmt->bindParam(':cusId', $cusId);
+     	$stmt->execute();
+ 	  	return $stmt;
+ }
+ function getReceiptById($qutationId)
+{
+  $stmt=getCnx()->prepare("SELECT c.CustomerName ,c.CustomerAddress ,c.Customerphone ,inv.SubTotal,inv.InvoiceDate,inv.InvoiceId FROM tbl_invoice inv
+        INNER JOIN tbl_customers c on c.CustomerId=inv.CustomerId
+        WHERE inv.FinishDate is null and inv.InvoiceId=:qutationId OR inv.CustomerId=:cusId");
+		  $stmt->bindParam(':qutationId', $qutationId);
+		  $stmt->bindParam(':cusId', $cusId);
+		  $stmt->execute();
+		  return $stmt;
+}
+ function getReceiptByName($cusId)
+{
+  $stmt=getCnx()->prepare("SELECT c.CustomerName ,c.CustomerAddress ,c.Customerphone FROM tbl_customers c 
+        WHERE c.FinishDate is null and c.CustomerId=:cusId");
+		  $stmt->bindParam(':cusId', $cusId);
+		  $stmt->execute();
+		  return $stmt;
+}
 ?>

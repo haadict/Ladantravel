@@ -5,6 +5,10 @@ include '../includes/side.php';
 include '../includes/script.js';
 include '../includes/nav.php';
 require 'function.php';
+if (isset($_GET['cusId'])) {          
+    $cusId=$_GET['cusId'];   
+  }
+
 ?>
 <style>
   .nav-header {
@@ -36,24 +40,23 @@ require 'function.php';
                 <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Receipts</h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="#">Config option 1</a>
-                                </li>
-                                <li><a href="#">Config option 2</a>
-                                </li>
-                            </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
+                         <?php
+                          require_once'function.php';
+                          $result = getReceiptByName($cusId);
+                          while ($row=$result->fetch()) {
+                         ?>
+                        <div class="text-center">
+                          <div class="cls_002">
+                            <span class="cls_002"><b><?php echo $row['CustomerName']; ?></b></span>
+                          </div>
+                          <div class="cls_003">
+                            <span class="cls_003">Address: <?php echo $row['CustomerAddress']; ?></span>
+                          </div>
+                          <div class="cls_003">
+                            <span class="cls_003">Telphone: <?php echo $row['Customerphone']; ?></span>
+                          </div>
                         </div>
+                      <?php } ?>
                     </div>
                     <div class="ibox-content">
 
@@ -63,7 +66,6 @@ require 'function.php';
                     <thead>
                     <tr>
                         <th>Invoice No</th>
-                        <th>Customer</th>
                         <th>Service Type</th>
                         <th>Amount</th>
                         <th>Receipt Date</th>
@@ -72,22 +74,22 @@ require 'function.php';
                     </thead>
                     <tbody>
                     <?php 
-                         $result = getReceipts();
+                         $result = getReceiptsAll($cusId);
                          $i=0;
                          while($row=$result->fetch()){
                            $i++;
                            echo '
                             <tr>
                             <td>'.$i.'</td>
-                            <td>'.$row["CustomerName"].'</td>
+
                             <td>'.$row["ServName"].'</td>
                             <td>$'.$row["SubTotal"].'</td>
                             <td>'.$row["InvoiceDate"].'</td>
                             <td>
-                            <a  href="allReceipts.php?cusId='.$row["CustomerId"].'" class="btn btn-info btn-circle"><i class="fa fa-eye"></i></a>
+                            <a  href="form.php?invId='.$row["InvoiceId"].'" class="btn btn-info btn-circle"><i class="fa fa-eye"></i></a>
                             <a  href="printRec.php?invId='.$row["InvoiceId"].'" class="btn btn-info btn-circle"><i class="fa fa-print"></i></a>
                             <a  href="form.php?invId='.$row["InvoiceId"].'" class="btn btn-info btn-circle"><i class="fa fa-edit"></i></a>
-                            <button class="btn btn-warning btn-circle delete" type="button" onclick="deleteIn('.$row["InvoiceId"].');"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-warning btn-circle delete" type="button" id='.$row["InvoiceId"].'><i class="fa fa-trash"></i></button>
                             </td>
                             </tr>
                            ';
@@ -171,28 +173,4 @@ require 'function.php';
     } );
 
   });
-  function deleteIn(id) {
-  if(confirm("Are you sure you want to delete this?"))
-  {
-   $.ajax({
-    url:"add.php",
-    method:"POST",
-    data:{id:id,status:"delete Invoice"},
-    success:function(data)
-    {
-     alert(data);
-     location.reload();
-     // swal.fire({
-     //          title:'Msg! '+data,
-     //          type:'success'
-     //        })
-    }
-   });
-  }
-  else
-  {
-   return false; 
-  }
-
-}
 </script>

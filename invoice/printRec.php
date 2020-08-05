@@ -112,8 +112,7 @@ if (isset($_GET['invId'])) {
         <div class="ibox-title">
           <h5>Receipt</h5>
           <div class="ibox-tools">
-        
-            <button id="printInvoice" class="btn btn-primary btn-sm" style="margin-top: 2%; margin-left: 70%;"><i class="fa fa-print"></i> Print </button>
+            <!-- <button id="printInvoice" class="btn btn-primary btn-sm" style="margin-top: 2%; margin-left: 70%;"><i class="fa fa-print"></i> Print </button> -->
           </div>
         </div>
           <div class="row">
@@ -126,7 +125,7 @@ if (isset($_GET['invId'])) {
 
         <div class="ibox-content">
         <div class="row">
-        <div id="QuoteInvoice" class="QuoteInvoice">
+        <div id="QuoteInvoice" class="QuoteInvoice" >
 
             <div class="row pb-30">
               <div class="col-md-12">
@@ -165,8 +164,6 @@ if (isset($_GET['invId'])) {
                   <div class="cls_003">
                     <span class="cls_003">Tel: <?php echo "203215"; ?></span>
                   </div>
-
-
                 </div>
               </div>
             </div>  
@@ -174,43 +171,43 @@ if (isset($_GET['invId'])) {
             <div class="col-md-12 invoiceDesign">
               <?php
 
-             //  require_once'function.php';
-             //  $InvoiceDate="";
-             //   $DueDate="";
-             //  $result = getQuotetionProductDescription($id);
-             //  while ($row=$result->fetch()) {
-
-             //   $InvoiceDate= $row['Invoice_Date'];
-             //   $DueDate = $row['Due_Date'];
-             // }
+              require_once'function.php';
+              $InvoiceDate="";
+               $DueDate="";
+              $result = getReceiptById($qutationId);
+              while ($row=$result->fetch()) {
+               $InvoiceDate= $row['InvoiceDate'];
              ?>
              <div class="cls_004" style="width: 100%;">
-              <span class="cls_004"><b>Invoice #1225</b></span>
+              <span class="cls_004"><b>Invoice #1000<?php echo $row['InvoiceId']; ?></b></span>
             </div>
             <div class="cls_005" style="width: 100%;">
-              <span class="cls_005"><b>Invoice Date:</b> <?php echo "2020-01-01"; ?></span>
+              <span class="cls_005"><strong>Invoice Date:</strong> <?php echo $InvoiceDate; ?></span>
             </div>
           </div>
           <div class="col-md-12" style="padding: 5px 5px; margin: 15px;">
             <div class="cls_006" style="">
-              <span class="cls_006">Invoiced To</span>
+              <span class="cls_006"><strong>Invoiced To </strong></span>
             </div>
             <div class="cls_003" style="">
-              <span class="cls_003"><?php echo "jhdssjdhsd";?></span>
+              <span class="cls_003"><?php echo $row['CustomerName'];?></span>
             </div>
             <div class="cls_003" style="">
-              <span class="cls_003"><?php echo "shakshakjs"; ?></span>
+              <span class="cls_003"><?php echo $row['CustomerAddress']; ?></span>
             </div>
             <div class="cls_003" style="">
-              <span class="cls_003"><?php echo "hsjsah"; ?></span>
+              <span class="cls_003"><?php echo $row['Customerphone']; ?></span>
             </div>
           </div>
+        <?php } ?>
           <div class="col-md-12 mainTables">
             <div class="table-responsive">
               <table class="table displayedTable table-bordered">
                 <thead class="table-sm cls_007 tableHeader">
                   <tr>
-                    <th scope="col" class="text-center cls_007">Description</th>
+                    <th scope="col" class="text-center cls_007">Service Type</th>
+                    <th scope="col" class="text-right cls_007">Price</th>
+                    <th scope="col" class="text-right cls_007">Qty</th>
                     <th scope="col" class="text-right cls_007">Discount %</th>
                     <th scope="col" class="text-right cls_007">Total</th>
                   </tr>
@@ -218,38 +215,39 @@ if (isset($_GET['invId'])) {
                 <tbody>
 
                   <?php
-                 //  require_once '../common/commonValues.php';
-                 //  // require_once'Class.php';
-                 //  $Total = $VAT=0;
-                 //  $result = getQuotetionProductDescription($id);
-                 //  while ($row=$result->fetch()) {
-                 //   $Total+= $row['amount'];
-                 //   $VAT = $row['VAT'];
-                 //   $subtotal+=$row['amount']+$VAT;
-                 //   // ('.$row['percentage'].'% Balance from Deposit)
-                 //   echo '<tr class="cls_003">
-                 //   <td class="cls_003">'.$row['description'].'</td>
-                 //   <td class="cls_003" style="text-align:right;">'.$row['Discount'].' %</td>
-                 //   <td class="cls_003" style="text-align:right;">'.$row['amount'].'</td>
-                 //   </tr>';
-                 // }
+                  // require_once'Class.php';
+                  $Total =$subtotal= $VAT=0;
+                  $result = RedQuatationDetails($qutationId);
+                  while ($row=$result->fetch()) {
+                   $Total+= $row['Amount'];
+                   $VAT = $row['Tax'];
+                   $subtotal+=$row['Amount']+$VAT;
+                   // ('.$row['percentage'].'% Balance from Deposit)
+                   echo '<tr class="cls_003">
+                   <td class="cls_003 ">'.$row['ServName'].'</td>
+                   <td class="cls_003 text-right" >'.$row['Amount'].' %</td>
+                   <td class="cls_003 text-right" >'.$row['Qty'].'</td>
+                   <td class="cls_003 text-right" >'.$row['Discount'].'</td>
+                   <td class="cls_003 text-right" >'.$row['Total'].'</td>
+                   </tr>';
+                 }
                  ?>
 
                 <tr class="cls_007" style="background-color: #EFEFEF; border-bottom: 1px solid #DCDCDC;">
-                  <th scope="col" colspan="2" class="text-right cls_007">Sub Total</th>
-                  <th scope="col" class="text-right cls_007">$<?php //echo $Total; ?></th>
+                  <th scope="col" colspan="4" class="text-right cls_007">Sub Total</th>
+                  <th scope="col" class="text-right cls_007">$<?php echo $Total; ?></th>
                 </tr>
                 <tr class="cls_007" style="background-color: #EFEFEF; border-bottom: 1px solid #DCDCDC;">
-                  <th scope="col" colspan="2" class="text-right cls_007">5.00% VAT</th>
-                  <th scope="col" class="text-right cls_007">$<?php //echo $VAT; ?></th>
+                  <th scope="col" colspan="4" class="text-right cls_007">5.00% VAT</th>
+                  <th scope="col" class="text-right cls_007">$<?php echo $VAT; ?></th>
                 </tr>
                 <!-- <tr class="cls_007" style="background-color: #EFEFEF; border-bottom: 1px solid #DCDCDC;">
                   <th scope="col" class="text-right cls_007">Discount</th>
                   <th scope="col" class="text-right cls_007">$<?php echo $discount; ?></th>
                 </tr> -->
                 <tr class="cls_007" style="background-color: #EFEFEF; border-bottom: 1px solid #DCDCDC;">
-                  <th scope="col" colspan="2" class="text-right cls_007">Total</th>
-                  <th scope="col" class="text-right cls_007">$<?php //echo $subtotal; ?></th>
+                  <th scope="col" colspan="4" class="text-right cls_007">Total</th>
+                  <th scope="col" class="text-right cls_007">$<?php echo $subtotal; ?></th>
                 </tr>
 
                </tbody>
@@ -271,10 +269,10 @@ if (isset($_GET['invId'])) {
 <!-- Update Modal -->
 <div class="footer">
   <div class="pull-right">
-    10GB of <strong>250GB</strong> Free.
+    <!-- 10GB of <strong>250GB</strong> Free. -->
   </div>
   <div>
-    <strong>Copyright</strong> Example Company &copy; 2014-2015
+    <strong>Copyright</strong> HAAD Company &copy; 2019-2020
   </div>
 </div>
 
@@ -296,13 +294,11 @@ if (isset($_GET['invId'])) {
 <script type="text/javascript" src="../printThis.js"></script>
 <script>
   $(document).ready(function() {
-    $('#printInvoice').on("click", function () {
       // alert("hhhh");
       $('#QuoteInvoice').printThis({
         importCSS: true,
         loadCSS: "http://localhost:/Ladantravel/desings/10designa",
         base: "printRec.php"
       });
-    });
   });
 </script>
