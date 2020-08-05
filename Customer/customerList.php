@@ -69,6 +69,7 @@
                         <th>Address</th>
                         <th>Email</th>
 						<th>Action</th>
+            <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -91,6 +92,17 @@
 							<button class="btn btn-warning btn-circle delete" type="button" id='.$row["CustomerId"].'><i class="fa fa-times"></i>
                             </button>
 							</td>
+
+              <td><div class="btn-group">
+<button data-toggle="dropdown" class="btn btn-primary btn-sm dropdown-toggle" aria-expanded="false">Action <span class="caret"></span></button>
+<ul class="dropdown-menu">
+<li><a href="#">Action</a></li>
+<li><a href="#">Another action</a></li>
+<li><a href="#">Something else here</a></li>
+<li class="divider"></li>
+<li><a href="#">Separated link</a></li>
+</ul>
+</div></td>
 						  </tr>
 						 ';
 					 }

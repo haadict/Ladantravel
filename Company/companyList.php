@@ -91,7 +91,7 @@
                             <td>'.$row["CompanyAddress"].'</td>
                             <td>'.$row["CompanyEmail"].'</td>
                             <td>'.$row["CompanyWebsite"].'</td>
-                            <td><img src="../images/'.$row["CompanyLogo"].'" class="img-thumbnail" width="50" height="35" /></td>
+                            <td><img src="../upload/'.$row["CompanyLogo"].'" class="img-thumbnail" width="50" height="35" /></td>
                             <td>'.$row["CompanyCreateDate"].'</td>
                             
 							<td>
@@ -123,7 +123,7 @@
    <div class="modal-content">
     <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal">&times;</button>
-     <h4 class="modal-title">Add Supplier</h4>
+     <h4 class="modal-title">Add Company</h4>
     </div>
     <div class="modal-body">
      <label>Company Name</label>
@@ -141,10 +141,17 @@
      <label>Company Website</label>
      <input type="text" name="web" id="web" class="form-control" required="true"/>
      <br />
-     <label>Company Logo</label>
+<<<<<<< HEAD
+     <!-- <label>Company Logo</label>
      <input type="file" name="logo" id="logo" class="form-control" required="true"/>
      <span id="h_clogo"></span>
+     <br /> -->
+=======
+     <label>Select User Image</label>
+     <input type="file" name="user_image" id="user_image" />
+     <span id="user_uploaded_image"></span>
      <br />
+>>>>>>> 334e8ac9642ed2d13b3a2007ddffbf77b5782684
      
      
 
@@ -167,21 +174,28 @@
    <div class="modal-content">
     <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal">&times;</button>
-     <h4 class="modal-title">Update Invoic No</h4>
+     <h4 class="modal-title">Update Company</h4>
     </div>
     <div class="modal-body">
-     <label>Supplier Name</label>
-     <input type="text" name="up_sname" id="up_sname" class="form-control" required="true" />
+     <label>Company Name</label>
+     <input type="text" name="up_cname" id="up_cname" class="form-control" required="true" />
      <br />
-     <label>Supplier Phone</label>
+     <label>Company Phone</label>
      <input type="text" name="up_tell" id="up_tell" class="form-control" required="true"/>
      <br />
-     <label>Supplier Address</label>
+     <label>Company Address</label>
      <input type="text" name="up_addr" id="up_addr" class="form-control" required="true"/>
      <br />
-     <label>Supplier Email</label>
-     <input type="text" name="up_email" id="up_email" class="form-control" required="true"/>
+     <label>Company Email</label>
+     <input type="email" name="up_email" id="up_email" class="form-control" required="true"/>
      <br />
+     <label>Company Website</label>
+     <input type="text" name="up_web" id="up_web" class="form-control" required="true"/>
+     <br />
+    <!--  <label>Company Logo</label>
+     <input type="file" name="logo" id="logo" class="form-control" required="true"/>
+     <span id="h_clogo"></span>
+     <br /> -->
      
     
     </div>
@@ -285,3 +299,46 @@
 
         }
     </script>
+<script>
+$(document).on('submit', '#addform', function(event){
+  event.preventDefault();
+   var cname = $("#cname").val();
+    var tell = $("#tell").val();
+    var addr = $("#addr").val();
+    var email = $("#email").val();
+    var web = $("#web").val();
+    var user_id = $("#user_id").val();
+  var extension = $('#user_image').val().split('.').pop().toLowerCase();
+  if(extension != '')
+  {
+   if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)
+   {
+    alert("Invalid Image File");
+    $('#user_image').val('');
+    return false;
+   }
+  } 
+  if(cname != '' && tell != '' && addr != '' && email != '' && web != '' && user_id != '')
+  {
+   $.ajax({
+    url:"addCompany.php",
+    method:'POST',
+    data:new FormData(this),
+    contentType:false,
+    processData:false,
+    success:function(data)
+    {
+     alert(data);
+     $('#addform')[0].reset();
+     $('#addModal').modal('hide');
+     //dataTable.ajax.reload();
+	 location.reload();
+    }
+   });
+  }
+  else
+  {
+   alert("Both Fields are Required");
+  }
+ });
+</script>

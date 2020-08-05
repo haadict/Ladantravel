@@ -3,12 +3,12 @@
     {
 		$startDate = $_POST["startDate"];
 		$endDate = $_POST["endDate"];
+    // include Database connection files
     include("reportClass.php");
      $data ="";
-     $tickets = $visas = $cargos =$allActivity= 0;
-		 $result = getTicketsByDate($startDate,$endDate);
+		 $result = getTicketsListByDate($startDate,$endDate);
 		 while($row=$result->fetch()){
-			 $tickets = $row["Tickets"];
+			
 			 $data .= '
 			 <div class="col-lg-3">
                         <div class="ibox float-e-margins">

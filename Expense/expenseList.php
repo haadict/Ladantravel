@@ -125,7 +125,7 @@
      <label>Expense Type Name</label>
         <select name="expid" id="expid"  class="form-control" required='true'><option value=" ">Expense Name</option>
                     <?php
-                    $dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+                    include("./connection/dbcon.php");
                     $query = "select * from tbl_expensetype";
                     $stm = $dbcon->prepare($query);
                     $stm->execute();
@@ -175,7 +175,7 @@
      <label>Expense Type Name</label>
         <select name="up_expid" id="up_expid"  class="form-control" required='true'><option value=" ">Expense Name</option>
                     <?php
-                    $dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+                    include("./connection/dbcon.php");
                     $query = "select * from tbl_expensetype";
                     $stm = $dbcon->prepare($query);
                     $stm->execute();

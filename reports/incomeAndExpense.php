@@ -52,21 +52,25 @@ include 'reportClass.php';
                     </div>
         <div class="row">
 		<div class="reportBox">
+		<form id="prospects_form">
 		<?php 
-		$tickets = $visas = $cargos =$allActivity= 0;
-		 $result = getTickets();
+		$ticketsIncome=$visasIncome=$cargosIncome=$Bills=$Suppliers=$otherExpenses=0;
+		$startDate = $endDate ="1";
+		
+		 $result = getTicketsIncomes();
 		 while($row=$result->fetch()){
-			 $tickets = $row["Tickets"];
+			 $ticketsIncome = $row["ticketAmount"];
+			 $type="1";
 			 echo '
-			 <div class="col-lg-3">
+			 <div class="col-lg-3" id="prospects">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                <!-- <span class="label label-success pull-right">Monthly</span>-->
 							   <i class="fa fa-ticket pull-right" aria-hidden="true"></i>
-                                <h5>Tickets</h5>
+                                <h5><a onclick="readallTickets(\''.$startDate.'\',\''.$endDate.'\')">Tickets Income</a></h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins">'.$row["Tickets"].'</h1>
+                                <h1 class="no-margins">'.$row["ticketAmount"].'</h1>
                                 <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
                                 <small>Total Tickets</small>
                             </div>
@@ -74,18 +78,18 @@ include 'reportClass.php';
                     </div>
 			 ';
 		 }
-		  $result1 = getVisas();
+		  $result1 = getVisasIncomes();
 		 while($row1=$result1->fetch()){
-			 $visas = $row1["Visas"];
+			 $visasIncome = $row1["VisasAmount"];
 			 echo '
 			<div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <i class="fa fa-cc-visa pull-right" aria-hidden="true"></i>
-                                <h5>Visas</h5>
+                                <h5><a onclick="readallVisas(\''.$startDate.'\',\''.$endDate.'\')">Visas Income</a></h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins">'.$row1["Visas"].'</h1>
+                                <h1 class="no-margins">'.$row1["VisasAmount"].'</h1>
                                 <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
                                 <small>All Visas</small>
                             </div>
@@ -93,18 +97,18 @@ include 'reportClass.php';
                     </div>
 			 ';
 		 }
-		 $result2 = getCargos();
+		 $result2 = getCargosIncomes();
 		 while($row2=$result2->fetch()){
-			 $cargos =$row2["Cargos"];
+			 $cargosIncome =$row2["CargosAmount"];
 			 echo '
 			 <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <i class="fa fa-truck pull-right" aria-hidden="true"></i>
-                                <h5>Cargos</h5>
+                                <h5><a onclick="readallCargos(\''.$startDate.'\',\''.$endDate.'\')">Cargos Income</a></h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins">'.$row2["Cargos"].'</h1>
+                                <h1 class="no-margins">'.$row2["CargosAmount"].'</h1>
                                 <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
                                 <small>All Cargos</small>
                             </div>
@@ -112,34 +116,110 @@ include 'reportClass.php';
                     </div>
 			 ';
 		 }
-		 $allActivity = $tickets + $visas + $cargos;
+		  $result3 = getBills();
+		 while($row3=$result3->fetch()){
+			 $Bills =$row3["billsAmount"];
+			 echo '
+			 <div class="col-lg-3">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <i class="fa fa-truck pull-right" aria-hidden="true"></i>
+                                <h5><a onclick="readallBills(\''.$startDate.'\',\''.$endDate.'\')">Bills Expenses</a></h5>
+                            </div>
+                            <div class="ibox-content">
+                                <h1 class="no-margins">'.$row3["billsAmount"].'</h1>
+                                <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
+                                <small>All Cargos</small>
+                            </div>
+                        </div>
+                    </div>
+			 ';
+		 }
+		  $result4 = getSupplier();
+		 while($row4=$result4->fetch()){
+			 $Suppliers =$row4["supplierAmount"];
+			 echo '
+			 <div class="col-lg-3">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <i class="fa fa-truck pull-right" aria-hidden="true"></i>
+                                <h5><a onclick="readSupplier(\''.$startDate.'\',\''.$endDate.'\')">Supplier Paying Expenses</a></h5>
+                            </div>
+                            <div class="ibox-content">
+                                <h1 class="no-margins">'.$row4["supplierAmount"].'</h1>
+                                <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
+                                <small>All Cargos</small>
+                            </div>
+                        </div>
+                    </div>
+			 ';
+		 }
+		  $result5 = getOtherExpense();
+		 while($row5=$result5->fetch()){
+			 $otherExpenses =$row5["otherAmount"];
+			 echo '
+			 <div class="col-lg-3">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <i class="fa fa-truck pull-right" aria-hidden="true"></i>
+                                <h5><a onclick="readOtherExpense(\''.$startDate.'\',\''.$endDate.'\')">Other Expenses</a></h5>
+                            </div>
+                            <div class="ibox-content">
+                                <h1 class="no-margins">'.$row5["otherAmount"].'</h1>
+                                <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
+                                <small>All Cargos</small>
+                            </div>
+                        </div>
+                    </div>
+			 ';
+		 }
+		 $allIncome = $ticketsIncome+$visasIncome+$cargosIncome;
+		 $allExpenses= $Bills+$Suppliers+$otherExpenses;
 			 echo '
 			 <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <i class="fa fa-ticket pull-right" aria-hidden="true"></i><i class="fa fa-cc-visa pull-right" aria-hidden="true"></i>
 								<i class="fa fa-truck pull-right" aria-hidden="true"></i>
-                                <h5>All activities</h5>
+                                <h5>ALL INCOME</h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins">'.$allActivity .'</h1>
+                                <h1 class="no-margins">'.$allIncome .'</h1>
                                 <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
                                 <small>All activities</small>
                             </div>
                         </div>
             </div>
 			 ';
+			  echo '
+			 <div class="col-lg-3">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <i class="fa fa-ticket pull-right" aria-hidden="true"></i><i class="fa fa-cc-visa pull-right" aria-hidden="true"></i>
+								<i class="fa fa-truck pull-right" aria-hidden="true"></i>
+                                <h5>ALL EXPENSES</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <h1 class="no-margins">'.$allExpenses .'</h1>
+                                <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
+                                <small>All activities</small>
+                            </div>
+                        </div>
+            </div>
+			 ';
+			 
+			 
 		?>
                     
                    
-                    
+            </form>        
         </div>
 		</div>
         <div class="row">
                             <div class="col-lg-12">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
-                                        <h5>Transactions worldwide</h5>
+                                        <h5>Reports</h5>
                                         <div class="ibox-tools">
                                             <a class="collapse-link">
                                                 <i class="fa fa-chevron-up"></i>
@@ -153,60 +233,7 @@ include 'reportClass.php';
 
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <table class="table table-hover margin bottom">
-                                                    <thead>
-                                                    <tr>
-                                                        <th style="width: 1%" class="text-center">No.</th>
-                                                        <th>Transaction</th>
-                                                        <th class="text-center">Date</th>
-                                                        <th class="text-center">Amount</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td class="text-center">1</td>
-                                                        <td> Security doors
-                                                            </td>
-                                                        <td class="text-center small">16 Jun 2014</td>
-                                                        <td class="text-center"><span class="label label-primary">$483.00</span></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">2</td>
-                                                        <td> Wardrobes
-                                                        </td>
-                                                        <td class="text-center small">10 Jun 2014</td>
-                                                        <td class="text-center"><span class="label label-primary">$327.00</span></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">3</td>
-                                                        <td> Set of tools
-                                                        </td>
-                                                        <td class="text-center small">12 Jun 2014</td>
-                                                        <td class="text-center"><span class="label label-warning">$125.00</span></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">4</td>
-                                                        <td> Panoramic pictures</td>
-                                                        <td class="text-center small">22 Jun 2013</td>
-                                                        <td class="text-center"><span class="label label-primary">$344.00</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">5</td>
-                                                        <td>Phones</td>
-                                                        <td class="text-center small">24 Jun 2013</td>
-                                                        <td class="text-center"><span class="label label-primary">$235.00</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">6</td>
-                                                        <td>Monitors</td>
-                                                        <td class="text-center small">26 Jun 2013</td>
-                                                        <td class="text-center"><span class="label label-primary">$100.00</span></td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+                                               <div class="reports"></div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div id="world-map" style="height: 300px;"></div>
@@ -610,20 +637,71 @@ include 'reportClass.php';
 function searchReport(){
 	var startDate = $("#startDate").val();
 	var endDate = $("#endDate").val();
-	alert(startDate);
-	alert(endDate);
 	 // Search records
     $.post("searchreport.php", {
         startDate: startDate,
         endDate: endDate
     }, function (data, status) {
         // close the popup
-		alert(data);
          $(".reportBox").html(data);
 
     });
+	
+}
+function readallTickets(startDate,endDate){
+
+	if(startDate==1 && endDate==1){
+	$.get("readAllTickets.php", {}, function (data, status) {
+      $(".reports").html(data);
+    });
+	}
+	else{
+		$.post("readAllTickets.php", {
+        startDate: startDate,
+        endDate: endDate
+    }, function (data, status) {
+        // close the popup
+         $(".reports").html(data);
+
+    });
+	}
+}
+function readallVisas(startDate,endDate){
+	if(startDate==1 && endDate==1){
+	$.get("readallVisas.php", {}, function (data, status) {
+      $(".reports").html(data);
+    });
+	}
+	else{
+		$.post("readallVisas.php", {
+        startDate: startDate,
+        endDate: endDate
+    }, function (data, status) {
+        // close the popup
+         $(".reports").html(data);
+
+    });
+	}
+}
+function readallCargos(startDate,endDate){
+	if(startDate==1 && endDate==1){
+	$.get("readallCargos.php", {}, function (data, status) {
+      $(".reports").html(data);
+    });
+	}
+	else{
+		$.post("readallCargos.php", {
+        startDate: startDate,
+        endDate: endDate
+    }, function (data, status) {
+        // close the popup
+         $(".reports").html(data);
+
+    });
+	}
 }
 $("#prospects_form").submit(function(e) {
     e.preventDefault();
 });
+
 </script>

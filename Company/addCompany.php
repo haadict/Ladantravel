@@ -3,35 +3,51 @@
     {
         // include Database connection file
         include 'company_Class.php';
-
+        include 'function.php';
         // get values
         $cname  = $_POST['cname'];
         $tell  = $_POST['tell'];
         $addr  = $_POST['addr'];
         $email  = $_POST['email'];
         $web  = $_POST['web'];
-       // $logo  = $_POST['logo'];
+<<<<<<< HEAD
+        //$logo  = $_FILES["logo"]["name"];
          $user_id = $_POST['user_id'];
-// $img = '';
-//         if($_FILES["logo"]["name"] != '')
-//         {
-//             $img = upload_image();
-//         }
         
-         //alert($img);
-	addRecord($cname,$tell,$addr,$email,$web,$img,$user_id);
+        // $img = '';
+        // if($_FILES["logo"]["name"] != '')
+        // {
+        //     $img = upload_image();
+        // }
+        
+        
+	addRecord($cname,$tell,$addr,$email,$web,$user_id);
+=======
+         $user_id = $_POST['user_id'];
+		 $image = '';
+		 if($_FILES["user_image"]["name"] != '')
+		  {
+		   $image = upload_image();
+		  }
+        
+	addRecord($cname,$tell,$addr,$email,$web,$image,$user_id);
+>>>>>>> 334e8ac9642ed2d13b3a2007ddffbf77b5782684
 
-        echo "New Record Added!";
+       echo "New Record Added!";
     }
-// function upload_image()
-// {
-//      if(isset($_FILES["logo"]))
-//      {
-//       $ext = explode('.', $_FILES['logo']['name']);
-//       $new_name = rand() . '.' . $ext[1];
-//       $destination = '../images/' . $new_name;
-//       move_uploaded_file($_FILES['logo']['tmp_name'], $destination);
-//       return $new_name;
-//      }
-//  }
+<<<<<<< HEAD
+
+=======
+function upload_image()
+{
+ if(isset($_FILES["user_image"]))
+ {
+  $extension = explode('.', $_FILES['user_image']['name']);
+  $new_name = rand() . '.' . $extension[1];
+  $destination = '../upload/' . $new_name;
+  move_uploaded_file($_FILES['user_image']['tmp_name'], $destination);
+  return $new_name;
+ }
+}
+>>>>>>> 334e8ac9642ed2d13b3a2007ddffbf77b5782684
 ?>
