@@ -48,4 +48,25 @@ where cr.FinishDate is null");
 INNER JOIN tbl_packagetype p ON p.packageTypeId=cr.packageTypeId
 where cr.cargoCreateDate between '$startDate' and '$endDate' and cr.FinishDate is null");
  }
+ function getTicketsIncomes(){
+  return getCnx()->query("SELECT SUM(SellPrice) as ticketAmount FROM tbl_ticketreservation where FinishDate is null");
+ }
+ function getVisasIncomes(){
+  return getCnx()->query("SELECT SUM(sellPrice) as VisasAmount FROM tbl_visareservation where FinishDate is null");
+ }
+  function getCargosIncomes(){
+  return getCnx()->query("SELECT SUM(sellPrice) as CargosAmount FROM tbl_cargo where FinishDate is null");
+ }
+ function getBills(){
+  return getCnx()->query("SELECT  SUM(ex.ExpenseAmount) AS billsAmount FROM tbl_expense ex INNER JOIN tbl_expensetype st ON st.ExpenseTypeId=ex.ExpenseTypeId
+WHERE EX.ExpenseTypeId = 1 AND ex.FinishDate IS NULL");
+ }
+ function getSupplier(){
+  return getCnx()->query("SELECT  SUM(ex.ExpenseAmount) AS supplierAmount FROM tbl_expense ex INNER JOIN tbl_expensetype st ON st.ExpenseTypeId=ex.ExpenseTypeId
+WHERE EX.ExpenseTypeId = 2 AND ex.FinishDate IS NULL");
+ }
+ function getOtherExpense(){
+  return getCnx()->query("SELECT  SUM(ex.ExpenseAmount) AS otherAmount FROM tbl_expense ex INNER JOIN tbl_expensetype st ON st.ExpenseTypeId=ex.ExpenseTypeId
+WHERE ex.ExpenseTypeId = 3 AND ex.FinishDate IS NULL");
+ }
  ?>

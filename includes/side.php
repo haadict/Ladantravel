@@ -118,7 +118,7 @@
                         <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Reports</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="../reports/Financial">Financial Report</a></li>
-                            <li><a href="../reports/IncomeExpense">Income & expenses</a></li>
+                            <li><a href="../reports/incomeAndExpense">Income & expenses</a></li>
                             <li><a href="../reports/Reservation">Reservation Report</a></li>
 							<li><a href="../reports/Customers">Customer Report</a></li>
                             <li><a href="../reports/Employers">Employee Report</a></li>
