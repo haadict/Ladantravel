@@ -80,25 +80,13 @@
                     <li>
                         <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Employers</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="../Employee/employeeList">Employer list</a></li>
+                            <li><a href="form_basic.html">Employer list</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">Suppliers</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="contacts.html">Supplier list</a></li>
-                        </ul>
-                    </li><hr>
-                    <li>
-                        <a href="#"><i class="fa fa-cc-visa"></i> <span class="nav-label">Visa Reservation</span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="../Visa/visaList">Visa Reservation list</a></li>
-                        </ul>
-                    </li><hr>
-                    <li>
-                        <a href="#"><i class="fa fa-paper-plane"></i> <span class="nav-label">Ticket Reservation</span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="../Ticket/ticketList">Ticket Reservation list</a></li>
                         </ul>
                     </li><hr>
                     <li>
@@ -129,18 +117,12 @@
                     <li>
                         <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Reports</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-<<<<<<< HEAD
-                            <li><a href="../Reports/reports.php">Tickets</a></li>
-                            <li><a href="table_data_tables.html">Visas</a></li>
-                            <li><a href="table_foo_table.html">Cargos</a></li>
-=======
                             <li><a href="../reports/Financial">Financial Report</a></li>
-                            <li><a href="../reports/IncomeExpense">Income & expenses</a></li>
+                            <li><a href="../reports/incomeAndExpense">Income & expenses</a></li>
                             <li><a href="../reports/Reservation">Reservation Report</a></li>
 							<li><a href="../reports/Customers">Customer Report</a></li>
                             <li><a href="../reports/Employers">Employee Report</a></li>
 							<li><a href="../reports/Suppliers">Supplier(Airlines) Report</a></li>
->>>>>>> 334e8ac9642ed2d13b3a2007ddffbf77b5782684
                         </ul>
                     </li>
                 </ul>
