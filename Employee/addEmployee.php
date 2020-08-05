@@ -2,7 +2,6 @@
     if(isset($_POST))
     {
         // include Database connection file
-        
         include 'employee_Class.php';
         include 'function.php';
         // get values
