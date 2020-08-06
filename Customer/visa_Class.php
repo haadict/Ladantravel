@@ -4,7 +4,7 @@ function getRecords(){
   return getCnx()->query("SELECT * FROM tbl_visareservation v,tbl_customers c, tbl_employee em where v.customerId=c.CustomerId and v.visaCreateBy=em.EmployeeId and v.FinishDate is null");
  }
  
-function addRecord($cusid,$vdate,$duration,$country,$passno,$issby,$issdate,$passexdate,$cprice,$sellprice,$profit,$desc,$user_id)
+function addVisaRecord($cusid,$vdate,$duration,$country,$passno,$issby,$issdate,$passexdate,$cprice,$sellprice,$profit,$desc,$user_id)
 {
  $stmt= getCnx()->prepare("INSERT INTO tbl_visareservation(customerId, visaDate, duration, country, passportNo, issuedBy,issuDate,passportExpireDate,costprice,sellPrice,profit,visaDescription,visaCreateBy,visaCreateDate)
    VALUES (:cusid,:vdate,:duration,:country,:passno,:issby,:issdate,:passexdate,:cprice,:sellprice,:profit,:desc,:user_id,now())");

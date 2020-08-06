@@ -5,7 +5,7 @@
   include '../includes/script.js';
   include '../includes/nav.php';
   include 'visaScript.js';
-  include 'visa_Class.php';
+  include 'customer_Class.php';
   ?>
     <style>
 .nav-header {
@@ -88,15 +88,16 @@
                     </tr>
                     </thead>
                     <tbody>
-					<?php 
-					 $result = getRecords();
+					<?php
+          $id=$_GET['id']; 
+					 $result = getVisaRecords($id);
 					 $i=0;
 					 while($row=$result->fetch()){
 						 $i++;
 						 echo '
 						  <tr>
 						    <td>'.$i.'</td>
-
+                
 							<td>'.$row["CustomerName"].'</td>
 							<td>'.$row["visaDate"].'</td>
                             <td>'.$row["duration"].'</td>
