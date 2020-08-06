@@ -4,6 +4,7 @@
     var qutationId=$("#invId").val();
     $(function()
     {
+       // alert(qutationId);
     if(qutationId==0)
     {
       $("#save").show();
@@ -71,6 +72,7 @@
     else
     {
       $("#update").show();
+
       $('#LastInsertedId').val(qutationId);
       $.post("getServices.php",{qutationId:qutationId,status:"RedQuatationDetails"}, function (data, status)
       {
@@ -449,7 +451,7 @@ function saveReceipt() {
   var createdBy = 1;
 
   var grandTotal = parseFloat($('#finalTotal').text());
-	alert("kkkk "+grandTotal);
+	// alert("kkkk "+grandTotal);
 
   $('#span').remove();
    if (createdDate == '') {
@@ -486,7 +488,7 @@ function saveReceipt() {
           items: postItems
         },
         success: function(data) {
-        	alert(data);
+        	// alert(data);
         // window.location.replace("../Clients/clientsProfile?clientId="+client);
         $('#savedSuccess2').html('<div class="alert alert-success alert-dismissible fade show" role="alert">'
         +'<strong> Receipt !</strong> You have successfully Added '
@@ -494,7 +496,7 @@ function saveReceipt() {
         +'  <span aria-hidden="true">×</span>'
         +'</button>'
         +'</div>');
-        window.location.reload();
+        window.location.replace("printRec.php?invId="+data);
         $('#LastInsertedId').val(data);
       }
     });
@@ -546,7 +548,7 @@ function saveReceipt() {
         },
         success: function(data) {
         	// alert(data);
-      window.location.replace("index.php");
+      window.location.replace("allReceipts.php?cusId="+client);
       $('#savedSuccess2').html('<div class="alert alert-success alert-dismissible fade show" role="alert">'
         +'<strong> QUATATION !</strong> You have successfully Update '
         +'<button type="button" class="close" data-dismiss="alert" aria-label="Close">'

@@ -56,17 +56,15 @@ require 'function.php';
                         </div>
                     </div>
                     <div class="ibox-content">
-
-                        <div class="table-responsive">
-                      <a href="form.php" class="btn btn-primary pull-right" style="margin-top:20px;;" type="button"><i class="fa fa-plus"></i>&nbsp;Add</a>
-                    <table class="table table-striped table-bordered table-hover dataTables-example" id="tbl" >
+                      <div class="table-responsive">
+                      <!-- <a href="form.php" class="btn btn-primary pull-right" style="margin-top:20px;;" type="button"><i class="fa fa-plus"></i>&nbsp;Add</a> -->
+                    <table class="table table-striped table-bordered table-hover dataTables-example" id="tbl">
                     <thead>
                     <tr>
-                        <th>Invoice No</th>
-                        <th>Customer</th>
-                        <th>Service Type</th>
-                        <th>Amount</th>
-                        <th>Receipt Date</th>
+                        <th>No</th>
+                        <th>Customer Name</th>
+                        <th>Telphone</th>
+                        <th>Total Invoices</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -80,17 +78,12 @@ require 'function.php';
                             <tr>
                             <td>'.$i.'</td>
                             <td>'.$row["CustomerName"].'</td>
-                            <td>'.$row["ServName"].'</td>
-                            <td>$'.$row["SubTotal"].'</td>
-                            <td>'.$row["InvoiceDate"].'</td>
+                            <td>'.$row["Customerphone"].'</td>
+                            <td>'.getTInvByCus($row["CustomerId"]).'</td>
                             <td>
-                            <a  href="allReceipts.php?cusId='.$row["CustomerId"].'" class="btn btn-info btn-circle"><i class="fa fa-eye"></i></a>
-                            <a  href="printRec.php?invId='.$row["InvoiceId"].'" class="btn btn-info btn-circle"><i class="fa fa-print"></i></a>
-                            <a  href="form.php?invId='.$row["InvoiceId"].'" class="btn btn-info btn-circle"><i class="fa fa-edit"></i></a>
-                            <button class="btn btn-warning btn-circle delete" type="button" onclick="deleteIn('.$row["InvoiceId"].');"><i class="fa fa-trash"></i></button>
+                                <a  href="allReceipts.php?cusId='.$row["CustomerId"].'" class="btn btn-info btn-circle"><i class="fa fa-eye"></i></a>
                             </td>
-                            </tr>
-                           ';
+                            </tr>';
                          }
                         ?>
                     </tbody>

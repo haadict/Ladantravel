@@ -51,6 +51,10 @@ function addInvoiceDetails($InvoiceId,$serVId,$Qty,$unitPrice,$discount,$VAT,$To
   $stmt->bindParam(':Total', $Total);
   $stmt->execute();
 }
+function deleteInD($id)
+{
+  getCnx()->query("DELETE FROM tbl_invoicedetails WHERE InvoiceId=$id");
+}
 function deleteInv($id)
 {
 	getCnx()->query("UPDATE tbl_invoice SET FinishDate=NOW() WHERE InvoiceId=$id");
@@ -83,13 +87,29 @@ function updateInvoiceDetails($InvoiceId,$serVId,$Qty,$unitPrice,$discount,$VAT,
   function getReceipts()
   {
 
-      $stmt=getCnx()->prepare("SELECT c.CustomerName,c.CustomerId,ivd.InvoiceId,inv.SubTotal,inv.InvoiceDate,s.ServName FROM tbl_invoice inv
+      $stmt=getCnx()->prepare("SELECT c.CustomerName,c.CustomerId,ivd.InvoiceId,c.Customerphone FROM tbl_invoice inv
         INNER JOIN tbl_customers c ON c.CustomerId = inv.CustomerId
         INNER JOIN tbl_invoicedetails ivd on ivd.InvoiceId=inv.invoiceId
         INNER JOIN services s on s.ServId=ivd.ServiceId
         WHERE c.FinishDate IS NULL and inv.FinishDate is null group by inv.CustomerId");
      	$stmt->execute();
  	  	return $stmt;
+ }
+  function getTInvByCus($cusId)
+  {
+      $stmt=getCnx()->prepare("SELECT COUNT(inv.InvoiceId) as total FROM tbl_invoice inv
+        INNER JOIN tbl_customers c ON c.CustomerId = inv.CustomerId
+        WHERE c.FinishDate IS NULL and inv.FinishDate is null and inv.CustomerId=:cusId");
+        $stmt->bindParam(':cusId', $cusId);
+        $stmt->execute();
+         while ($row = $stmt->fetch()){
+        if (!empty($row['total'])){
+          return $row['total'];
+        }
+        else{
+            return $stmt;
+        }
+      }
  }
    function getReceiptsAll($cusId)
   {

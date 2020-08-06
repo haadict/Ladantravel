@@ -86,10 +86,9 @@ if (isset($_GET['cusId'])) {
                             <td>$'.$row["SubTotal"].'</td>
                             <td>'.$row["InvoiceDate"].'</td>
                             <td>
-                            <a  href="form.php?invId='.$row["InvoiceId"].'" class="btn btn-info btn-circle"><i class="fa fa-eye"></i></a>
                             <a  href="printRec.php?invId='.$row["InvoiceId"].'" class="btn btn-info btn-circle"><i class="fa fa-print"></i></a>
                             <a  href="form.php?invId='.$row["InvoiceId"].'" class="btn btn-info btn-circle"><i class="fa fa-edit"></i></a>
-                            <button class="btn btn-warning btn-circle delete" type="button" id='.$row["InvoiceId"].'><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-warning btn-circle delete" type="button" onclick="deleteIn('.$row["InvoiceId"].');"><i class="fa fa-trash"></i></button>
                             </td>
                             </tr>
                            ';
@@ -132,7 +131,6 @@ if (isset($_GET['cusId'])) {
 <script src="../Assets/js/inspinia.js"></script>
 <script src="../Assets/js/plugins/pace/pace.min.js"></script>
 
-
 <script>
   $(document).ready(function(){
     $('.dataTables-example').DataTable({
@@ -173,4 +171,28 @@ if (isset($_GET['cusId'])) {
     } );
 
   });
+   function deleteIn(id) {
+  if(confirm("Are you sure you want to delete this?"))
+  {
+   $.ajax({
+    url:"add.php",
+    method:"POST",
+    data:{id:id,status:"delete Invoice"},
+    success:function(data)
+    {
+     // alert(data);
+     location.reload();
+     // swal.fire({
+     //          title:'Msg! '+data,
+     //          type:'success'
+     //        })
+    }
+   });
+  }
+  else
+  {
+   return false; 
+  }
+
+}
 </script>

@@ -112,7 +112,7 @@ if (isset($_GET['invId'])) {
         <div class="ibox-title">
           <h5>Receipt</h5>
           <div class="ibox-tools">
-            <!-- <button id="printInvoice" class="btn btn-primary btn-sm" style="margin-top: 2%; margin-left: 70%;"><i class="fa fa-print"></i> Print </button> -->
+          <a  href="printRec.php?invId=<?php echo $qutationId?>" class="btn btn-primary">Back</a>
           </div>
         </div>
           <div class="row">
