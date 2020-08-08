@@ -12,56 +12,56 @@
 // }
 
 // Add Record
-function addRecord(){
+// function addRecord(){
 	
-    // get values
-    var cname = $("#cname").val();
-    var tell = $("#tell").val();
-    var addr = $("#addr").val();
-    var email = $("#email").val();
-    var web = $("#web").val();
-    var user_id = $("#user_id").val();
-    var logo = $("#logo").val();
+//     // get values
+//     var cname = $("#cname").val();
+//     var tell = $("#tell").val();
+//     var addr = $("#addr").val();
+//     var email = $("#email").val();
+//     var web = $("#web").val();
+//     var user_id = $("#user_id").val();
+//     var logo = $("#logo").val();
 
-    var ext=$('#logo').val().split('.').pop().toLowerCase();
+//     var ext=$('#logo').val().split('.').pop().toLowerCase();
 
-    if(ext != '')
-    {
-      if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1)
-      {
-        alert("Invalid Image File");
-        $('#logo').val('');
-        return false;
-      }
-    }
-   // alert(logo);
-    // Add record
-    $.post("addCompany.php", {
-        cname: cname,
-        tell: tell,
-        addr: addr,
-        email: email,
-        web: web,
-        user_id: user_id,
-        logo: logo
+//     if(ext != '')
+//     {
+//       if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1)
+//       {
+//         alert("Invalid Image File");
+//         $('#logo').val('');
+//         return false;
+//       }
+//     }
+//    // alert(logo);
+//     // Add record
+//     $.post("addCompany.php", {
+//         cname: cname,
+//         tell: tell,
+//         addr: addr,
+//         email: email,
+//         web: web,
+//         user_id: user_id,
+//         logo: logo
         
-    }, function (data, status) {
-        // close the popup
-		alert(data);
-        $("#addModal").modal("hide");
-        // clear fields from the popup
-        $("#cname").val("");
-        $("#tell").val("");
-        $("#addr").val("");
-        $("#email").val("");
-        ("#web").val("");
-        $("#logo").val("");
-        //$("#user_id").val("");
-        location.reload();
+//     }, function (data, status) {
+//         // close the popup
+// 		alert(data);
+//         $("#addModal").modal("hide");
+//         // clear fields from the popup
+//         $("#cname").val("");
+//         $("#tell").val("");
+//         $("#addr").val("");
+//         $("#email").val("");
+//         ("#web").val("");
+//         $("#logo").val("");
+//         //$("#user_id").val("");
+//         location.reload();
        
         
-    });
-}
+//     });
+// }
 // When updating
 function GetUpdateDetails(up_id) {
 
@@ -83,6 +83,7 @@ function GetUpdateDetails(up_id) {
             $("#up_web").val(result.CompanyWebsite);
 
             $("#up_id").val(result.CompanyId);
+            $("#himg").html('<img  src="../upload/'+result.CompanyLogo+'" class="img-thumbnail" width="50" height="35" /><input type="hidden" name="himg" value="'+result.CompanyLogo+'" />');
 
 
         }
