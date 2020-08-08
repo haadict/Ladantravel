@@ -112,7 +112,7 @@ if (isset($_GET['invId'])) {
         <div class="ibox-title">
           <h5>Receipt</h5>
           <div class="ibox-tools">
-          <a  href="printRec.php?invId=<?php echo $qutationId?>" class="btn btn-primary">Back</a>
+          <a  href="index.php" class="btn btn-primary">Back</a>
           </div>
         </div>
           <div class="row">
@@ -131,43 +131,36 @@ if (isset($_GET['invId'])) {
               <div class="col-md-12">
                 <div class="pull-right">
                   <div class="stausImg">
-                    <img src="../Company/companyLogo/<?php //echo $img; ?>.png" alt="">
+                    <img src="../logo/<?php //echo $img; ?>.png" alt="">
                   </div>
                 </div>
-                <br><br><br><br>
               </div>
               <div class="col-md-6 compInfo">
-
                 <div class="logo">
-                  <img src="../Logo.jpg" alt="" class="logo">
+                  <img src="../logo/invLogo.png" alt="" class="logo" style="display: block;margin: 0 auto;">
                 </div>
               </div>
               <div class="col-md-6 compInfo">
-                <div class="text-right">
+                <div class="text-center">
 
                   <div class="cls_002">
-                    <span class="cls_002"><b><?php echo "HAAD ICT"; ?></b></span>
+                    <span class="cls_002"><b><?php echo "Ladan Travel & Tourism Agency"; ?></b></span>
                   </div>
 
                   <div class="cls_003">
-                    <span class="cls_003">Address: <?php echo "tALEEX hODAN"; ?></span>
+                    <span class="cls_003">Address: <?php echo "Hodan Taleex"; ?></span>
                   </div>
 
                   <div class="cls_003">
-                    <span class="cls_003">Email: <?php echo "HAAD@GMAIL.COM"; ?></span>
+                    <span class="cls_003">Email: <?php echo "ladan@gmail.com"; ?></span>
                   </div>
-
                   <div class="cls_003">
-                    <span class="cls_003">Web: <?php echo "HAAD.COM"; ?></span>
-                  </div>
-
-                  <div class="cls_003">
-                    <span class="cls_003">Tel: <?php echo "203215"; ?></span>
+                    <span class="cls_003">Tel: <?php echo "+25261111120"; ?></span>
                   </div>
                 </div>
               </div>
             </div>  
-
+            <br><br><br><br><br><br>
             <div class="col-md-12 invoiceDesign">
               <?php
 
@@ -257,7 +250,7 @@ if (isset($_GET['invId'])) {
         </div>
         <div class="col-md-12" class="invoiceNote">
           <div class="cls_003">
-            <span class="cls_003">Notes: <?php //echo getQuoteCommentBanks(); ?></span>
+            <!-- <span class="cls_003">Notes: <?php //echo getQuoteCommentBanks(); ?></span> -->
           </div>
 
         </div>
