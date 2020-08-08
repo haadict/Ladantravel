@@ -114,4 +114,71 @@ WHERE ex.ExpenseTypeId = 1 AND ex.ExpenseCreateDate between '$startDate' and '$e
   return getCnx()->query("SELECT SUM(EX.ExpenseAmount) AS supplierAmount FROM tbl_expense ex INNER JOIN tbl_expensetype st ON st.ExpenseTypeId=ex.ExpenseTypeId
 WHERE EX.ExpenseTypeId = 2 AND ex.ExpenseCreateDate between '$startDate' and '$endDate' and ex.FinishDate IS NULL");
  }
- ?>
+  function getAllCustomers(){
+  return getCnx()->query("SELECT  COUNT(c.CustomerId) AS allCustomers FROM tbl_customers c 
+WHERE c.FinishDate IS NULL");
+ }
+  function getTicketsPending(){
+  return getCnx()->query("SELECT COUNT(t.ticketId) AS ticketsPending FROM tbl_ticketreservation t 
+WHERE t.status=0 AND t.FinishDate IS NULL");
+ }
+ function getVisasPending(){
+  return getCnx()->query("SELECT COUNT(v.visaId) AS visasPending FROM tbl_visareservation v
+WHERE v.status=0 AND v.FinishDate IS NULL");
+ }
+ function getCargosPending(){
+  return getCnx()->query("SELECT COUNT(c.CargoId) AS cargosPending FROM tbl_cargo c
+WHERE c.status=0 AND c.FinishDate IS NULL");
+ }
+ function getCustomersList(){
+  return getCnx()->query("SELECT * FROM tbl_customers where FinishDate is null");
+ }
+ function getCustomersListByDate($startDate,$endDate){
+  return getCnx()->query("SELECT * FROM tbl_customers 
+  where CustomerCreateDate between '$startDate' and '$endDate' and  FinishDate is null");
+ }
+  function getCustomersByDate($startDate,$endDate){
+  return getCnx()->query("SELECT  COUNT(c.CustomerId) AS allCustomers FROM tbl_customers c 
+WHERE CustomerCreateDate between '$startDate' and '$endDate' and  FinishDate is null");
+ }
+ function getTicketsPendingByDate($startDate,$endDate){
+  return getCnx()->query("SELECT COUNT(t.ticketId) AS ticketsPending FROM tbl_ticketreservation t 
+WHERE t.status=0 AND ticketCreateDate between '$startDate' and '$endDate' and FinishDate is null");
+ }
+ function getVisasPendingByDate($startDate,$endDate){
+  return getCnx()->query("SELECT COUNT(v.visaId) AS visasPending FROM tbl_visareservation v
+WHERE v.status=0 AND visaCreateDate between '$startDate' and '$endDate' and FinishDate is null");
+ }
+ function getCargosPendingByDate($startDate,$endDate){
+  return getCnx()->query("SELECT COUNT(c.CargoId) AS cargosPending FROM tbl_cargo c
+WHERE c.status=0 AND c.cargoCreateDate between '$startDate' and '$endDate' and c.FinishDate is null");
+ }
+  function getTicketsPendingList(){
+  return getCnx()->query("SELECT * FROM tbl_ticketreservation t INNER JOIN tbl_airline a ON t.airLineId=a.airLineId
+INNER JOIN tbl_customers c ON C.CustomerId=T.CustomerId
+where t.status=0 AND t.FinishDate is null");
+ }
+  function getTicketsPendingListByDate($startDate,$endDate){
+  return getCnx()->query("SELECT * FROM tbl_ticketreservation t INNER JOIN tbl_airline a ON t.airLineId=a.airLineId
+INNER JOIN tbl_customers c ON C.CustomerId=T.CustomerId
+where t.status=0 AND t.ticketCreateDate between '$startDate' and '$endDate' and t.FinishDate is null");
+ }
+  function getVisasPendingList(){
+  return getCnx()->query("SELECT * FROM tbl_visareservation v INNER JOIN tbl_customers c ON C.CustomerId=v.customerId 
+  where v.status=0 AND v.FinishDate is null");
+ }
+ function getVisasPendingListByDate($startDate,$endDate){
+  return getCnx()->query("SELECT * FROM tbl_visareservation v INNER JOIN tbl_customers c ON C.CustomerId=v.customerId 
+  where v.status=0 AND v.visaCreateDate between '$startDate' and '$endDate' AND v.FinishDate is null");
+ }
+   function getCargoPending(){
+  return getCnx()->query("SELECT * FROM tbl_cargo cr INNER JOIN tbl_customers c ON C.CustomerId=cr.CustomerId
+INNER JOIN tbl_packagetype p ON p.packageTypeId=cr.packageTypeId
+where cr.status=0 and cr.FinishDate is null");
+ }
+ function getCargoPendingByDate($startDate,$endDate){
+  return getCnx()->query("SELECT * FROM tbl_cargo cr INNER JOIN tbl_customers c ON C.CustomerId=cr.CustomerId
+INNER JOIN tbl_packagetype p ON p.packageTypeId=cr.packageTypeId
+where cr.status=0 AND cr.cargoCreateDate between '$startDate' and '$endDate' and cr.FinishDate is null");
+ }
+ ?><!--eND-->
