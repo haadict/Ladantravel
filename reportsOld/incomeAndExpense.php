@@ -638,7 +638,7 @@ function searchReport(){
 	var startDate = $("#startDate").val();
 	var endDate = $("#endDate").val();
 	 // Search records
-    $.post("searchFinanceReport.php", {
+    $.post("searchreport.php", {
         startDate: startDate,
         endDate: endDate
     }, function (data, status) {
@@ -691,60 +691,6 @@ function readallCargos(startDate,endDate){
 	}
 	else{
 		$.post("readallCargos.php", {
-        startDate: startDate,
-        endDate: endDate
-    }, function (data, status) {
-        // close the popup
-         $(".reports").html(data);
-
-    });
-	}
-}
-function readallBills(startDate,endDate){
-
-	if(startDate==1 && endDate==1){
-	$.get("readallBills.php", {}, function (data, status) {
-      $(".reports").html(data);
-    });
-	}
-	else{
-		$.post("readallBills.php", {
-        startDate: startDate,
-        endDate: endDate
-    }, function (data, status) {
-        // close the popup
-         $(".reports").html(data);
-
-    });
-	}
-}
-function readSupplier(startDate,endDate){
-
-	if(startDate==1 && endDate==1){
-	$.get("readSupplierPay.php", {}, function (data, status) {
-      $(".reports").html(data);
-    });
-	}
-	else{
-		$.post("readSupplierPay.php", {
-        startDate: startDate,
-        endDate: endDate
-    }, function (data, status) {
-        // close the popup
-         $(".reports").html(data);
-
-    });
-	}
-}
-function readOtherExpense(startDate,endDate){
-
-	if(startDate==1 && endDate==1){
-	$.get("readOtherExpense.php", {}, function (data, status) {
-      $(".reports").html(data);
-    });
-	}
-	else{
-		$.post("readOtherExpense.php", {
         startDate: startDate,
         endDate: endDate
     }, function (data, status) {

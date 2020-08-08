@@ -54,12 +54,11 @@ include 'reportClass.php';
 		<div class="reportBox">
 		<form id="prospects_form">
 		<?php 
-		$ticketsIncome=$visasIncome=$cargosIncome=$Bills=$Suppliers=$otherExpenses=0;
 		$startDate = $endDate ="1";
 		
-		 $result = getTicketsIncomes();
+		 $result = getTickets();
 		 while($row=$result->fetch()){
-			 $ticketsIncome = $row["ticketAmount"];
+			 $tickets = $row["Tickets"];
 			 $type="1";
 			 echo '
 			 <div class="col-lg-3" id="prospects">
@@ -67,10 +66,10 @@ include 'reportClass.php';
                             <div class="ibox-title">
                                <!-- <span class="label label-success pull-right">Monthly</span>-->
 							   <i class="fa fa-ticket pull-right" aria-hidden="true"></i>
-                                <h5><a onclick="readallTickets(\''.$startDate.'\',\''.$endDate.'\')">Tickets Income</a></h5>
+                                <h5><a onclick="readallTickets(\''.$startDate.'\',\''.$endDate.'\')">Tickets</a></h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins">'.$row["ticketAmount"].'</h1>
+                                <h1 class="no-margins">'.$row["Tickets"].'</h1>
                                 <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
                                 <small>Total Tickets</small>
                             </div>
@@ -78,18 +77,18 @@ include 'reportClass.php';
                     </div>
 			 ';
 		 }
-		  $result1 = getVisasIncomes();
+		  $result1 = getVisas();
 		 while($row1=$result1->fetch()){
-			 $visasIncome = $row1["VisasAmount"];
+			 $visas = $row1["Visas"];
 			 echo '
 			<div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <i class="fa fa-cc-visa pull-right" aria-hidden="true"></i>
-                                <h5><a onclick="readallVisas(\''.$startDate.'\',\''.$endDate.'\')">Visas Income</a></h5>
+                                <h5><a onclick="readallVisas(\''.$startDate.'\',\''.$endDate.'\')">Visas</a></h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins">'.$row1["VisasAmount"].'</h1>
+                                <h1 class="no-margins">'.$row1["Visas"].'</h1>
                                 <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
                                 <small>All Visas</small>
                             </div>
@@ -97,18 +96,18 @@ include 'reportClass.php';
                     </div>
 			 ';
 		 }
-		 $result2 = getCargosIncomes();
+		 $result2 = getCargos();
 		 while($row2=$result2->fetch()){
-			 $cargosIncome =$row2["CargosAmount"];
+			 $cargos =$row2["Cargos"];
 			 echo '
 			 <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <i class="fa fa-truck pull-right" aria-hidden="true"></i>
-                                <h5><a onclick="readallCargos(\''.$startDate.'\',\''.$endDate.'\')">Cargos Income</a></h5>
+                                <h5><a onclick="readallCargos(\''.$startDate.'\',\''.$endDate.'\')">Cargos</a></h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins">'.$row2["CargosAmount"].'</h1>
+                                <h1 class="no-margins">'.$row2["Cargos"].'</h1>
                                 <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
                                 <small>All Cargos</small>
                             </div>
@@ -116,99 +115,23 @@ include 'reportClass.php';
                     </div>
 			 ';
 		 }
-		  $result3 = getBills();
-		 while($row3=$result3->fetch()){
-			 $Bills =$row3["billsAmount"];
-			 echo '
-			 <div class="col-lg-3">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <i class="fa fa-truck pull-right" aria-hidden="true"></i>
-                                <h5><a onclick="readallBills(\''.$startDate.'\',\''.$endDate.'\')">Bills Expenses</a></h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="no-margins">'.$row3["billsAmount"].'</h1>
-                                <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
-                                <small>All Cargos</small>
-                            </div>
-                        </div>
-                    </div>
-			 ';
-		 }
-		  $result4 = getSupplier();
-		 while($row4=$result4->fetch()){
-			 $Suppliers =$row4["supplierAmount"];
-			 echo '
-			 <div class="col-lg-3">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <i class="fa fa-truck pull-right" aria-hidden="true"></i>
-                                <h5><a onclick="readSupplier(\''.$startDate.'\',\''.$endDate.'\')">Supplier Paying Expenses</a></h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="no-margins">'.$row4["supplierAmount"].'</h1>
-                                <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
-                                <small>All Cargos</small>
-                            </div>
-                        </div>
-                    </div>
-			 ';
-		 }
-		  $result5 = getOtherExpense();
-		 while($row5=$result5->fetch()){
-			 $otherExpenses =$row5["otherAmount"];
-			 echo '
-			 <div class="col-lg-3">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <i class="fa fa-truck pull-right" aria-hidden="true"></i>
-                                <h5><a onclick="readOtherExpense(\''.$startDate.'\',\''.$endDate.'\')">Other Expenses</a></h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="no-margins">'.$row5["otherAmount"].'</h1>
-                                <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
-                                <small>All Cargos</small>
-                            </div>
-                        </div>
-                    </div>
-			 ';
-		 }
-		 $allIncome = $ticketsIncome+$visasIncome+$cargosIncome;
-		 $allExpenses= $Bills+$Suppliers+$otherExpenses;
+		 $allActivity = $tickets + $visas + $cargos;
 			 echo '
 			 <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <i class="fa fa-ticket pull-right" aria-hidden="true"></i><i class="fa fa-cc-visa pull-right" aria-hidden="true"></i>
 								<i class="fa fa-truck pull-right" aria-hidden="true"></i>
-                                <h5>ALL INCOME</h5>
+                                <h5>All activities</h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins">'.$allIncome .'</h1>
+                                <h1 class="no-margins">'.$allActivity .'</h1>
                                 <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
                                 <small>All activities</small>
                             </div>
                         </div>
             </div>
 			 ';
-			  echo '
-			 <div class="col-lg-3">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <i class="fa fa-ticket pull-right" aria-hidden="true"></i><i class="fa fa-cc-visa pull-right" aria-hidden="true"></i>
-								<i class="fa fa-truck pull-right" aria-hidden="true"></i>
-                                <h5>ALL EXPENSES</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="no-margins">'.$allExpenses .'</h1>
-                                <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
-                                <small>All activities</small>
-                            </div>
-                        </div>
-            </div>
-			 ';
-			 
-			 
 		?>
                     
                    
@@ -638,7 +561,7 @@ function searchReport(){
 	var startDate = $("#startDate").val();
 	var endDate = $("#endDate").val();
 	 // Search records
-    $.post("searchFinanceReport.php", {
+    $.post("searchreport.php", {
         startDate: startDate,
         endDate: endDate
     }, function (data, status) {
@@ -691,60 +614,6 @@ function readallCargos(startDate,endDate){
 	}
 	else{
 		$.post("readallCargos.php", {
-        startDate: startDate,
-        endDate: endDate
-    }, function (data, status) {
-        // close the popup
-         $(".reports").html(data);
-
-    });
-	}
-}
-function readallBills(startDate,endDate){
-
-	if(startDate==1 && endDate==1){
-	$.get("readallBills.php", {}, function (data, status) {
-      $(".reports").html(data);
-    });
-	}
-	else{
-		$.post("readallBills.php", {
-        startDate: startDate,
-        endDate: endDate
-    }, function (data, status) {
-        // close the popup
-         $(".reports").html(data);
-
-    });
-	}
-}
-function readSupplier(startDate,endDate){
-
-	if(startDate==1 && endDate==1){
-	$.get("readSupplierPay.php", {}, function (data, status) {
-      $(".reports").html(data);
-    });
-	}
-	else{
-		$.post("readSupplierPay.php", {
-        startDate: startDate,
-        endDate: endDate
-    }, function (data, status) {
-        // close the popup
-         $(".reports").html(data);
-
-    });
-	}
-}
-function readOtherExpense(startDate,endDate){
-
-	if(startDate==1 && endDate==1){
-	$.get("readOtherExpense.php", {}, function (data, status) {
-      $(".reports").html(data);
-    });
-	}
-	else{
-		$.post("readOtherExpense.php", {
         startDate: startDate,
         endDate: endDate
     }, function (data, status) {

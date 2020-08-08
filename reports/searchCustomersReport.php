@@ -6,38 +6,39 @@
     // include Database connection files
     include("reportClass.php");
      $data ="";
-		 $result = getTicketsListByDate($startDate,$endDate);
+     $tickets = $visas = $cargos =$allActivity= 0;
+		 $result = getCustomersByDate($startDate,$endDate);
 		 while($row=$result->fetch()){
-			
+			 $tickets = $row["allCustomers"];
 			 $data .= '
 			 <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                <!-- <span class="label label-success pull-right">Monthly</span>-->
 							   <i class="fa fa-ticket pull-right" aria-hidden="true"></i>
-                                <h5>Tickets</h5>
+                                <h5><a onclick="readallCustomers(\''.$startDate.'\',\''.$endDate.'\')">Customers</a></h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins">'.$row["Tickets"].'</h1>
+                                <h1 class="no-margins">'.$row["allCustomers"].'</h1>
                                 <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
-                                <small>Total Tickets</small>
+                                <small>Total Customers</small>
                             </div>
                         </div>
                     </div>
 			 ';
 		 }
-	$result1 = getVisasByDate($startDate,$endDate);
+	$result1 = getTicketsPendingByDate($startDate,$endDate);
 		 while($row1=$result1->fetch()){
-			 $visas = $row1["Visas"];
-			 $data .= '
+			 $visas = $row1["ticketsPending"];
+			 $data .='
 			<div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <i class="fa fa-cc-visa pull-right" aria-hidden="true"></i>
-                                <h5>Visas</h5>
+                                <h5><a onclick="readTicketsPending(\''.$startDate.'\',\''.$endDate.'\')">Tickets Pending</a></h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins">'.$row1["Visas"].'</h1>
+                                <h1 class="no-margins">'.$row1["ticketsPending"].'</h1>
                                 <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
                                 <small>All Visas</small>
                             </div>
@@ -45,18 +46,37 @@
                     </div>
 			 ';
 		 }
-		$result2 = getCargosByDate($startDate,$endDate);
+		$result2 = getVisasPendingByDate($startDate,$endDate);
 		 while($row2=$result2->fetch()){
-			 $cargos =$row2["Cargos"];
-			$data .= '
+			 $cargos =$row2["visasPending"];
+			 $data .='
 			 <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <i class="fa fa-truck pull-right" aria-hidden="true"></i>
-                                <h5>Cargos</h5>
+                                <h5><a onclick="readVisasPending(\''.$startDate.'\',\''.$endDate.'\')">Visas Pending</a></h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins">'.$row2["Cargos"].'</h1>
+                                <h1 class="no-margins">'.$row2["visasPending"].'</h1>
+                                <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
+                                <small>All Visas</small>
+                            </div>
+                        </div>
+                    </div>
+			 ';
+		 }
+		 $result3 = getCargosPendingByDate($startDate,$endDate);
+		 while($row3=$result3->fetch()){
+			 $cargos =$row3["cargosPending"];
+			 $data .='
+			 <div class="col-lg-3">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <i class="fa fa-truck pull-right" aria-hidden="true"></i>
+                                <h5><a onclick="readCargosPending(\''.$startDate.'\',\''.$endDate.'\')">Cargos Pending</a></h5>
+                            </div>
+                            <div class="ibox-content">
+                                <h1 class="no-margins">'.$row3["cargosPending"].'</h1>
                                 <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
                                 <small>All Cargos</small>
                             </div>
@@ -64,25 +84,7 @@
                     </div>
 			 ';
 		 }
-		 $allActivity = $tickets + $visas + $cargos;
-			 $data .= '
-			 <div class="col-lg-3">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <i class="fa fa-ticket pull-right" aria-hidden="true"></i><i class="fa fa-cc-visa pull-right" aria-hidden="true"></i>
-								<i class="fa fa-truck pull-right" aria-hidden="true"></i>
-                                <h5>All activities</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="no-margins">'.$allActivity .'</h1>
-                                <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
-                                <small>All activities</small>
-                            </div>
-                        </div>
-            </div>
-			 ';
    
-    $data .= '</table>';
 	
     echo $data;
 	}
