@@ -127,5 +127,149 @@ function GetDelete(del_id) {
   }
 
 }
-// end of delete fuction
+// end of Customer delete fuction
+
+// Visa Operations 
+// Add Visa Operation
+function addVisa(){
+  
+    // get values
+    var cusid = $("#cusid").val();
+    var vdate = $("#vdate").val();
+    var duration = $("#duration").val();
+    var country = $("#country").val();
+    var passno = $("#passno").val();
+    var issby = $("#issby").val();
+    var issdate = $("#issdate").val();
+    var passexdate = $("#passexdate").val();
+    var cprice = $("#cprice").val();
+     var sellprice = $("#sellprice").val();
+    var profit = $("#profit").val();
+    var desc = $("#desc").val();
+    var user_id = $("#user_id").val();
+
+ // alert(vdate);
+    // Add record
+    $.post("addVisa.php", {
+        cusid: cusid,
+        vdate: vdate,
+        duration: duration,
+        country: country,
+        passno: passno,
+        issby: issby,
+        issdate: issdate,
+        passexdate: passexdate,
+        cprice: cprice,
+        sellprice: sellprice,
+        profit: profit,
+        desc: desc,
+        user_id: user_id,
+        
+    }, function (data, status) {
+        // close the popup
+    alert(data);
+        $("#addVisaModal").modal("hide");
+        location.reload();
+       
+        
+    });
+}
+// end of Visa Operation
+// Ticket Operations 
+// Add Ticket Operation
+function addTicket(){
+  
+    // get values
+    var custid = $("#custid").val();
+    var rdate = $("#rdate").val();
+    var ticket = $("#ticket").val();
+    var airline = $("#airline").val();
+    var dfrom = $("#dfrom").val();
+    var dto = $("#dto").val();
+    var tcprice = $("#tcprice").val();
+    var sprice = $("#sprice").val();
+    var tprofit = $("#tprofit").val();
+     var tdesc = $("#tdesc").val();
+    
+    var user_id = $("#user_id").val();
+
+ // alert(vdate);
+    // Add record
+    $.post("addTicket.php", {
+        custid: custid,
+        rdate: rdate,
+        ticket: ticket,
+        airline: airline,
+        dfrom: dfrom,
+        dto: dto,
+        tcprice: tcprice,
+        sprice: sprice,
+        tprofit: tprofit,
+        tdesc: tdesc,
+       
+        user_id: user_id,
+        
+    }, function (data, status) {
+        // close the popup
+    alert(data);
+        $("#addTicketModal").modal("hide");
+        location.reload();
+       
+        
+    });
+}
+// end of Ticket Operation
+
+// Cargo Operations 
+// Add Cargo Operation
+function addCargo(){
+  
+    // get values
+    var package = $("#package").val();
+    var pkg = $("#pkg").val();
+    var crcprice = $("#crcprice").val();
+    var crsprice = $("#crsprice").val();
+    var crprofit = $("#crprofit").val();
+    var crdesfrom = $("#crdesfrom").val();
+    var crdesto = $("#crdesto").val();
+    var crairline = $("#crairline").val();
+    var tdate = $("#tdate").val();
+     var gdate = $("#gdate").val();
+    var rname = $("#rname").val();
+    var rtell = $("#rtell").val();
+    var raddr = $("#crdesc").val();
+    var crdesc = $("#raddr").val();
+    var crcustid = $("#crcustid").val();
+    var user_id = $("#user_id").val();
+
+ // alert(vdate);
+    // Add record
+    $.post("addCargo.php", {
+        package: package,
+        pkg: pkg,
+        crcprice: crcprice,
+        crsprice: crsprice,
+        crprofit: crprofit,
+        crdesfrom: crdesfrom,
+        crdesto: crdesto,
+        crairline: crairline,
+        tdate: tdate,
+        gdate: gdate,
+        rname: rname,
+        rtell: rtell,
+        raddr: raddr,
+        crdesc: crdesc,
+        crcustid: crcustid,
+        user_id: user_id,
+        
+    }, function (data, status) {
+        // close the popup
+    alert(data);
+        $("#addCargoModal").modal("hide");
+        location.reload();
+       
+        
+    });
+}
+// end of Cargo Operation
 </script>

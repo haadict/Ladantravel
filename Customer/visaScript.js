@@ -44,7 +44,7 @@ function addVisa(){
     });
 }
 // When updating
-function GetUpdateDetails(up_id) {
+function GetVisaUpdateDetails(up_id) {
 
     
     $("#up_id").val(up_id);
@@ -83,7 +83,7 @@ function GetUpdateDetails(up_id) {
 
 }
 // When button update is clicked
-function updateRecord() {
+function updateVisaRecord() {
     // get values
     var up_cusid = $("#up_cusid").val();
     var up_vdate = $("#up_vdate").val();
@@ -131,7 +131,7 @@ function updateRecord() {
     );
 }
 
-function GetDelete(del_id) {
+function GetVisaDelete(del_id) {
 
     $("#del_id").val(del_id);
   Swal.fire({

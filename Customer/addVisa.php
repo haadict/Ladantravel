@@ -2,7 +2,7 @@
     if(isset($_POST))
     {
         // include Database connection file
-        include 'visa_Class.php';
+        include 'customer_Class.php';
        // include 'function.php';
         // get values
         $cusid  = $_POST['cusid'];
@@ -20,9 +20,9 @@
         $user_id = $_POST['user_id'];
         
         
-          addRecord($cusid,$vdate,$duration,$country,$passno,$issby,$issdate,$passexdate,$cprice,$sellprice,$profit,$desc,$user_id);
+          addVisaRecord($cusid,$vdate,$duration,$country,$passno,$issby,$issdate,$passexdate,$cprice,$sellprice,$profit,$desc,$user_id);
 
-        echo "New Record Added!";
+     echo "New Record Added!";
     }
 
 ?>

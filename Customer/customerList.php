@@ -6,7 +6,7 @@
   include '../includes/nav.php';
   include 'customerScript.js';
   include 'customer_Class.php';
-  include 'visaScript.js';
+ // include 'visaScript.js';
 
   ?>
     <style>
@@ -191,8 +191,12 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
 </a>
 <div class="dropdown-menu dropdown-menu-right">
 <a class="dropdown-item" href="#" data-toggle="modal" onclick="visaModal('.$row["CustomerId"].')" name="visa" data-target="#addVisa"><i class="fa fa-eye"></i> Visa</a>
-<a class="dropdown-item" href="#" ><i class="fa fa-eye"></i> Ticket</a>
-<a class="dropdown-item" href="#" ><i class="fa fa-eye"></i> Hotel</a>
+
+<a class="dropdown-item" href="#" data-toggle="modal" onclick="ticketModal('.$row["CustomerId"].')" name="ticket" data-target="#addTicket"><i class="fa fa-eye"></i> Ticket</a>
+
+<a class="dropdown-item" href="#" data-toggle="modal" onclick="cargoModal('.$row["CustomerId"].')" name="ticket" data-target="#addCargo"><i class="fa fa-eye"></i> Cargo</a>
+<a class="dropdown-item" href="Reservation.php?id='.$row["CustomerId"].'"  id="" name="ticket" ><i class="fa fa-eye"></i> View</a>
+
 </div>
 </div>
               </td >
@@ -294,14 +298,7 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
     <div class="modal-body">
        
   
-      <div class="row">
-        <div class="form-group col-xs-6">
-        <label for="sel1">Customer:</label>
-       <input type="hidden" class="form-control" name="cusid" id="cusid">
-      </div>
       
-      
-    </div>
     <div class="row">
       <div class="form-group col-xs-6">
         <label for="fname">Visa Date:</label>
@@ -365,6 +362,8 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
     
     <div class="modal-footer">
      <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION["EmployeeId"];?>"/>
+       <input type="text" class="form-control" name="cusid" id="cusid">
+
      <input type="submit" onclick="addVisa();" class="btn btn-success btn-lg btn-block" value="Add" />
     </div>
   
@@ -375,6 +374,254 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
 </div>
 </div>
 <!-- end of Add Visa Reservation Modal -->
+
+<!-- Add Ticket Reservation Modal -->
+<div id="addTicket" class="modal fade">
+ <div class="modal-dialog modal-lg">
+   <form method="post" id="aform" enctype="multipart/form-data">
+   <div class="modal-content">
+    <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal">&times;</button>
+     <h4 class="modal-title">Add Tciket Reservation</h4>
+    </div>
+    <div class="modal-body">
+       
+  
+     
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="fname">Reservaion Date:</label>
+        <input type="date" class="form-control" placeholder="Enter Visa Date" name="rdate" id="rdate" required="true">
+
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="phone">Ticket No:</label>
+         <select name="ticket" id="ticket"  class="form-control" required='true'><option value=" ">Tickets</option>
+            <?php
+            include("./connection/dbcon.php");
+            //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+            $query = "select * from tbl_tickets";
+            $stm = $dbcon->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll();
+            $data = array();
+            $filtered_rows = $stm->rowCount();
+            // $res=mysqli_query($con,"select * from shifts" );
+            foreach($result as $row)
+            {
+            ?> 
+      <option value="<?php echo $row["ticketId"];?>"><?php echo $row["ticketNo"];?></option>  
+      <?php } ?> 
+     </select>
+      </div>
+      
+    </div>
+      <div class="row">
+        <div class="form-group col-xs-6">
+        <label for="email">AirLine:</label>
+         <select name="airline" id="airline"  class="form-control" required='true'><option value=" ">AirLine</option>
+            <?php
+            include("./connection/dbcon.php");
+            //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+            $query = "select * from tbl_airline";
+            $stm = $dbcon->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll();
+            $data = array();
+            $filtered_rows = $stm->rowCount();
+            // $res=mysqli_query($con,"select * from shifts" );
+            foreach($result as $row)
+            {
+            ?> 
+      <option value="<?php echo $row["airLineId"];?>"><?php echo $row["airLineName"];?></option>  
+      <?php } ?> 
+     </select>
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="email">Destanation From:</label>
+        <input type="text" class="form-control" placeholder="Enter Destanation From" name="dfrom" id="dfrom" required="true">
+      </div>
+      
+    </div>
+      <div class="row">
+        <div class="form-group col-xs-6">
+        <label for="email">Destanation To:</label>
+        <input type="text" class="form-control"placeholder="Enter Destanation To" name="dto" id="dto" required="true">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="email">Cost Price:</label>
+        <input type="text" class="form-control" placeholder="Enter Cost Price" name="tcprice" id="tcprice" required="true">
+      </div>
+    </div>
+     <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="email">Sell Price:</label>
+        <input type="text" class="form-control" name="sprice" id="sprice" required="true" placeholder="Enter Sell Price">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="email">Profit:</label>
+        <input type="text" class="form-control" placeholder="Enter Profit" name="tprofit" id="tprofit" required="true">
+      </div>
+      
+    </div>
+     
+       <div class="row">
+      <div class="form-group col-xs-12">
+        <label for="email">Ticket Description:</label>
+        <input type="text" class="form-control"placeholder="Enter Ticket Description" name="tdesc" id="tdesc" required="true">
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+     <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION["EmployeeId"];?>"/>
+     <input type="text" class="form-control" name="custid" id="custid">
+     <input type="submit" onclick="addTicket();" class="btn btn-success btn-lg btn-block" value="Add" />
+    </div>
+  
+  </div> 
+</div>
+</form>
+    
+</div>
+</div>
+<!-- end of Add Tickit Reservation Modal -->
+
+<!-- Add Visa Reservation Modal -->
+<div id="addCargo" class="modal fade">
+ <div class="modal-dialog modal-lg">
+   <form method="post" id="aform" enctype="multipart/form-data">
+   <div class="modal-content">
+    <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal">&times;</button>
+     <h4 class="modal-title">Add Cargo Reservation</h4>
+    </div>
+    <div class="modal-body">
+       
+  
+      
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="fname">Package TypeId:</label>
+         <select name="package" id="package"  class="form-control" required='true'><option value=" ">AirLine</option>
+            <?php
+            include("./connection/dbcon.php");
+            //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+            $query = "select * from tbl_packagetype";
+            $stm = $dbcon->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll();
+            $data = array();
+            $filtered_rows = $stm->rowCount();
+            // $res=mysqli_query($con,"select * from shifts" );
+            foreach($result as $row)
+            {
+            ?> 
+      <option value="<?php echo $row["packageTypeId"];?>"><?php echo $row["packageType"];?></option>  
+      <?php } ?> 
+     </select>
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="phone">Package Kg:</label>
+        <input type="text" class="form-control" placeholder="Enter Duration" name="pkg" id="pkg" required="true">
+      </div>
+      
+    </div>
+      <div class="row">
+        <div class="form-group col-xs-6">
+        <label for="email">Cost Price:</label>
+        <input type="text" class="form-control" placeholder="Enter Country" name="crcprice" id="crcprice" required="true">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="email">Sell Price:</label>
+        <input type="text" class="form-control" placeholder="Enter PassportNo" name="crsprice" id="crsprice" required="true">
+      </div>
+      
+    </div>
+    <div class="row">
+        <div class="form-group col-xs-6">
+        <label for="email">Profit:</label>
+        <input type="text" class="form-control" placeholder="Enter Country" name="crprofit" id="crprofit" required="true">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="email">Destanation From:</label>
+        <input type="text" class="form-control" placeholder="Enter PassportNo" name="crdesfrom" id="crdesfrom" required="true">
+      </div>
+      
+    </div>
+      <div class="row">
+        <div class="form-group col-xs-6">
+        <label for="email">Destanation To:</label>
+        <input type="text" class="form-control"placeholder="Issued By" name="crdesto" id="crdesto" required="true">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="email">AirLine:</label>
+         <select name="crairline" id="crairline"  class="form-control" required='true'><option value=" ">AirLine</option>
+            <?php
+            include("./connection/dbcon.php");
+            //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
+            $query = "select * from tbl_airline";
+            $stm = $dbcon->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll();
+            $data = array();
+            $filtered_rows = $stm->rowCount();
+            // $res=mysqli_query($con,"select * from shifts" );
+            foreach($result as $row)
+            {
+            ?> 
+      <option value="<?php echo $row["airLineId"];?>"><?php echo $row["airLineName"];?></option>  
+      <?php } ?> 
+     </select>
+      </div>
+    </div>
+     <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="email">Taking Date:</label>
+        <input type="date" class="form-control" name="tdate" id="tdate" required="true">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="email">Getting Date:</label>
+        <input type="date" class="form-control" placeholder="Enter Cost Price" name="gdate" id="gdate" required="true">
+      </div>
+      
+    </div>
+     <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="email">Reciver Name:</label>
+        <input type="text" class="form-control"placeholder="Enter Sell Price" name="rname" id="rname" required="true">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="email">Reciver Tell:</label>
+        <input type="text" class="form-control" placeholder="Enter Profit" name="rtell" id="rtell" required="true">
+      </div>
+    
+    </div>
+       <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="email">Reciver Address:</label>
+        <input type="text" class="form-control"placeholder="Enter Visa Description" name="raddr" id="raddr" required="true">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="email">Cargo Description:</label>
+        <input type="text" class="form-control"placeholder="Enter Visa Description" name="crdesc" id="crdesc" required="true">
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+     <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION["EmployeeId"];?>"/>
+       <input type="hidden" class="form-control" name="crcustid" id="crcustid">
+
+     <input type="submit" onclick="addCargo();" class="btn btn-success btn-lg btn-block" value="Add" />
+    </div>
+  
+  </div> 
+</div>
+</form>
+    
+</div>
+</div>
+<!-- end of Add Visa Reservation Modal -->
+
 
         <div class="footer">
             <div class="pull-right">
@@ -489,7 +736,13 @@ function readRecords() {
           function visaModal(id){
           $("#cusid").val(id);
 
-
-
+        }
+        function ticketModal(id){
+          $("#custid").val(id);
+          
+        }
+        function cargoModal(id){
+          $("#crcustid").val(id);
+          
         }
     </script>
