@@ -29,20 +29,19 @@ include 'customer_Class.php';
 		<div class="reportBox">
 		<form id="prospects_form">
 		<?php 
-		$startDate = $endDate ="1";
 		
-		 $result = getVisaRecords();
+		$id=$_GET['id'];
+		 $result = getTickets($id);
 		 while($row=$result->fetch()){
-			 $tickets = $row["Tickets"];
-			 $type="1";
-             $id=$_GEt['id'];
+			 
+             
 			 echo '
-			 <div class="col-lg-3" id="prospects">
+			 <div class="col-lg-4" id="prospects">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                <!-- <span class="label label-success pull-right">Monthly $id</span>-->
 							   <i class="fa fa-ticket pull-right" aria-hidden="true"></i>
-                                <h5><a onclick="readallTickets(\''.$startDate.'\',\''.$endDate.'\')">Tickets</a></h5>
+                                <h5><a onclick="readallTickets('.$id.')">Tickets</a></h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins">'.$row["Tickets"].'</h1>
@@ -53,15 +52,17 @@ include 'customer_Class.php';
                     </div>
 			 ';
 		 }
-		  $result1 = getVisas();
+         $id=$_GET['id'];
+		  $result1 = getVisas($id);
 		 while($row1=$result1->fetch()){
 			 $visas = $row1["Visas"];
+             $type="Visa";
 			 echo '
-			<div class="col-lg-3">
+			<div class="col-lg-4">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <i class="fa fa-cc-visa pull-right" aria-hidden="true"></i>
-                                <h5><a onclick="readallVisas(\''.$startDate.'\',\''.$endDate.'\')">Visas</a></h5>
+                                <h5><a onclick="readallVisa('.$id.')">Visas</a></h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins">'.$row1["Visas"].'</h1>
@@ -72,15 +73,16 @@ include 'customer_Class.php';
                     </div>
 			 ';
 		 }
-		 $result2 = getCargos();
+         $id=$_GET['id'];
+		 $result2 = getCargos($id);
 		 while($row2=$result2->fetch()){
-			 $cargos =$row2["Cargos"];
+			 
 			 echo '
-			 <div class="col-lg-3">
+			 <div class="col-lg-4">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <i class="fa fa-truck pull-right" aria-hidden="true"></i>
-                                <h5><a onclick="readallCargos(\''.$startDate.'\',\''.$endDate.'\')">Cargos</a></h5>
+                                <h5><a onclick="readallCargos('.$id.')">Cargos</a></h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins">'.$row2["Cargos"].'</h1>
@@ -91,24 +93,7 @@ include 'customer_Class.php';
                     </div>
 			 ';
 		 }
-		 $allActivity = $tickets + $visas + $cargos;
-			 echo '
-			 <div class="col-lg-3">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <i class="fa fa-ticket pull-right" aria-hidden="true"></i><i class="fa fa-cc-visa pull-right" aria-hidden="true"></i>
-								<i class="fa fa-truck pull-right" aria-hidden="true"></i>
-                                <h5>All activities</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="no-margins">'.$allActivity .'</h1>
-                                <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
-                                <small>All activities</small>
-                            </div>
-                        </div>
-            </div>
-			 ';
-		?>
+		 ?>
                     
                    
             </form>        
@@ -547,58 +532,44 @@ function searchReport(){
     });
 	
 }
-function readallTickets(startDate,endDate){
+function readallVisa(id){
 
-	if(startDate==1 && endDate==1){
-	$.get("readAllTickets.php", {}, function (data, status) {
-      $(".reports").html(data);
-    });
-	}
-	else{
-		$.post("readAllTickets.php", {
-        startDate: startDate,
-        endDate: endDate
+	   $.post("readAllService.php", {
+        id: id,
+        type: 'Visa'
     }, function (data, status) {
         // close the popup
          $(".reports").html(data);
 
-    });
-	}
+    });	
+	
 }
-function readallVisas(startDate,endDate){
-	if(startDate==1 && endDate==1){
-	$.get("readallVisas.php", {}, function (data, status) {
-      $(".reports").html(data);
-    });
-	}
-	else{
-		$.post("readallVisas.php", {
-        startDate: startDate,
-        endDate: endDate
+function readallTickets(id){
+
+       $.post("readAllService.php", {
+        id: id,
+        type: 'Ticket'
     }, function (data, status) {
         // close the popup
          $(".reports").html(data);
 
-    });
-	}
+    }); 
+    
 }
-function readallCargos(startDate,endDate){
-	if(startDate==1 && endDate==1){
-	$.get("readallCargos.php", {}, function (data, status) {
-      $(".reports").html(data);
-    });
-	}
-	else{
-		$.post("readallCargos.php", {
-        startDate: startDate,
-        endDate: endDate
+function readallCargos(id){
+
+       $.post("readAllService.php", {
+        id: id,
+        type: 'Cargo'
     }, function (data, status) {
         // close the popup
          $(".reports").html(data);
 
-    });
-	}
+    }); 
+    
 }
+
+
 $("#prospects_form").submit(function(e) {
     e.preventDefault();
 });

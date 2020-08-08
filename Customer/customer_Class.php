@@ -40,12 +40,22 @@ function getCustomerById($cust_id){
           $stmt->bindParam(':id', $del_id);
           $stmt->execute();
       }
-
+// Report Operatiions
+        function getTickets($id){
+  return getCnx()->query("SELECT count(ticketId) as Tickets FROM tbl_ticketreservation where CustomerId='$id' and FinishDate is null");
+ }
+ function getVisas($id){
+  return getCnx()->query("SELECT count(visaId) as Visas FROM tbl_visareservation where customerId='$id' and FinishDate is null");
+ }
+  function getCargos($id){
+  return getCnx()->query("SELECT count(CargoId) as Cargos FROM tbl_cargo where CustomerId='$id' and FinishDate is null");
+ }
+// end of Report Operations
       // Visa Operations
 
       // Visa View
       function getVisaRecords($id){
-  return getCnx()->query("SELECT * FROM tbl_visareservation v,tbl_customers c, tbl_employee em where v.customerId=c.CustomerId and v.visaCreateBy=em.EmployeeId and v.FinishDate is null");
+  return getCnx()->query("SELECT * FROM tbl_visareservation v,tbl_customers c, tbl_employee em where v.customerId=c.CustomerId and v.visaCreateBy=em.EmployeeId and v.customerId and v.FinishDate is null");
  }
       // end of Visa View
       // Add Visa operation
@@ -114,7 +124,7 @@ function updateVisaRecord($up_id,$up_cusid,$up_vdate,$up_duration,$up_country,$u
 
       // Ticket View
       function getTicketRecords($id){
-  return getCnx()->query("SELECT * FROM tbl_visareservation v,tbl_customers c, tbl_employee em where v.customerId=c.CustomerId and v.visaCreateBy=em.EmployeeId and v.FinishDate is null");
+  return getCnx()->query("SELECT * FROM tbl_ticketreservation t,tbl_customers c, tbl_employee em where t.customerId=c.CustomerId and t.ticketCreateBy=em.EmployeeId and t.CustomerId='$id' and t.FinishDate is null");
  }
       // end of Ticket View
       // Add Ticket operation
@@ -184,7 +194,7 @@ function updateTicketRecord($up_id,$up_cusid,$up_vdate,$up_duration,$up_country,
 
       // Ticket View
       function getCargoRecords($id){
-  return getCnx()->query("SELECT * FROM tbl_visareservation v,tbl_customers c, tbl_employee em where v.customerId=c.CustomerId and v.visaCreateBy=em.EmployeeId and v.FinishDate is null");
+  return getCnx()->query("SELECT * FROM tbl_cargo cr,tbl_customers c, tbl_employee em,tbl_packagetype p where cr.customerId=c.CustomerId and cr.cargoCreateBy=em.EmployeeId and cr.packageTypeId=p.packageTypeId and cr.CustomerId='$id' and cr.FinishDate is null");
  }
       // end of Ticket View
       // Add Ticket operation
