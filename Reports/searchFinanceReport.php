@@ -69,7 +69,7 @@
 		 $result3 = getBillsAmountByDate($startDate,$endDate);
 		 while($row3=$result3->fetch()){
 			 $Bills =$row3["billsAmount"];
-			 echo '
+			 $data .='
 			 <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
@@ -88,7 +88,7 @@
 	$result4 = getSupplierAmountByDate($startDate,$endDate);
 		 while($row4=$result4->fetch()){
 			 $Suppliers =$row4["supplierAmount"];
-			 echo '
+			 $data .='
 			 <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
@@ -107,7 +107,7 @@
 		 $result5 = getOtherExpenseByDate($startDate,$endDate);
 		 while($row5=$result5->fetch()){
 			 $otherExpenses =$row5["otherAmount"];
-			 echo '
+			$data .='
 			 <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
@@ -125,7 +125,7 @@
 		 }
 		 $allIncome = $ticketsIncome+$visasIncome+$cargosIncome;
 		 $allExpenses= $Bills+$Suppliers+$otherExpenses;
-			 echo '
+			 $data .='
 			 <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
@@ -141,7 +141,7 @@
                         </div>
             </div>
 			 ';
-			  echo '
+			  $data .='
 			 <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
