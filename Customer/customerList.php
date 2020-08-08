@@ -195,7 +195,7 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
 <a class="dropdown-item" href="#" data-toggle="modal" onclick="ticketModal('.$row["CustomerId"].')" name="ticket" data-target="#addTicket"><i class="fa fa-eye"></i> Ticket</a>
 
 <a class="dropdown-item" href="#" data-toggle="modal" onclick="cargoModal('.$row["CustomerId"].')" name="ticket" data-target="#addCargo"><i class="fa fa-eye"></i> Cargo</a>
-
+<a class="dropdown-item" href="Reservation.php?id='.$row["CustomerId"].'"  id="" name="ticket" ><i class="fa fa-eye"></i> View</a>
 
 </div>
 </div>
