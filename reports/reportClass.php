@@ -20,31 +20,31 @@ function getTickets(){
  }
  function getTicketsList(){
   return getCnx()->query("SELECT * FROM tbl_ticketreservation t INNER JOIN tbl_airline a ON t.airLineId=a.airLineId
-INNER JOIN tbl_customers c ON C.CustomerId=T.CustomerId
+INNER JOIN tbl_customers c ON c.CustomerId=t.CustomerId
 where t.FinishDate is null");
  }
   function getTicketsTableByDate($startDate,$endDate){
   return getCnx()->query("SELECT * FROM tbl_ticketreservation t INNER JOIN tbl_airline a ON t.airLineId=a.airLineId
-INNER JOIN tbl_customers c ON C.CustomerId=T.CustomerId
+INNER JOIN tbl_customers c ON c.CustomerId=T.CustomerId
 where t.ticketCreateDate between '$startDate' and '$endDate' and t.FinishDate is null");
  }
   function getTicketsListByDate($startDate,$endDate){
   return getCnx()->query("SELECT count(ticketId) as Tickets FROM tbl_ticketreservation where ticketCreateDate between '$startDate' and '$endDate' and FinishDate is null");
  }
   function getVisasList(){
-  return getCnx()->query("SELECT * FROM tbl_visareservation v INNER JOIN tbl_customers c ON C.CustomerId=v.customerId where v.FinishDate is null");
+  return getCnx()->query("SELECT * FROM tbl_visareservation v INNER JOIN tbl_customers c ON c.CustomerId=v.customerId where v.FinishDate is null");
  }
   function getCargoList(){
-  return getCnx()->query("SELECT * FROM tbl_cargo cr INNER JOIN tbl_customers c ON C.CustomerId=cr.CustomerId
+  return getCnx()->query("SELECT * FROM tbl_cargo cr INNER JOIN tbl_customers c ON c.CustomerId=cr.CustomerId
 INNER JOIN tbl_packagetype p ON p.packageTypeId=cr.packageTypeId
 where cr.FinishDate is null");
  }
  function getVisasTableByDate($startDate,$endDate){
-  return getCnx()->query("SELECT * FROM tbl_visareservation v INNER JOIN tbl_customers c ON C.CustomerId=v.customerId 
+  return getCnx()->query("SELECT * FROM tbl_visareservation v INNER JOIN tbl_customers c ON c.CustomerId=v.customerId 
   where v.visaCreateDate between '$startDate' and '$endDate' AND v.FinishDate is null");
  }
  function getCargoTableByDate($startDate,$endDate){
-  return getCnx()->query("SELECT * FROM tbl_cargo cr INNER JOIN tbl_customers c ON C.CustomerId=cr.CustomerId
+  return getCnx()->query("SELECT * FROM tbl_cargo cr INNER JOIN tbl_customers c ON c.CustomerId=cr.CustomerId
 INNER JOIN tbl_packagetype p ON p.packageTypeId=cr.packageTypeId
 where cr.cargoCreateDate between '$startDate' and '$endDate' and cr.FinishDate is null");
  }
@@ -59,11 +59,11 @@ where cr.cargoCreateDate between '$startDate' and '$endDate' and cr.FinishDate i
  }
  function getBills(){
   return getCnx()->query("SELECT  SUM(ex.ExpenseAmount) AS billsAmount FROM tbl_expense ex INNER JOIN tbl_expensetype st ON st.ExpenseTypeId=ex.ExpenseTypeId
-WHERE EX.ExpenseTypeId = 1 AND ex.FinishDate IS NULL");
+WHERE ex.ExpenseTypeId = 1 AND ex.FinishDate IS NULL");
  }
  function getSupplier(){
   return getCnx()->query("SELECT  SUM(ex.ExpenseAmount) AS supplierAmount FROM tbl_expense ex INNER JOIN tbl_expensetype st ON st.ExpenseTypeId=ex.ExpenseTypeId
-WHERE EX.ExpenseTypeId = 2 AND ex.FinishDate IS NULL");
+WHERE ex.ExpenseTypeId = 2 AND ex.FinishDate IS NULL");
  }
  function getOtherExpense(){
   return getCnx()->query("SELECT  SUM(ex.ExpenseAmount) AS otherAmount FROM tbl_expense ex INNER JOIN tbl_expensetype st ON st.ExpenseTypeId=ex.ExpenseTypeId
@@ -71,7 +71,7 @@ WHERE ex.ExpenseTypeId = 3 AND ex.FinishDate IS NULL");
  }
   function getBillsList(){
   return getCnx()->query("SELECT * FROM tbl_expense ex INNER JOIN tbl_expensetype st ON st.ExpenseTypeId=ex.ExpenseTypeId
-WHERE EX.ExpenseTypeId = 1 AND ex.FinishDate IS NULL");
+WHERE ex.ExpenseTypeId = 1 AND ex.FinishDate IS NULL");
  }
   function getBillsByDate($startDate,$endDate){
   return getCnx()->query("SELECT * FROM tbl_expense ex INNER JOIN tbl_expensetype st ON st.ExpenseTypeId=ex.ExpenseTypeId
@@ -79,11 +79,11 @@ WHERE ex.ExpenseTypeId = 1 AND ex.ExpenseCreateDate between '$startDate' and '$e
  }
  function getSupplierList(){
   return getCnx()->query("SELECT * FROM tbl_expense ex INNER JOIN tbl_expensetype st ON st.ExpenseTypeId=ex.ExpenseTypeId
-WHERE EX.ExpenseTypeId = 2 AND ex.FinishDate IS NULL");
+WHERE ex.ExpenseTypeId = 2 AND ex.FinishDate IS NULL");
  }
  function getSupplierByDate($startDate,$endDate){
   return getCnx()->query("SELECT * FROM tbl_expense ex INNER JOIN tbl_expensetype st ON st.ExpenseTypeId=ex.ExpenseTypeId
-WHERE EX.ExpenseTypeId = 2 AND ex.ExpenseCreateDate between '$startDate' and '$endDate' and ex.FinishDate IS NULL");
+WHERE ex.ExpenseTypeId = 2 AND ex.ExpenseCreateDate between '$startDate' and '$endDate' and ex.FinishDate IS NULL");
  }
  function getOtherExpenseList(){
   return getCnx()->query("SELECT * FROM tbl_expense ex INNER JOIN tbl_expensetype st ON st.ExpenseTypeId=ex.ExpenseTypeId
@@ -155,29 +155,29 @@ WHERE c.status=0 AND c.cargoCreateDate between '$startDate' and '$endDate' and c
  }
   function getTicketsPendingList(){
   return getCnx()->query("SELECT * FROM tbl_ticketreservation t INNER JOIN tbl_airline a ON t.airLineId=a.airLineId
-INNER JOIN tbl_customers c ON C.CustomerId=T.CustomerId
+INNER JOIN tbl_customers c ON c.CustomerId=t.CustomerId
 where t.status=0 AND t.FinishDate is null");
  }
   function getTicketsPendingListByDate($startDate,$endDate){
   return getCnx()->query("SELECT * FROM tbl_ticketreservation t INNER JOIN tbl_airline a ON t.airLineId=a.airLineId
-INNER JOIN tbl_customers c ON C.CustomerId=T.CustomerId
+INNER JOIN tbl_customers c ON c.CustomerId=tT.CustomerId
 where t.status=0 AND t.ticketCreateDate between '$startDate' and '$endDate' and t.FinishDate is null");
  }
   function getVisasPendingList(){
-  return getCnx()->query("SELECT * FROM tbl_visareservation v INNER JOIN tbl_customers c ON C.CustomerId=v.customerId 
+  return getCnx()->query("SELECT * FROM tbl_visareservation v INNER JOIN tbl_customers c ON c.CustomerId=v.customerId 
   where v.status=0 AND v.FinishDate is null");
  }
  function getVisasPendingListByDate($startDate,$endDate){
-  return getCnx()->query("SELECT * FROM tbl_visareservation v INNER JOIN tbl_customers c ON C.CustomerId=v.customerId 
+  return getCnx()->query("SELECT * FROM tbl_visareservation v INNER JOIN tbl_customers c ON c.CustomerId=v.customerId 
   where v.status=0 AND v.visaCreateDate between '$startDate' and '$endDate' AND v.FinishDate is null");
  }
    function getCargoPending(){
-  return getCnx()->query("SELECT * FROM tbl_cargo cr INNER JOIN tbl_customers c ON C.CustomerId=cr.CustomerId
+  return getCnx()->query("SELECT * FROM tbl_cargo cr INNER JOIN tbl_customers c ON c.CustomerId=cr.CustomerId
 INNER JOIN tbl_packagetype p ON p.packageTypeId=cr.packageTypeId
 where cr.status=0 and cr.FinishDate is null");
  }
  function getCargoPendingByDate($startDate,$endDate){
-  return getCnx()->query("SELECT * FROM tbl_cargo cr INNER JOIN tbl_customers c ON C.CustomerId=cr.CustomerId
+  return getCnx()->query("SELECT * FROM tbl_cargo cr INNER JOIN tbl_customers c ON c.CustomerId=cr.CustomerId
 INNER JOIN tbl_packagetype p ON p.packageTypeId=cr.packageTypeId
 where cr.status=0 AND cr.cargoCreateDate between '$startDate' and '$endDate' and cr.FinishDate is null");
  }

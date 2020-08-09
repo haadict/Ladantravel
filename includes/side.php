@@ -4,7 +4,7 @@
 <!-- Mirrored from html.designstream.co.in/boost-admin/layout/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Jul 2020 08:42:57 GMT -->
 <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Ladan Travel Agency</title>
@@ -121,7 +121,7 @@
                             <li><a href="../reports/incomeAndExpense">Income & expenses</a></li>
                             <li><a href="../reports/Reservation">Services Report</a></li>
 
-							<li><a href="../reports/Customers">Customer Report</a></li>
+							<li><a href="../reports/customers">Customer Report</a></li>
                             <!-- <li><a href="../reports/Employers">Employee Report</a></li> -->
 							<!-- <li><a href="../reports/Suppliers">Supplier(Airlines) Report</a></li> -->
                         </ul>
