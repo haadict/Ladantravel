@@ -619,18 +619,7 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
         </div>
         </div>
 		<!-- Mainly scripts -->
-    <script src="../Assets/js/jquery-2.1.1.js"></script>
-    <script src="../Assets/js/bootstrap.min.js"></script>
-    <script src="../Assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="../Assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="../Assets/js/plugins/jeditable/jquery.jeditable.js"></script>
 
-    <script src="../Assets/js/plugins/dataTables/datatables.min.js"></script>
-<script src="script.js"></script>
-    <!-- Custom and plugin javascript -->
-    <script src="../Assets/js/inspinia.js"></script>
-    <script src="../Assets/js/plugins/pace/pace.min.js"></script>
-   
 
 	 <script>
     $(document).on('click', '.delete', function(){

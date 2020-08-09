@@ -4,7 +4,7 @@
 <!-- Mirrored from html.designstream.co.in/boost-admin/layout/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Jul 2020 08:42:57 GMT -->
 <head>
         <meta charset="utf-8">
-        
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Ladan Travel Agency</title>
@@ -69,9 +69,6 @@
                         
                     </li>
                     <li>
-                        <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
-                    </li>
-                    <li>
                         <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Customers</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="../Customer/customerList">Customer list</a></li>
@@ -90,9 +87,14 @@
                         </ul>
                     </li><hr>
                     <li>
-                        <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Accounts</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Receipt</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="../invoice/index">Invoice</a></li>
+                            <li><a href="../invoice/index">Receipt</a></li>
+                        </ul>
+                    </li>
+                      <li>
+                        <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Finance</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
                             <li><a href="../Expense/expenseList">Expenses</a></li>
                         </ul>
                     </li>
