@@ -290,7 +290,6 @@ if (isset($_GET['invId'])) {
       // alert("hhhh");
       $('#QuoteInvoice').printThis({
         importCSS: true,
-        loadCSS: "http://localhost:/Ladantravel/desings/10designa",
         base: "printRec.php"
       });
   });
