@@ -147,7 +147,7 @@ function GetDelete(del_id) {
    $.ajax({
     url:"deleteVisa.php",
     method:"POST",
-    data:{del_id:del_id},
+    data:{del_id:del_id,status:'deletevisa'},
     success:function(data)
     {
      //alert(data);
