@@ -130,36 +130,45 @@
    <div class="modal-content">
     <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal">&times;</button>
-     <h4 class="modal-title">Add Supplier</h4>
+     <h4 class="modal-title">Add Employee</h4>
     </div>
     <div class="modal-body">
-     <label>EmployeeName</label>
+        <div class="row form-group">
+            <div class="col-md-6">
+     <label>Employee Name</label>
      <input type="text" name="empname" id="empname" class="form-control" required="true" />
-     <br />
-     <label>EmployeeGender</label>
+     </div>
+      <div class="col-md-6">
+     <label>Employee Gender</label>
      <select name="empgender" id="empgender"  class="form-control" required='true'><option value=" ">Gender</option>
       <option value="Male">Male</option>
       <option value="Female">Female</option>  
       <option value="Others">Others</option>
       
      </select>
-     <br />
-     <label>EmployeePhone</label>
+ </div>
+      <div class="col-md-6">
+     <label>Employee Phone</label>
      <input type="text" name="emptell" id="emptell" class="form-control" required="true"/>
-     <br />
-     <label>EmployeeAddress</label>
+     </div>
+      <div class="col-md-6">
+     <label>Employee Address</label>
      <input type="text" name="empadrr" id="empadrr" class="form-control" required="true"/>
-     <br />
-     <label>EmployeeEmail</label>
+   </div>
+    <div class="col-md-6">
+     <label>Employee Email</label>
      <input type="email" name="empemail" id="empemail" class="form-control" required="true"/>
-     <br />
-     <label>EmployeeTitle</label>
+   </div>
+    <div class="col-md-6">
+     <label>Employee Title</label>
      <input type="text" name="emptitle" id="emptitle" class="form-control" required="true" />
-     <br />
-     <label>EmployeeSalary</label>
+     </div>
+      <div class="col-md-6">
+     <label>Employee Salary</label>
      <input type="text" name="empsalary" id="empsalary" class="form-control" required="true"/>
-     <br />
-     <label>EmployeeCompanyID</label>
+     </div>
+      <div class="col-md-6">
+     <label>Employee Company</label>
      <select name="comid" id="comid"  class="form-control" required='true'><option value=" ">Company Name</option>
             <?php
             include("./connection/dbcon.php");
@@ -177,8 +186,9 @@
       <option value="<?php echo $row["CompanyId"];?>"><?php echo $row["CompanyName"];?></option>  
       <?php } ?> 
      </select>
-     <br />
-     <label>EmployeeBranchID</label>
+     </div>
+      <div class="col-md-12">
+     <label>Employee Branch</label>
      <select name="branchid" id="branchid"  class="form-control" required='true'><option value=" ">Branch</option>
             <?php
             include("./connection/dbcon.php");
@@ -196,7 +206,7 @@
       <option value="<?php echo $row["BranchId"];?>"><?php echo $row["BranchName"];?></option>  
       <?php } ?> 
      </select>
-     <br />
+    </div>
      <!-- <label>Company Logo</label>
      <input type="file" name="logo" id="logo" class="form-control" required="true"/>
      <span id="h_clogo"></span>
@@ -212,7 +222,7 @@
      <input type="submit"   onclick="addRecord();" class="btn btn-success" value="Add" />
      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
-   </div>
+   </div></div>
   </form>
  </div>
 </div>
@@ -226,10 +236,13 @@
      <h4 class="modal-title">Update Employee</h4>
     </div>
     <div class="modal-body">
+        <div class="row form-group">
+            <div class="col-md-6">
      <label>EmployeeName</label>
      <input type="text" name="up_empname" id="up_empname" class="form-control" required="true" />
-     <br />
-     <label>EmployeeGender</label>
+    </div>
+    <div class="col-md-6">
+     <label>Employee Gender</label>
      <select name="up_empgender" id="up_empgender"  class="form-control" required='true'>
         <option value="">Select Gender</option>
       <option value="Male">Male</option>
@@ -237,23 +250,29 @@
       <option value="Others">Others</option>
       
      </select>
-     <br />
-     <label>EmployeePhone</label>
+     </div>
+     <div class="col-md-6">
+     <label>Employee Phone</label>
      <input type="text" name="up_emptell" id="up_emptell" class="form-control" required="true"/>
-     <br />
-     <label>EmployeeAddress</label>
+     </div>
+     <div class="col-md-6">
+     <label>Employee Address</label>
      <input type="text" name="up_empadrr" id="up_empadrr" class="form-control" required="true"/>
-     <br />
-     <label>EmployeeEmail</label>
+     </div>
+     <div class="col-md-6">
+     <label>Employee Email</label>
      <input type="email" name="up_empemail" id="up_empemail" class="form-control" required="true"/>
-     <br />
-     <label>EmployeeTitle</label>
+     </div>
+     <div class="col-md-6">
+     <label>Employee Title</label>
      <input type="text" name="up_emptitle" id="up_emptitle" class="form-control" required="true" />
-     <br />
-     <label>EmployeeSalary</label>
+     </div>
+     <div class="col-md-6">
+     <label>Employee Salary</label>
      <input type="text" name="up_empsalary" id="up_empsalary" class="form-control" required="true"/>
-     <br />
-     <label>EmployeeCompanyID</label>
+     </div>
+     <div class="col-md-6">
+     <label>Employee Company</label>
      <select name="up_comid" id="up_comid"  class="form-control" required='true'><option value=" ">Company Name</option>
             <?php
             include("./connection/dbcon.php");
@@ -271,8 +290,9 @@
       <option value="<?php echo $row["CompanyId"];?>"><?php echo $row["CompanyName"];?></option>  
       <?php } ?> 
      </select>
-     <br />
-     <label>EmployeeBranchID</label>
+     </div>
+     <div class="col-md-12">
+     <label>Employee Branch</label>
      <select name="up_branchid" id="up_branchid"  class="form-control" required='true'><option value=" ">Branch</option>
             <?php
             include("./connection/dbcon.php");
@@ -290,7 +310,7 @@
       <option value="<?php echo $row["BranchId"];?>"><?php echo $row["BranchName"];?></option>  
       <?php } ?> 
      </select>
-     <br />
+     </div>
     <!--  <label>Company Logo</label>
      <input type="file" name="logo" id="logo" class="form-control" required="true"/>
      <span id="h_clogo"></span>
@@ -305,6 +325,7 @@
      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
    </div>
+</div>
   </form>
  </div>
 </div>

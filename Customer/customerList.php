@@ -396,23 +396,7 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
       </div>
       <div class="form-group col-xs-6">
         <label for="phone">Ticket No:</label>
-         <select name="ticket" id="ticket"  class="form-control" required='true'><option value=" ">Tickets</option>
-            <?php
-            include("./connection/dbcon.php");
-            //$dbcon = new PDO('mysql:host=localhost;dbname=traval_agency_db', 'root', '');
-            $query = "select * from tbl_tickets";
-            $stm = $dbcon->prepare($query);
-            $stm->execute();
-            $result = $stm->fetchAll();
-            $data = array();
-            $filtered_rows = $stm->rowCount();
-            // $res=mysqli_query($con,"select * from shifts" );
-            foreach($result as $row)
-            {
-            ?> 
-      <option value="<?php echo $row["ticketId"];?>"><?php echo $row["ticketNo"];?></option>  
-      <?php } ?> 
-     </select>
+         <input type="text" class="form-control" placeholder="Enter Ticket No" name="ticket" id="ticket" required="true">
       </div>
       
     </div>
@@ -474,7 +458,7 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
     
     <div class="modal-footer">
      <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION["EmployeeId"];?>"/>
-     <input type="text" class="form-control" name="custid" id="custid">
+     <input type="hidden" class="form-control" name="custid" id="custid">
      <input type="submit" onclick="addTicket();" class="btn btn-success btn-lg btn-block" value="Add" />
     </div>
   

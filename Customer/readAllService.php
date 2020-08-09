@@ -146,7 +146,7 @@ else if($_POST['type']=='Cargo'){
                            
                             <td>'.$row["reciverName"].'</td>
                             <td>'.$row["reciverTell"].'</td>
-                            <td><span class="label label-primary">'.$row["sellPrice"].'</td>
+                            <td><span class="label label-primary">'.$row["sellPrice"].'</span></td>
                              <td>'.$row["takingDate"].'</td>
         </tr>
              ';
