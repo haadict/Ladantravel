@@ -103,6 +103,14 @@
                         <ul class="nav nav-second-level collapse">
                             <li><a href="../User/userList">user List</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Services</span><span class="label label-info pull-right">NEW</span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="../Services/visaList">Visa List</a></li>
+                            <li><a href="../Services/TicketList">Ticket List</a></li>
+                            <li><a href="../Services/cargoList">Cargo List</a></li>
+                        </ul>
                     </li><hr>
                     <li>
                         <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">Setups</span><span class="fa arrow"></span></a>

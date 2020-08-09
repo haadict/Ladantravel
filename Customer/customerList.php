@@ -1,4 +1,3 @@
-
 	<?php 
   include("../session.php"); 
   include '../includes/side.php';
@@ -159,8 +158,7 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
                         <th>Phone Number</th>
                         <th>Address</th>
                         <th>Email</th>
-						<th>Action</th>
-            <th>Action</th>
+						            <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -171,37 +169,33 @@ box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
 						 $i++;
 						 echo '
 						  <tr>
-						    <td>'.$i.'</td>
+						  <td>'.$i.'</td>
 							<td>'.$row["CustomerName"].'</td>
 							<td>'.$row["Customerphone"].'</td>
 							<td>'.$row["CustomerAddress"].'</td>
 							<td>'.$row["CustomerEmail"].'</td>
-
 							<td>
-							<button class="btn btn-info btn-circle" type="button" onclick="GetCustomerDetails('.$row["CustomerId"].')"><i class="fa fa-check"></i>
-                            </button>
-							<button class="btn btn-warning btn-circle delete" type="button" id='.$row["CustomerId"].'><i class="fa fa-times"></i>
-                            </button>
+              <a href="Reservation.php?id='.$row["CustomerId"].'"  class="btn btn-info btn-circle"><i class="fa fa-eye"></i> </a>
+  							<button class="btn btn-info btn-circle" type="button" onclick="GetCustomerDetails('.$row["CustomerId"].')"><i class="fa fa-check"></i>
+                </button>
+  							<button class="btn btn-warning btn-circle delete" type="button" id='.$row["CustomerId"].'><i class="fa fa-times"></i>
+                </button>
 							</td>
+              </tr>';
+              // <td>
+              // <div class="dropdown">
+              //   <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+              //   <i class="icon-copy fa fa-bars" aria-hidden="true"></i>
+              //   </a>
+              //   <div class="dropdown-menu dropdown-menu-right">
+              //   <a class="dropdown-item" href="#" data-toggle="modal" onclick="visaModal('.$row["CustomerId"].')" name="visa" data-target="#addVisa"><i class="fa fa-eye"></i> Visa</a>
 
-              <td>
-              <div class="dropdown ">
-<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-<i class="icon-copy fa fa-bars" aria-hidden="true"></i>
-</a>
-<div class="dropdown-menu dropdown-menu-right">
-<a class="dropdown-item" href="#" data-toggle="modal" onclick="visaModal('.$row["CustomerId"].')" name="visa" data-target="#addVisa"><i class="fa fa-eye"></i> Visa</a>
+              //   <a class="dropdown-item" href="#" data-toggle="modal" onclick="ticketModal('.$row["CustomerId"].')" name="ticket" data-target="#addTicket"><i class="fa fa-eye"></i> Ticket</a>
 
-<a class="dropdown-item" href="#" data-toggle="modal" onclick="ticketModal('.$row["CustomerId"].')" name="ticket" data-target="#addTicket"><i class="fa fa-eye"></i> Ticket</a>
-
-<a class="dropdown-item" href="#" data-toggle="modal" onclick="cargoModal('.$row["CustomerId"].')" name="ticket" data-target="#addCargo"><i class="fa fa-eye"></i> Cargo</a>
-<a class="dropdown-item" href="Reservation.php?id='.$row["CustomerId"].'"  id="" name="ticket" ><i class="fa fa-eye"></i> View</a>
-
-</div>
-</div>
-              </td >
-						  </tr>
-						 ';
+              //   <a class="dropdown-item" href="#" data-toggle="modal" onclick="cargoModal('.$row["CustomerId"].')" name="ticket" data-target="#addCargo"><i class="fa fa-eye"></i> Cargo</a>
+              //   <a class="dropdown-item" href="Reservation.php?id='.$row["CustomerId"].'"  id="" name="ticket" ><i class="fa fa-eye"></i> View</a>
+              //   </div>
+              //   </div>
 					 }
 					
 					?>
