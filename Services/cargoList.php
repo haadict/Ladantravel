@@ -195,29 +195,29 @@
       <div class="row">
         <div class="form-group col-xs-6">
         <label for="email">Cost Price:</label>
-        <input type="text" class="form-control" placeholder="Enter Country" name="crcprice" id="crcprice" required="true">
+        <input type="text" class="form-control" placeholder="Enter Cost Price" name="crcprice" id="crcprice" required="true">
       </div>
       <div class="form-group col-xs-6">
         <label for="email">Sell Price:</label>
-        <input type="text" class="form-control" placeholder="Enter PassportNo" name="crsprice" id="crsprice" required="true">
+        <input type="text" class="form-control" placeholder="Enter Sell Price" onkeyup="profitCal();" name="crsprice" id="crsprice" required="true">
       </div>
       
     </div>
     <div class="row">
         <div class="form-group col-xs-6">
         <label for="email">Profit:</label>
-        <input type="text" class="form-control" placeholder="Enter Country" name="crprofit" id="crprofit" required="true">
+        <input type="text" class="form-control" readonly placeholder="Enter Profit" name="crprofit" id="crprofit" required="true">
       </div>
       <div class="form-group col-xs-6">
         <label for="email">Destanation From:</label>
-        <input type="text" class="form-control" placeholder="Enter PassportNo" name="crdesfrom" id="crdesfrom" required="true">
+        <input type="text" class="form-control" placeholder="Enter Destanation From" name="crdesfrom" id="crdesfrom" required="true">
       </div>
       
     </div>
       <div class="row">
         <div class="form-group col-xs-6">
         <label for="email">Destanation To:</label>
-        <input type="text" class="form-control"placeholder="Issued By" name="crdesto" id="crdesto" required="true">
+        <input type="text" class="form-control"placeholder="Enter Destanation To" name="crdesto" id="crdesto" required="true">
       </div>
       <div class="form-group col-xs-6">
         <label for="email">AirLine:</label>
@@ -254,22 +254,22 @@
      <div class="row">
       <div class="form-group col-xs-6">
         <label for="email">Reciver Name:</label>
-        <input type="text" class="form-control"placeholder="Enter Sell Price" name="rname" id="rname" required="true">
+        <input type="text" class="form-control"placeholder="Enter Reciver Name" name="rname" id="rname" required="true">
       </div>
       <div class="form-group col-xs-6">
         <label for="email">Reciver Tell:</label>
-        <input type="text" class="form-control" placeholder="Enter Profit" name="rtell" id="rtell" required="true">
+        <input type="text" class="form-control" placeholder="Enter Reciver Tell" name="rtell" id="rtell" required="true">
       </div>
     
     </div>
        <div class="row">
       <div class="form-group col-xs-6">
-        <label for="email">Reciver Address:</label>
-        <input type="text" class="form-control"placeholder="Enter Visa Description" name="raddr" id="raddr" required="true">
+        <label for="email">Reciver Tell:</label>
+        <input type="text" class="form-control"placeholder="Enter Reciver Tell" name="raddr" id="raddr" required="true">
       </div>
       <div class="form-group col-xs-6">
         <label for="email">Cargo Description:</label>
-        <input type="text" class="form-control"placeholder="Enter Visa Description" name="crdesc" id="crdesc" required="true">
+        <input type="text" class="form-control"placeholder="Enter Reciver Tell" name="crdesc" id="crdesc" required="true">
       </div>
     </div>
     
@@ -354,14 +354,14 @@
       </div>
       <div class="form-group col-xs-6">
         <label for="email">Sell Price:</label>
-        <input type="text" class="form-control" placeholder="Enter PassportNo" name="up_crsprice" id="up_crsprice" required="true">
+        <input type="text" class="form-control" placeholder="Enter PassportNo" onkeyup="profitCalUp();" name="up_crsprice" id="up_crsprice" required="true">
       </div>
       
     </div>
     <div class="row">
         <div class="form-group col-xs-6">
         <label for="email">Profit:</label>
-        <input type="text" class="form-control" placeholder="Enter Country" name="up_crprofit" id="up_crprofit" required="true">
+        <input type="text" class="form-control" readonly placeholder="Enter Country" name="up_crprofit" id="up_crprofit" required="true">
       </div>
       <div class="form-group col-xs-6">
         <label for="email">Destanation From:</label>
@@ -527,4 +527,16 @@
                 "New row" ] );
 
         }
+function profitCal()
+{
+    var tcprice = $("#crcprice").val();
+    var sprice = $("#crsprice").val();
+     $("#crprofit").val(sprice-tcprice);
+}
+function profitCalUp()
+{
+    var cprice = $("#up_crcprice").val();
+    var sellprice = $("#up_crsprice").val();
+     $("#up_crprofit").val(sellprice-cprice);
+}
     </script>

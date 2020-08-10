@@ -218,7 +218,7 @@
       </div>
       <div class="form-group col-xs-6">
         <label for="email">Sell Price:</label>
-        <input type="text" class="form-control" name="sprice" id="sprice" required="true" placeholder="Enter Sell Price">
+        <input type="text" class="form-control" onkeyup="profitCal();" name="sprice" id="sprice" required="true" placeholder="Enter Sell Price">
       </div>
       
       
@@ -227,7 +227,7 @@
        <div class="row">
         <div class="form-group col-xs-6">
         <label for="email">Profit:</label>
-        <input type="text" class="form-control" placeholder="Enter Profit" name="tprofit" id="tprofit" required="true">
+        <input type="text" class="form-control" readonly placeholder="Enter Profit" name="tprofit" id="tprofit" required="true">
       </div>
       <div class="form-group col-xs-6">
         <label for="email">Ticket Description:</label>
@@ -309,11 +309,11 @@
      <div class="row">
       <div class="form-group col-xs-6">
         <label for="email">Sell Price:</label>
-        <input type="text" class="form-control" name="up_sprice" id="up_sprice" required="true" placeholder="Enter Sell Price">
+        <input type="text" class="form-control" onkeyup="profitCalUp();" name="up_sprice" id="up_sprice" required="true" placeholder="Enter Sell Price">
       </div>
       <div class="form-group col-xs-6">
         <label for="email">Profit:</label>
-        <input type="text" class="form-control" placeholder="Enter Profit" name="up_tprofit" id="up_tprofit" required="true">
+        <input type="text" class="form-control" readonly placeholder="Enter Profit" name="up_tprofit" id="up_tprofit" required="true">
       </div>
       
     </div>
@@ -425,4 +425,16 @@
                 "New row" ] );
 
         }
+function profitCal()
+{
+    var tcprice = $("#tcprice").val();
+    var sprice = $("#sprice").val();
+     $("#tprofit").val(sprice-tcprice);
+}
+function profitCalUp()
+{
+    var cprice = $("#up_tcprice").val();
+    var sellprice = $("#up_sprice").val();
+     $("#up_tprofit").val(sellprice-cprice);
+}
     </script>
