@@ -205,17 +205,17 @@
      <div class="row">
       <div class="form-group col-xs-6">
         <label for="email">Cost Price:</label>
-        <input type="text" class="form-control" placeholder="Enter Cost Price" name="cprice" id="cprice" required="true">
+        <input type="number" class="form-control" placeholder="Enter Cost Price" name="cprice" id="cprice" required="true">
       </div>
       <div class="form-group col-xs-6">
         <label for="email">Sell Price:</label>
-        <input type="text" class="form-control"placeholder="Enter Sell Price" name="sellprice" id="sellprice" required="true">
+        <input type="number" class="form-control"placeholder="Enter Sell Price" onkeyup="profitCal();" name="sellprice" id="sellprice" required>
       </div>
     </div>
      <div class="row">
       <div class="form-group col-xs-6">
         <label for="email">Profit:</label>
-        <input type="text" class="form-control" placeholder="Enter Profit" name="profit" id="profit" required="true">
+        <input type="number" class="form-control" placeholder="Enter Profit" name="profit" id="profit" readonly>
       </div>
       <div class="form-group col-xs-6">
         <label for="email">Description:</label>
@@ -304,17 +304,17 @@
      <div class="row">
       <div class="form-group col-xs-6">
         <label for="email">Cost Price:</label>
-        <input type="text" class="form-control" placeholder="Enter Cost Price" name="up_cprice" id="up_cprice" required="true">
+        <input type="number" class="form-control" placeholder="Enter Cost Price" name="up_cprice" id="up_cprice" required="true">
       </div>
       <div class="form-group col-xs-6">
         <label for="email">Sell Price:</label>
-        <input type="text" class="form-control"placeholder="Enter Sell Price" name="up_sellprice" id="up_sellprice" required="true">
+        <input type="number" class="form-control"placeholder="Enter Sell Price" onkeyup="profitCalUp();" name="up_sellprice" id="up_sellprice" readonly>
       </div>
     </div>
      <div class="row">
       <div class="form-group col-xs-6">
         <label for="email">Profit:</label>
-        <input type="text" class="form-control" placeholder="Enter Profit" name="up_profit" id="up_profit" required="true">
+        <input type="number" class="form-control" placeholder="Enter Profit" name="up_profit" id="up_profit" required="true">
       </div>
       <div class="form-group col-xs-6">
         <label for="email">Description:</label>
@@ -428,4 +428,16 @@
                 "New row" ] );
 
         }
-    </script>
+function profitCal()
+{
+    var cprice = $("#cprice").val();
+    var sellprice = $("#sellprice").val();
+     $("#profit").val(sellprice-cprice);
+}
+function profitCalUp()
+{
+    var cprice = $("#up_cprice").val();
+    var sellprice = $("#up_sellprice").val();
+     $("#up_profit").val(sellprice-cprice);
+}
+ </script>

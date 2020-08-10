@@ -12,8 +12,9 @@ function addRecord(){
     var issdate = $("#issdate").val();
     var passexdate = $("#passexdate").val();
     var cprice = $("#cprice").val();
-     var sellprice = $("#sellprice").val();
-    var profit = $("#profit").val();
+    var sellprice = $("#sellprice").val();
+
+    var profit = $("#profit").val(sellprice-cprice);
     var desc = $("#desc").val();
     var user_id = $("#user_id").val();
 
@@ -43,6 +44,7 @@ function addRecord(){
         
     });
 }
+
 // When updating
 function GetUpdateDetails(up_id) {
 
